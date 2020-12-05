@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "buildings")
@@ -68,17 +69,18 @@ public class Building {
     @Column(nullable = false, name = "building_construction_type")
     private String buildingConstructionType;
 
-    //todo relation
+    //todo relation or class embedable (słownik nazw)
     @ManyToOne
+    @JoinColumn(name = "developer_id")
     @Column(nullable = false)
     private Developer developer;
 
     @Column(nullable = false, name = "is_elevator_available")
     private boolean isElevatorAvailable;
 
-    //todo enum primary/secondary?
-    @Column(nullable = false, name = "market_type")
-    private String marketType;
+
+    @Column(nullable = false, name = "is_primary_market")
+    private boolean isPrimaryMarket;
 
     @Column(name = "building_section")
     private Integer buildingSection;
@@ -89,7 +91,14 @@ public class Building {
     @Column(nullable = false, name = "is_building_finished")
     private boolean isBuildingFinished;
 
+    //todo enum yes/no/not given?
     @Column(nullable = false, name = "is_connected_to_media")
     private boolean isConnectedToMedia;
+
+    //todo Object with photo???
+    private String photosUrl;
+
+    @OneToMany(mappedBy = "buildings")
+    private List<Apartment> apartments;
 
 }

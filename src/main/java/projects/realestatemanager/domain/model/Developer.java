@@ -3,6 +3,7 @@ package projects.realestatemanager.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="developers")
@@ -21,4 +22,7 @@ public class Developer {
 
     @Column(nullable = false)
     private String developerContactNumber;
+
+    @OneToMany(mappedBy = "developers")
+    private List<Building> buildings;
 }
