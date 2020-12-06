@@ -33,6 +33,9 @@ public class Client {
     @Column(nullable = false, name = "client_interest")
     private String clientInterest;
 
+    @Column(nullable = false, name = "is_active")
+    private boolean isActive;
+
     @ManyToMany
     @JoinColumn(name = "user_id")
     private List<User> user;

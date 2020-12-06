@@ -20,6 +20,9 @@ public class Developer {
     @Column(nullable = false, name = "developer_contact_person")
     private String developerContactPerson;
 
+    @Column(nullable = false, name = "is_active")
+    private boolean isActive;
+
     @Column(nullable = false, name = "developer_contact_number")
     private String developerContactNumber;
 
