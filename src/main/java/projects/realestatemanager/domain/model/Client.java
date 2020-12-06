@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -33,7 +34,7 @@ public class Client {
 
     @ManyToMany
     @JoinColumn(name = "user_id")
-    private User user;
+    private List<User> user;
 
 
 

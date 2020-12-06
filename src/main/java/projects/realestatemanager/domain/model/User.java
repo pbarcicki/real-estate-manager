@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -34,7 +35,7 @@ public class User {
 
     @ManyToMany(mappedBy = "user")
     @Column(nullable = false)
-    private Client client;
+    private List<Client> client;
 
 
 
