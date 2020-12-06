@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Table(name = "clients")
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 @EqualsAndHashCode
+@ToString
 public class Client {
 
     @Id

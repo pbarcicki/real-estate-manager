@@ -6,10 +6,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name="users")
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+
 @EqualsAndHashCode(of = "userName")
+
+@Entity
+@Table(name = "users")
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString(exclude = "userPassword")
 public class User {
 
@@ -29,8 +31,12 @@ public class User {
     @Column(name = "role")
     private Set<String> roles = new HashSet<>();
 
-    @ManyToMany(mappedBy = "user", cascade = CascadeType.ALL)
+
+    @ManyToMany(mappedBy = "user")
+    @Column(nullable = false)
     private Client client;
+
+
 
 
 
