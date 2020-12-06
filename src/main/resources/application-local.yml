@@ -1,6 +1,7 @@
 logging:
   level:
-    root: WARN
+    root: INFO
+    sql: DEBUG
     projects.realestatemanager: DEBUG
 spring:
   jpa:
