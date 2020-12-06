@@ -3,6 +3,7 @@ package projects.realestatemanager.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name = "buildings")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString
+@EqualsAndHashCode(of = {"street", "building_number"})
 public class Building {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,7 +88,7 @@ public class Building {
     private Integer buildingSection;
 
     @Column(nullable = false, name = "building_realization_term")
-    private Date buildingRealizationTerm;
+    private LocalDate buildingRealizationTerm;
 
     @Column(nullable = false, name = "is_building_finished")
     private boolean isBuildingFinished;
