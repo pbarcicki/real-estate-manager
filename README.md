@@ -14,3 +14,5 @@ W ramach projektu należy utworzyć system umożliwiający zarządzanie bazą do
   * Dodanie, usunięcie i edycja
   * Przydzielenie ról
   * Generator ofert i możliwości wysyłki na maila lub generowanie pdf 
+  
+  [![Build status](https://github.com/pbarcicki/real-estate-manager/workflows/Build/badge.svg)](https://github.com/pbarcicki/real-estate-manager/actions)
