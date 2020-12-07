@@ -1,0 +1,12 @@
+package projects.realestatemanager.domain.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import projects.realestatemanager.domain.service.BuildingService;
+
+@Controller
+public class BuildingController {
+
+@Autowired
+    private BuildingService buildingService;
+}
