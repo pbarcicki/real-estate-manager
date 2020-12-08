@@ -64,11 +64,6 @@ public class Apartment {
     @Column(nullable = true)
     private String comment;
 
-
-
-
-
-
 }
 
 

@@ -100,6 +100,9 @@ public class Building {
     //todo Object with photo???
     private String photosUrl;
 
+    @Column(nullable = false, name = "creation_date")
+    private LocalDate creationDate;
+
     @OneToMany(mappedBy = "buildings")
     private List<Apartment> apartments;
 
