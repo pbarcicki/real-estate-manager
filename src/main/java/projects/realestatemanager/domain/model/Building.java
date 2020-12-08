@@ -74,7 +74,6 @@ public class Building {
     //todo relation or class embedable (słownik nazw)
     @ManyToOne
     @JoinColumn(name = "developer_id")
-    @Column(nullable = false)
     private Developer developer;
 
     @Column(nullable = false, name = "is_elevator_available")

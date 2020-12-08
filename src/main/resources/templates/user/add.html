@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add user</title>
 </head>
 <body>
+<h1>Add user</h1>
+<div>
+    <form th:action="@{/users/add}" th:method="post" th:object="${createUserCommand}">
+        <fieldset>
+            <div>
+                <label>Username:
+                    <input type="text" th:field="*{username}" name="username" required/>
+                </label>
+            </div>
+            <div>
+                <label>Password:
+                    <input type="password" th:field="*{userPassword}" name="userPassword" required/>
+                </label>
+            </div>
+            <div>
+                <label>E-mail:
+                    <input type="email" th:field="*{userEmail}" name="userEmail"/>
+                </label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <button type="submit">Add user</button>
+        </fieldset>
+    </form>
+</div>
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package projects.realestatemanager.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString(exclude = "userPassword")
 @EqualsAndHashCode(of = "username")
-public class User {
+public class User  {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
