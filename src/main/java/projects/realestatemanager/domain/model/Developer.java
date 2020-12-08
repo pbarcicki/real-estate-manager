@@ -26,6 +26,6 @@ public class Developer {
     @Column(nullable = false, name = "developer_contact_number")
     private String developerContactNumber;
 
-    @OneToMany(mappedBy = "developers")
-    private List<Building> buildings;
+//    @OneToMany(mappedBy = "developers")
+//    private List<Building> buildings;
 }

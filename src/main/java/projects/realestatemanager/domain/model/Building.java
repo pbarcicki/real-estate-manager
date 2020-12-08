@@ -74,7 +74,6 @@ public class Building {
     //todo relation or class embedable (słownik nazw)
     @ManyToOne
     @JoinColumn(name = "developer_id")
-    @Column(nullable = false)
     private Developer developer;
 
     @Column(nullable = false, name = "is_elevator_available")
@@ -103,7 +102,7 @@ public class Building {
     @Column(nullable = false, name = "creation_date")
     private LocalDate creationDate;
 
-    @OneToMany(mappedBy = "buildings")
-    private List<Apartment> apartments;
+//    @OneToMany(mappedBy = "building")
+//    private List<Apartment> apartments;
 
 }
