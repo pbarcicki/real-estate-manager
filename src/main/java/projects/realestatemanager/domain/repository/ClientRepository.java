@@ -5,9 +5,11 @@ import org.springframework.stereotype.Repository;
 import projects.realestatemanager.domain.model.Client;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    List<Client> findAllByUserUsername(String username);
+
+
 }

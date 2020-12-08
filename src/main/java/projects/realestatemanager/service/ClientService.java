@@ -30,12 +30,13 @@ public class ClientService {
 
     }
 
-    public List<ClientSummary> findUserClients() {
+    public List<ClientSummary> findClients() {
         log.debug("Getting customer information");
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return clientRepository.findAllByUserUsername(username).stream()
+        return clientRepository.findAll().stream()
                 .map(clientConverter::toClientSummary)
                 .collect(Collectors.toList());
 
     }
+
+
 }

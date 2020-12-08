@@ -64,9 +64,9 @@ public class Apartment {
     @Column(nullable = true)
     private String comment;
 
-    @ManyToOne
-    @JoinColumn(name = "building_id")
-    private Building building;
+//    @ManyToOne
+//    @JoinColumn(name = "building_id")
+//    private Building building;
 
 
 

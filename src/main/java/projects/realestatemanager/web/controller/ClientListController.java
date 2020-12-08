@@ -18,7 +18,7 @@ public class ClientListController {
 
     @GetMapping
     public String getClientListPage(Model model){
-        model.addAttribute("clients", clientService.findUserClients());
+        model.addAttribute("clients", clientService.findClients());
         return "client/list";
     }
 }

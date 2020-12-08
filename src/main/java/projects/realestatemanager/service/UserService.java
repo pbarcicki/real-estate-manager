@@ -33,7 +33,7 @@ public class UserService {
     public List<UserSummary> findUsers() {
         log.debug("Getting user information");
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findAllByUsername(username).stream()
+        return userRepository.findAll().stream()
                 .map(userConverter::toUserSummary)
                 .collect(Collectors.toList());
     }
