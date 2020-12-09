@@ -24,10 +24,10 @@ public class Client {
     @Column(nullable = false, name = "client_name")
     private String clientName;
 
-    @Column(nullable = true, name = "client_registration_date")
+    @Column(nullable = false, name = "client_registration_date")
     private LocalDate clientRegistrationDate;
 
-    @Column(nullable = true, name = "client_contact_number")
+    @Column(nullable = false, name = "client_contact_number")
     private String clientContactNumber;
 
     //zmiana nullable na true - na pierwszych etapach rozmow mail moze nie byc podany
@@ -37,7 +37,7 @@ public class Client {
     @Column(nullable = false, name = "client_interest")
     private String clientInterest;
 
-    @Column(nullable = true, name = "is_active")
+    @Column(nullable = false, name = "is_active")
     private boolean isActive;
 
     @ManyToMany
