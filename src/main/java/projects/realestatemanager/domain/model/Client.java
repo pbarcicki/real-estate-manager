@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "client")
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 @EqualsAndHashCode(of = {"client_name", "client_registration_date"})
 @ToString

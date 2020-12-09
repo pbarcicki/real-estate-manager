@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "buildings")
+@Table(name = "building")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString
 @EqualsAndHashCode(of = {"street", "building_number"})
@@ -79,7 +79,6 @@ public class Building {
     @Column(nullable = false, name = "is_elevator_available")
     private boolean isElevatorAvailable;
 
-
     @Column(nullable = false, name = "is_primary_market")
     private boolean isPrimaryMarket;
 
@@ -102,7 +101,7 @@ public class Building {
     @Column(nullable = false, name = "creation_date")
     private LocalDate creationDate;
 
-//    @OneToMany(mappedBy = "building")
-//    private List<Apartment> apartments;
+    @OneToMany(mappedBy = "building")
+    private List<Apartment> apartments;
 
 }

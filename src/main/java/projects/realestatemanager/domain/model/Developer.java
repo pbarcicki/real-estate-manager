@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="developers")
+@Table(name="developer")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @EqualsAndHashCode(of = "developerName")
 public class Developer {
@@ -26,6 +26,6 @@ public class Developer {
     @Column(nullable = false, name = "developer_contact_number")
     private String developerContactNumber;
 
-//    @OneToMany(mappedBy = "developers")
-//    private List<Building> buildings;
+    @OneToMany(mappedBy = "developer")
+    private List<Building> buildings;
 }
