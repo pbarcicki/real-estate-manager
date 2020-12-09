@@ -111,7 +111,7 @@ _funkcje opcjonalne_ :toolbox:
 ### ToDo Lista dla sprzedawców
 * funkcjonalność realizowana przez dedykowany panel
 * dodawanie, usuwanie i modyfikacja notatek
-### Admin (Dyrektor)
+### Admin (dyrektor)
 * posiada własny panel administratora
 * ma możliwość przydzielenia nowych `Zadań` dla __sprzedawcy__
 * może dodawać, edytować oraz usuwać:
