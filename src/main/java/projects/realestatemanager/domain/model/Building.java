@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "building")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString
-@EqualsAndHashCode(of = {"street", "building_number"})
+@EqualsAndHashCode(of = {"street", "buildingNumber"})
 public class Building {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
