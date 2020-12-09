@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
@@ -14,14 +16,14 @@ import java.time.LocalDate;
 public class ClientSummary {
 
     private String clientName;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate clientRegistrationDate;
 
     private String clientContactNumber;
 
     private String clientContactEmail;
 
     private String clientInterest;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate clientRegistrationDate;
 
 
 

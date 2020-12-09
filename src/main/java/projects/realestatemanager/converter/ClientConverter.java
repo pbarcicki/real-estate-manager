@@ -13,6 +13,7 @@ public class ClientConverter {
                 .clientContactNumber(createClientCommand.getClientContactNumber())
                 .clientContactEmail(createClientCommand.getClientContactEmail())
                 .clientInterest(createClientCommand.getClientInterest())
+                .clientRegistrationDate(createClientCommand.getClientRegistrationDate())
                 .build();
     }
 
@@ -20,9 +21,9 @@ public class ClientConverter {
         return ClientSummary.builder()
                 .clientName(client.getClientName())
                 .clientContactEmail(client.getClientContactEmail())
-                .clientRegistrationDate(client.getClientRegistrationDate())
                 .clientContactNumber(client.getClientContactNumber())
                 .clientInterest(client.getClientInterest())
+                .clientRegistrationDate(client.getClientRegistrationDate())
                 .build();
     }
 }
