@@ -88,9 +88,6 @@ public class Building {
     @Column(nullable = false, name = "building_realization_term")
     private LocalDate buildingRealizationTerm;
 
-    @Column(nullable = false, name = "is_building_finished")
-    private boolean isBuildingFinished;
-
     //todo enum yes/no/not given?
     @Column(nullable = false, name = "is_connected_to_media")
     private boolean isConnectedToMedia;

@@ -98,9 +98,6 @@ public class CreateBuildingCommand {
     private LocalDate buildingRealizationTerm;
 
     @NotBlank
-    private boolean isBuildingFinished;
-
-    @NotBlank
     private boolean isConnectedToMedia;
 
     @NotBlank
