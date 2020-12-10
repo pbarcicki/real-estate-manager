@@ -11,6 +11,7 @@ import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.BuildingAlreadyExistsException;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +45,10 @@ public class BuildingService {
             throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number %s already exists in DB", buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber()));
         }
 
+        buildingToAdd.setActive(true);
+        buildingToAdd.setCreationDate(LocalDate.now());
+        buildingRepository.save(buildingToAdd);
+        log.debug("Added building: {}", buildingToAdd);
 
     }
 }
