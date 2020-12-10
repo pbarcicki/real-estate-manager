@@ -1,10 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add new building</title>
 </head>
 <body>
+<section>
+    <h1>Add new building</h1>
+</section>
+<section>
+    <form th:action="@{buildings/add}" th:method="post" th:object="${createBuildingCommand}">
+        <fieldset>
+            <label> Region:
+                <input list="region" th:field="region" name="region"/>
+                <datalist id="region">
+                    <option value="Western region">
+                    <option value="Eastern region">
+                    <option value="North region">
+                    <option value="South region">
+                </datalist>
+            </label>
+
+            <label> City:
+                <input list="city" th:field="city" name="city"/>
+                <datalist id="city">
+                    <option value="Wrocław">
+                    <option value="Katowice">
+                    <option value="Gdańsk">
+                    <option value="Berlin">
+                </datalist>
+            </label>
+
+            <label> District:
+                <input type="text" th:field="district" name="district"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('district')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Street:
+                <input type="text" th:field="street" name="street"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('street')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Building number:
+                <input type="text" th:field="buildingNumber" name="building-number"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('buildingNumber')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Additional building details:
+                <input type="text" th:field="buildingDetails" name="building-details"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('buildingDetails')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Distance to kindergarten:
+                <input type="text" th:field="distanceToKindergarten" name="distance-to-kindergarten"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('distanceToKindergarten')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Distance to school:
+                <input type="text" th:field="distanceToSchool" name="distance-to-school"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('distanceToSchool')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Distance to shopping mall:
+                <input type="text" th:field="distanceToShoppingCenters" name="distance-to-shopping"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('distanceToShoppingCenters')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Distance to park:
+                <input type="text" th:field="distanceToPark" name="distance-to-park"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('distanceToPark')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Distance to river:
+                <input type="text" th:field="distanceToRiver" name="distance-to-river"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('distanceToRiver')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Time to city center:
+                <input type="text" th:field="timeToCityCenterMin" name="time-to-center"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('timeToCityCenterMin')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Time to bus stop:
+                <input type="text" th:field="timeToBusStopMin" name="time-to-bus"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('timeToBusStopMin')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Additional building location details:
+                <input type="text" th:field="buildingLocationDetails" name="building-location-details"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('buildingLocationDetails')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Parking availability:
+                <input type="checkbox" th:text="Available" name="isParkingAvailable" th:checked="${true}" name="parking-availability"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('isParkingAvailable')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Garage availability:
+                <input type="checkbox" th:text="Available" name="isGarageAvailable" th:checked="${true}" name="garage-availability"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('isGarageAvailable')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label> Building construction type:
+                <select th:field="buildingConstructionType" name="building-construction-type"/>
+                    <option th:each="constructionOpt : ${T(projects.realestatemanager.Enums.BuildingConstructionType).values()}"
+                    th:value="${constructionOpt}" th:text="${constructionOpt.displayValue}">
+                    </option>
+            </label>
+
+<!--            todo-->
+            <label> Developer:
+                <select th:field="developer" name="developer"/>
+                <option th:each="developerOpt : ${(projects.realestatemanager.domain.repository.BuildingRepository.findAll())}"
+                        th:value="${developerOpt}" th:text="${developerOpt.region}">
+                </option>
+            </label>
+
+            <label> Elevator availability:
+                <input type="checkbox" th:text="Available" name="isElevatorAvailable" th:checked="${true}" name="elevator-availability"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('isElevatorAvailable')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <fieldset>
+                <legend>Type of market:</legend>
+                <input type="radio" id="primary" name="type-of-market">
+                <label for="primary">Primary</label><br/>
+
+                <input type="radio" id="secondary" name="type-of-market">
+                <label for="secondary">Secondary</label><br/>
+            </fieldset>
+
+<!--            <label> Type of market:-->
+<!--                <input type="checkbox" th:text="Primary" name="isPrimaryMarket" th:checked="${true}" name="elevator-availability"/>-->
+<!--                <input type="checkbox" th:text="Secondary" name="isPrimaryMarket" th:checked="${false}" name="elevator-availability"/>-->
+<!--                <div>-->
+<!--                    <span th:each="err : ${#fields.errors('isElevatorAvailable')}" th:text="${err}"></span>-->
+<!--                </div>-->
+<!--            </label>-->
+
+        </fieldset>
+    </form>
+</section>
 
 </body>
 </html>

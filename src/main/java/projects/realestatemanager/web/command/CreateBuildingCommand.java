@@ -37,6 +37,7 @@ public class CreateBuildingCommand {
     @Digits(integer = 4, fraction = 0)
     private String buildingNumber;
 
+    @Size(max = 120)
     private String buildingDetails;
 
     @NotBlank
@@ -67,6 +68,7 @@ public class CreateBuildingCommand {
     @Digits(integer = 3, fraction = 0)
     private Integer timeToBusStopMin;
 
+    @Size(max = 120)
     private String buildingLocationDetails;
 
     //return Boolean.valueOf(booleanField);

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
@@ -27,6 +28,13 @@ public class BuildingController {
     }
 
     @GetMapping("/add")
+    public String getAddBuildingPage(Model model) {
+        model.addAttribute(new CreateBuildingCommand());
+        return "building/add";
+    }
+
+
+    @PostMapping("/add")
     public String processAddBuilding(@Valid CreateBuildingCommand createBuildingCommand, BindingResult bindingResult) {
         log.debug("Data to create building");
         if(bindingResult.hasErrors()) {
