@@ -3,6 +3,7 @@ package projects.realestatemanager.converter;
 import org.springframework.stereotype.Component;
 import projects.realestatemanager.data.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.web.command.CreateBuildingCommand;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -41,4 +42,52 @@ public class BuildingConverter {
                 .numberOfApartments(building.getApartments().size())
                 .build();
     }
+
+    public Building from(CreateBuildingCommand createBuildingCommand) {
+        return Building.builder()
+                .region(createBuildingCommand.getRegion())
+                .city(createBuildingCommand.getCity())
+                .district(createBuildingCommand.getDistrict())
+                .street(createBuildingCommand.getStreet())
+                .buildingNumber(createBuildingCommand.getBuildingNumber())
+                .buildingDetails(createBuildingCommand.getBuildingDetails())
+                .distanceToKindergarten(createBuildingCommand.getDistanceToKindergarten())
+                .distanceToSchool(createBuildingCommand.getDistanceToSchool())
+                .distanceToShoppingCenters(createBuildingCommand.getDistanceToShoppingCenters())
+                .distanceToPark(createBuildingCommand.getDistanceToPark())
+                .distanceToRiver(createBuildingCommand.getDistanceToRiver())
+                .timeToCityCenterMin(createBuildingCommand.getTimeToCityCenterMin())
+                .timeToBusStopMin(createBuildingCommand.getTimeToBusStopMin())
+                .buildingLocationDetails(createBuildingCommand.getBuildingLocationDetails())
+                .isParkingAvailable(createBuildingCommand.isParkingAvailable())
+                .isGarageAvailable(createBuildingCommand.isGarageAvailable())
+                .buildingConstructionType(createBuildingCommand.getBuildingConstructionType())
+                .developer(createBuildingCommand.getDeveloper())
+                .isElevatorAvailable(createBuildingCommand.isElevatorAvailable())
+                .isPrimaryMarket(createBuildingCommand.isPrimaryMarket())
+                .buildingSection(createBuildingCommand.getBuildingSection())
+                .buildingRealizationTerm(createBuildingCommand.getBuildingRealizationTerm())
+                .isConnectedToMedia(createBuildingCommand.isConnectedToMedia())
+                .photosUrl(createBuildingCommand.getPhotosUrl())
+                .build();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -39,6 +39,7 @@ public class BuildingService {
         log.debug("Converted building entity to add: {}", buildingToAdd);
         if (buildingRepository.existsByCityAndStreetAndBuildingNumber(buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber())) {
             log.debug("Tried to add existing building");
+            //todo exception
             throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number % already exists in DB"), buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber());
         }
 
