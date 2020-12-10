@@ -8,6 +8,7 @@ import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.BuildingRepository;
+import projects.realestatemanager.exception.BuildingAlreadyExistsException;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class BuildingService {
         if (buildingRepository.existsByCityAndStreetAndBuildingNumber(buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber())) {
             log.debug("Tried to add existing building");
             //todo exception
-            throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number % already exists in DB"), buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber());
+            throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number %s already exists in DB", buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber()));
         }
 
 
