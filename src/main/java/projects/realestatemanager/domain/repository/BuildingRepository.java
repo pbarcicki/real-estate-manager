@@ -5,4 +5,6 @@ import projects.realestatemanager.domain.model.Building;
 
 public interface BuildingRepository extends JpaRepository<Building, Long> {
 
+    boolean existsByCityAndStreetAndBuildingNumber(String city, String street, String buildingNumber);
+
 }

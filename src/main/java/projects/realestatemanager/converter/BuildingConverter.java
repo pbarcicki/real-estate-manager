@@ -13,6 +13,7 @@ public class BuildingConverter {
     public BuildingSummary toBuildingSummary(Building building) {
         return BuildingSummary.builder()
                 .region(building.getRegion())
+                .isActive(building.isActive())
                 .city(building.getCity())
                 .street(building.getStreet())
                 .buildingNumber(building.getBuildingNumber())

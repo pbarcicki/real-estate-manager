@@ -21,6 +21,9 @@ public class Building {
     @Column(nullable = false)
     private String region;
 
+    @Column(name = "is_active")
+    private boolean isActive;
+
     //todo lista miast
     @Column(nullable = false)
     private String city;

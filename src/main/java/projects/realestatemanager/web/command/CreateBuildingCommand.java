@@ -37,7 +37,6 @@ public class CreateBuildingCommand {
     @Digits(integer = 4, fraction = 0)
     private String buildingNumber;
 
-
     private String buildingDetails;
 
     @NotBlank

@@ -8,6 +8,7 @@ import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.BuildingRepository;
+import projects.realestatemanager.web.command.CreateBuildingCommand;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,4 +32,16 @@ public class BuildingService {
     }
 
 
+    public void add(CreateBuildingCommand createBuildingCommand) {
+        log.debug("Building data to be saved: {}", createBuildingCommand);
+
+        Building buildingToAdd = buildingConverter.from(createBuildingCommand);
+        log.debug("Converted building entity to add: {}", buildingToAdd);
+        if (buildingRepository.existsByCityAndStreetAndBuildingNumber(buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber())) {
+            log.debug("Tried to add existing building");
+            throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number % already exists in DB"), buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber());
+        }
+
+
+    }
 }

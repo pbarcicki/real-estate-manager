@@ -19,6 +19,8 @@ import java.util.List;
 public class BuildingSummary {
     private String region;
 
+    private boolean isActive;
+
     private String city;
 
     private String district;
