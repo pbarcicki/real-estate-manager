@@ -1,19 +1,13 @@
-package projects.realestatemanager.data;
+package projects.realestatemanager.data.building;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import projects.realestatemanager.domain.model.Apartment;
-import projects.realestatemanager.domain.model.Developer;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
-import java.util.List;
+
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class BuildingSummary {

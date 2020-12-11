@@ -11,5 +11,7 @@ public interface DeveloperRepository extends JpaRepository<Developer, Long> {
 
     Optional<Developer> findByDeveloperName(String developerName);
 
+    Developer getById(Long developerId);
+
     //Optional<Developer> findById(Long id);
 }

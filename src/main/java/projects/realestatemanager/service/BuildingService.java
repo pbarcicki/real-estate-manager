@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.BuildingConverter;
-import projects.realestatemanager.data.BuildingSummary;
+import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.BuildingAlreadyExistsException;
@@ -39,9 +39,9 @@ public class BuildingService {
 
         Building buildingToAdd = buildingConverter.from(createBuildingCommand);
         log.debug("Converted building entity to add: {}", buildingToAdd);
+
         if (buildingRepository.existsByCityAndStreetAndBuildingNumber(buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber())) {
             log.debug("Tried to add existing building");
-            //todo exception
             throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number %s already exists in DB", buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber()));
         }
 
@@ -49,6 +49,5 @@ public class BuildingService {
         buildingToAdd.setCreationDate(LocalDate.now());
         buildingRepository.save(buildingToAdd);
         log.debug("Added building: {}", buildingToAdd);
-
     }
 }

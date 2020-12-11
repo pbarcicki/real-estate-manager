@@ -11,6 +11,7 @@ import projects.realestatemanager.domain.model.Developer;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -41,31 +42,25 @@ public class CreateBuildingCommand {
     @Size(max = 120)
     private String buildingDetails;
 
-    @NotBlank
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToKindergarten;
 
-    @NotBlank
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToSchool;
 
-    @NotBlank
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToShoppingCenters;
 
-    @NotBlank
+    //@NotBlank
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToPark;
 
-    @NotBlank
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToRiver;
 
-    @NotBlank
-    @Digits(integer = 3, fraction = 0)
+    @Digits(integer = 4, fraction = 0)
     private Integer timeToCityCenterMin;
 
-    @NotBlank
     @Digits(integer = 3, fraction = 0)
     private Integer timeToBusStopMin;
 
@@ -73,35 +68,34 @@ public class CreateBuildingCommand {
     private String buildingLocationDetails;
 
     //return Boolean.valueOf(booleanField);
-    @NotBlank
-    private boolean isParkingAvailable;
+    @NotNull
+    private boolean parkLot;
 
-    @NotBlank
-    private boolean isGarageAvailable;
+    @NotNull
+    private boolean garageAvailable;
 
     @NotBlank
     @Size(min=3, max = 15)
     private String buildingConstructionType;
 
-    @NotBlank
-    private Developer developer;
+    @NotNull
+    private Long developerId;
 
-    @NotBlank
-    private boolean isElevatorAvailable;
+    @NotNull
+    private boolean elevatorAvailable;
 
-    @NotBlank
-    private boolean isPrimaryMarket;
+    @NotNull
+    private boolean primaryMarket;
 
     @Digits(fraction = 0, integer = 20)
-    @NotBlank
     private Integer buildingSection;
 
-    @NotBlank
+    @NotNull
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate buildingRealizationTerm;
 
-    @NotBlank
-    private boolean isConnectedToMedia;
+    @NotNull
+    private boolean connectedToMedia;
 
     @NotBlank
     @URL

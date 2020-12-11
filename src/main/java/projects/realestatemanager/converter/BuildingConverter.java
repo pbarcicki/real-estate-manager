@@ -1,15 +1,19 @@
 package projects.realestatemanager.converter;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import projects.realestatemanager.data.BuildingSummary;
+import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.repository.DeveloperRepository;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Component
+@RequiredArgsConstructor
 public class BuildingConverter {
+
+    private final DeveloperRepository developerRepository;
 
     public BuildingSummary toBuildingSummary(Building building) {
         return BuildingSummary.builder()
@@ -59,10 +63,10 @@ public class BuildingConverter {
                 .timeToCityCenterMin(createBuildingCommand.getTimeToCityCenterMin())
                 .timeToBusStopMin(createBuildingCommand.getTimeToBusStopMin())
                 .buildingLocationDetails(createBuildingCommand.getBuildingLocationDetails())
-                .isParkingAvailable(createBuildingCommand.isParkingAvailable())
+                .isParkingAvailable(createBuildingCommand.isParkLot())
                 .isGarageAvailable(createBuildingCommand.isGarageAvailable())
                 .buildingConstructionType(createBuildingCommand.getBuildingConstructionType())
-                .developer(createBuildingCommand.getDeveloper())
+                .developer(developerRepository.getById(createBuildingCommand.getDeveloperId()))
                 .isElevatorAvailable(createBuildingCommand.isElevatorAvailable())
                 .isPrimaryMarket(createBuildingCommand.isPrimaryMarket())
                 .buildingSection(createBuildingCommand.getBuildingSection())
