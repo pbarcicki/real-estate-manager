@@ -1,4 +1,4 @@
-package projects.realestatemanager.Enums;
+package projects.realestatemanager.enums;
 
 public enum BuildingConstructionType {
     BRICK("Brick"),
