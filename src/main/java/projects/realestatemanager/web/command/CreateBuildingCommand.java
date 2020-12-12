@@ -81,15 +81,19 @@ public class CreateBuildingCommand {
     @NotNull
     private Boolean garageAvailable;
 
+    @NotNull
+    private Boolean elevatorAvailable;
+
+
+    @NotNull
+    private Boolean connectedToMedia;
+
     @NotBlank
     @Size(min=3, max = 15)
     private String buildingConstructionType;
 
     @NotNull
     private Long developerId;
-
-    @NotNull
-    private Boolean elevatorAvailable;
 
     @NotNull
     private Boolean primaryMarket;
@@ -100,9 +104,6 @@ public class CreateBuildingCommand {
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate buildingRealizationTerm;
-
-    @NotNull
-    private Boolean connectedToMedia;
 
     @NotBlank
     @URL

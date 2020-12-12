@@ -116,7 +116,7 @@
                 </div>
             </label>
 
-            <label> Parking availability:
+            <label> Park lot availability:
                 <input type="checkbox" th:field="${createBuildingCommand.parkLot}" />
                 <div>
                     <span th:each="err : ${#fields.errors('parkLot')}" th:text="${err}"></span>

@@ -23,7 +23,7 @@ public class BuildingSummary {
 
     private String buildingNumber;
 
-    private String buildingDetails;
+    private String buildingDetails; //todo rozwijane okienko w buildings/list
 
     private Integer distanceToKindergarten;
 
@@ -39,21 +39,21 @@ public class BuildingSummary {
 
     private Integer timeToBusStopMin;
 
-    private String buildingLocationDetails;
+    private String buildingLocationDetails;//todo rozwijane okienko w buildings/list
 
     private Boolean isParkingAvailable;
 
     private Boolean isGarageAvailable;
 
-    private String buildingConstructionType;
-
-    private String developerName;
-
-    private String developerContact;
-
     private Boolean isElevatorAvailable;
 
+    private String buildingConstructionType;
+
+    private String developerName;//todo rozwijana lista developera, link do developera w buildings/list,
+
     private Boolean isPrimaryMarket;
+
+    private Integer numberOfApartments;
 
     private Integer buildingSection;
 
@@ -69,5 +69,5 @@ public class BuildingSummary {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate creationDate;
 
-    private Integer numberOfApartments;
+
 }

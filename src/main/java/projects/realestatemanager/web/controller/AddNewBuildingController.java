@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/buildings")
 @Slf4j
 @RequiredArgsConstructor
-public class BuildingController {
+public class AddNewBuildingController {
 
     private final BuildingService buildingService;
     private final DeveloperService developerService;
@@ -32,18 +32,11 @@ public class BuildingController {
         return developerService.showAllDevelopers(); //todo getAllDevelopers które wyciąga listę developerów z dalszą konwertacją na summary
     }
 
-    @GetMapping("/list")
-    public String getBuildingsListPage(Model model) {
-        model.addAttribute(buildingService.findAllBuildings());
-        return "building/list";
-    }
-
     @GetMapping("/add")
     public String getAddBuildingPage(Model model) {
         model.addAttribute(new CreateBuildingCommand());
         return "building/add";
     }
-
 
     @PostMapping("/add")
     public String processAddBuilding(@Valid CreateBuildingCommand createBuildingCommand, BindingResult bindingResult) {

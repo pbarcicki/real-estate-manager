@@ -15,7 +15,7 @@ public class BuildingConverter {
 
     private final DeveloperRepository developerRepository;
 
-    public BuildingSummary toBuildingSummary(Building building) {
+    public BuildingSummary from(Building building) {
         return BuildingSummary.builder()
                 .region(building.getRegion())
                 .isActive(building.getIsActive())
@@ -34,7 +34,6 @@ public class BuildingConverter {
                 .isParkingAvailable(building.getIsParkingAvailable())
                 .buildingConstructionType(building.getBuildingConstructionType())
                 .developerName(building.getDeveloper().getDeveloperName())
-                .developerContact(building.getDeveloper().getDeveloperContactNumber())
                 .isElevatorAvailable(building.getIsElevatorAvailable())
                 .isPrimaryMarket(building.getIsPrimaryMarket())
                 .buildingSection(building.getBuildingSection())

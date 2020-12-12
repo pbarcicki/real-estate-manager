@@ -29,7 +29,7 @@ public class BuildingService {
         log.debug("Getting all buildings info");
 
         return buildingRepository.findAll().stream()
-                .map(buildingConverter::toBuildingSummary)
+                .map(buildingConverter::from)
                 .collect(Collectors.toList());
     }
 

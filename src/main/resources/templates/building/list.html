@@ -1,10 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Buildings</title>
+    <title>Buildings list</title>
 </head>
 <body>
+    <div>
+        <h1>Building list</h1>
+        <h3>
+            <a th:href="@{/buildings/add}">Add new building</a>
+        </h3>
 
+        <table>
+            <tr>
+                <th>Region</th>
+                <th>City</th>
+                <th>District</th>
+                <th>Street</th>
+                <th>Number</th>
+                <th>Distance to kindergarten</th>
+                <th>Distance to school</th>
+                <th>Distance to shopping centers</th>
+                <th>Distance to park</th>
+                <th>Distance to river</th>
+                <th>Time to city center (min)</th>
+                <th>Time to bus stop (min)</th>
+                <th>Park lot</th>
+                <th>Garage</th>
+                <th>Elevator</th>
+                <th>Connected to media</th>
+                <th>Building construction type</th>
+                <th>Developer</th>
+                <th>Primary market</th>
+                <th>Number of apartments</th>
+                <th>Section</th>
+                <th>Realization</th>
+                <th>Photos/plan</th>
+                <th>Added to DB</th>
+            </tr>
+            <tr th:each="building : ${buildings}">
+                <td th:text="${building.region}"></td>
+                <td th:text="${building.city}"></td>
+                <td th:text="${building.district}"></td>
+                <td th:text="${building.street}"></td>
+                <td th:text="${building.buildingNumber}"></td>
+                <td th:text="${building.distanceToKindergarten}"></td>
+                <td th:text="${building.distanceToSchool}"></td>
+                <td th:text="${building.distanceToShoppingCenters}"></td>
+                <td th:text="${building.distanceToPark}"></td>
+                <td th:text="${building.distanceToRiver}"></td>
+                <td th:text="${building.timeToCityCenterMin}"></td>
+                <td th:text="${building.timeToBusStopMin}"></td>
+                <td th:checked="${building.isParkingAvailable}"></td>
+                <td th:checked="${building.getIsGarageAvailable()}"></td>
+                <td th:checked="${building.isElevatorAvailable}"></td>
+                <td th:checked="${building.isConnectedToMedia}"></td>
+                <td th:text="${building.buildingConstructionType}"></td>
+                <td th:text="${building.developerName}"></td>
+                <td th:checked="${building.isPrimaryMarket}"></td>
+                <td th:text="${building.numberOfApartments}"></td>
+                <td th:if="${building.buildingSection != null}" th:text="${building.buildingSection}"></td>
+                <td th:text="${building.buildingRealizationTerm}"></td>
+                <td th:text="${building.photosUrl}"></td>
+                <td th:text="${building.creationDate}"></td>
+
+            </tr>
+        </table>
+
+    </div>
 </body>
 </html>
