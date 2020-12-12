@@ -60,7 +60,7 @@ public class BuildingController {
             return "redirect:/buildings/list";
         } catch (BuildingAlreadyExistsException baee) {
             bindingResult.rejectValue("city", null, "Building in this city with such address already exists");
-            return "developers/add";
+            return "building/add";
         } catch (RuntimeException re) {
             bindingResult.rejectValue(null, null, "Error");
             return "building/add";
