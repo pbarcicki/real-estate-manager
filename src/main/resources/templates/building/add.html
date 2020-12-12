@@ -29,7 +29,6 @@
                 <div>
                     <span th:each="err : ${#fields.errors('city')}" th:text="${err}"></span>
                 </div>
-                <br>
             </label>
 
             <label> District:
@@ -176,13 +175,13 @@
 
             </div>
 
-<!--            <label> Type of market:-->
-<!--                <input type="checkbox" th:text="Primary" name="isPrimaryMarket" th:checked="${true}" name="elevator-availability"/>-->
-<!--                <input type="checkbox" th:text="Secondary" name="isPrimaryMarket" th:checked="${false}" name="elevator-availability"/>-->
-<!--                <div>-->
-<!--                    <span th:each="err : ${#fields.errors('isElevatorAvailable')}" th:text="${err}"></span>-->
-<!--                </div>-->
-<!--            </label>-->
+            <label> Number of apartments:
+                <input type="number" th:field="*{numberOfApartments}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('numberOfApartments')}" th:text="${err}"></span>
+                </div>
+            </label>
+
             <label> Building section:
                 <input type="text" th:field="*{buildingSection}"/>
                 <div>

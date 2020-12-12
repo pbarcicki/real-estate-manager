@@ -1,13 +1,11 @@
 package projects.realestatemanager.web.command;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-import projects.realestatemanager.domain.model.Developer;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -15,9 +13,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+@Slf4j
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-@AllArgsConstructor @NoArgsConstructor @Builder
-public class CreateBuildingCommand {
+public class EditBuildingCommand {
+
+    private Long id;
+
+    @NotNull
+    private Boolean isActive;
 
     @NotBlank
     @Size(min=3, max = 26)
@@ -84,7 +89,6 @@ public class CreateBuildingCommand {
     @NotNull
     private Boolean elevatorAvailable;
 
-
     @NotNull
     private Boolean connectedToMedia;
 
@@ -112,5 +116,4 @@ public class CreateBuildingCommand {
     @NotBlank
     @URL
     private String photosUrl;
-
 }

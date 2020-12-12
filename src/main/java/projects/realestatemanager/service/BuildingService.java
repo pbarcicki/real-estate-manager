@@ -7,9 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.BuildingAlreadyExistsException;
+import projects.realestatemanager.exception.BuildingDoesNotExistException;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
+import projects.realestatemanager.web.command.EditBuildingCommand;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -49,5 +52,41 @@ public class BuildingService {
         buildingToAdd.setCreationDate(LocalDate.now());
         buildingRepository.save(buildingToAdd);
         log.debug("Added building: {}", buildingToAdd);
+    }
+
+
+
+    public BuildingSummary showBuildingById(Long id) {
+        log.debug("Building id to find in DB: {}", id);
+
+        Building buildingToEdit = buildingRepository.getOne(id);
+        log.debug("Received building to edit: {}", buildingToEdit);
+
+        if (!buildingRepository.existsById(id)) {
+            log.debug("Tried to edit non-existing building!");
+            throw new BuildingDoesNotExistException(String.format("Building with id %s does not exist!", id));
+        }
+
+        return buildingConverter.from(buildingToEdit);
+
+    }
+    //todo
+    public boolean editBuilding(EditBuildingCommand editBuildingCommand) {
+        Long id = editBuildingCommand.getId();
+
+        if (!buildingRepository.existsById(id)) {
+            log.debug("Tried to edit non-existing building!");
+            throw new BuildingDoesNotExistException(String.format("Building with id %s does not exist!", id));
+        }
+
+        Building buildingToEdit = buildingRepository.getOne(id);
+
+        buildingToEdit = buildingConverter.from(editBuildingCommand, buildingToEdit);
+//        buildingToEdit.setId();
+//        buildingToEdit.setEditDate(LocalDate.now());
+
+        //buildingRepository.save(buildingToEdit);
+
+        return true;
     }
 }

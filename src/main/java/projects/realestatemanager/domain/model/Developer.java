@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name="developer")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @EqualsAndHashCode(of = "developerName")
+@ToString
 public class Developer {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

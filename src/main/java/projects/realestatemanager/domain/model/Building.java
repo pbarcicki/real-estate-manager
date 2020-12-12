@@ -1,6 +1,7 @@
 package projects.realestatemanager.domain.model;
 
 import lombok.*;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "building")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
-@ToString
+@ToString (exclude = "apartments")
 @EqualsAndHashCode(of = {"street", "buildingNumber"})
 public class Building {
 
@@ -71,6 +72,13 @@ public class Building {
     @Column(nullable = false, name = "is_garage_available")
     private Boolean isGarageAvailable;
 
+    @Column(nullable = false, name = "is_elevator_available")
+    private Boolean isElevatorAvailable;
+
+    //todo enum yes/no/not given?
+    @Column(nullable = false, name = "is_connected_to_media")
+    private Boolean isConnectedToMedia;
+
     @Column(nullable = false, name = "building_construction_type")
     private String buildingConstructionType;
 
@@ -78,11 +86,11 @@ public class Building {
     @JoinColumn(name = "developer_id")
     private Developer developer;
 
-    @Column(nullable = false, name = "is_elevator_available")
-    private Boolean isElevatorAvailable;
-
     @Column(nullable = false, name = "is_primary_market")
     private Boolean isPrimaryMarket;
+
+    @Column(nullable = false, name = "number_of_apartments")
+    private Integer numberOfApartments;
 
     @Column(name = "building_section")
     private Integer buildingSection;
@@ -90,15 +98,15 @@ public class Building {
     @Column(nullable = false, name = "building_realization_term")
     private LocalDate buildingRealizationTerm;
 
-    //todo enum yes/no/not given?
-    @Column(nullable = false, name = "is_connected_to_media")
-    private Boolean isConnectedToMedia;
 
     //todo Object with photo???
     private String photosUrl;
 
     @Column(nullable = false, name = "creation_date")
     private LocalDate creationDate;
+
+    @Column(name = "edit_date")
+    private LocalDate editDate;
 
     @OneToMany(mappedBy = "building")
     private List<Apartment> apartments;
