@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString(exclude = "userPassword")
 @EqualsAndHashCode(of = "username")

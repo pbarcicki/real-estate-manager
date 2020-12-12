@@ -3,6 +3,7 @@ package projects.realestatemanager.domain.model;
 
 import lombok.*;
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "apartments")
@@ -51,7 +52,7 @@ public class Apartment {
     private boolean exclusivity;
     //plan i zdjęcia TODO
 
-    @Column(nullable = true, name = "windows_direction")
+    @Column(name = "windows_direction")
     private String windowsDirection;
 
     //todo enum?
@@ -61,19 +62,17 @@ public class Apartment {
     @Column(nullable = false, name = "storage_room")
     private boolean storageRoom;
 
-    @Column(nullable = true)
     private String comment;
 
-//    @ManyToOne
-//    @JoinColumn(name = "building_id")
-//    private Building building;
+    @Column(nullable = false)
+    private boolean active;
 
+    @Column(nullable = false)
+    private LocalDate creationDate;
 
-
-
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "building_id")
+    private Building building;
 
 }
 
