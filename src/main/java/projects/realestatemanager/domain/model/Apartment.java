@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "apartment")
+@Table(name = "apartments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -64,9 +64,16 @@ public class Apartment {
     @Column(nullable = true)
     private String comment;
 
-    @ManyToOne
-    @JoinColumn(name = "building_id")
-    private Building building;
+//    @ManyToOne
+//    @JoinColumn(naonme = "building_id")
+//    private Building building;
+
+
+
+
+
+
+
 
 }
 

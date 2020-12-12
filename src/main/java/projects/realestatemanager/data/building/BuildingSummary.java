@@ -57,7 +57,7 @@ public class BuildingSummary {
 
     private Integer buildingSection;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate buildingRealizationTerm;
 
     private boolean isBuildingFinished;

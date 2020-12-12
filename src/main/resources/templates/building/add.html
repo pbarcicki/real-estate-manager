@@ -13,7 +13,7 @@
         <div>
             <label> Region:
                 <select th:field="*{region}">
-                <option th:each="regionOpt : ${T(projects.realestatemanager.enums.Region).values()}"
+                <option  th:each="regionOpt : ${T(projects.realestatemanager.enums.Region).values()}"
                         th:value="${regionOpt}" th:text="${regionOpt.displayValue}">
                 </option>
                 </select>
@@ -51,7 +51,7 @@
             </label>
 
             <label> Additional building details:
-                <input type="text" th:field="*{buildingDetails}"/>
+                <input type="textarea" th:field="*{buildingDetails}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('buildingDetails')}" th:text="${err}"></span>
                 </div>
@@ -107,7 +107,7 @@
             </label>
 
             <label> Additional building location details:
-                <input type="text" th:field="*{buildingLocationDetails}"/>
+                <input type="textarea" th:field="*{buildingLocationDetails}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('buildingLocationDetails')}" th:text="${err}"></span>
                 </div>
@@ -159,8 +159,7 @@
             <div>
                 <p>Type of market:</p>
                 <div>
-                    <input type="radio" id="primary" th:field="${createBuildingCommand.primaryMarket}" th:value="true" name="market-type"
-                           checked>
+                    <input type="radio" id="primary" th:field="${createBuildingCommand.primaryMarket}" th:value="true" name="market-type">
                     <label for="primary">Primary</label>
                 </div>
 
@@ -188,9 +187,8 @@
                 </div>
             </label>
 
-<!--            todo put calendar?-->
             <label> Building realization term:
-                <input type="text" th:field="*{buildingRealizationTerm}"/>
+                <input type="date" th:field="*{buildingRealizationTerm}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('buildingRealizationTerm')}" th:text="${err}"></span>
                 </div>

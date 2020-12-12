@@ -91,7 +91,7 @@ public class CreateBuildingCommand {
     private Integer buildingSection;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate buildingRealizationTerm;
 
     @NotNull
