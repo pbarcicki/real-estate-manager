@@ -30,6 +30,8 @@ public class EditDeveloperCommand {
     @NumberFormat //?? number format - sprawdzić jak działa!
     private String developerContactNumber;
 
+    private Long id;
+
 //    todo uzupełnić poniższe
 //    private boolean isActive;
 //    private List<Building> buildings;

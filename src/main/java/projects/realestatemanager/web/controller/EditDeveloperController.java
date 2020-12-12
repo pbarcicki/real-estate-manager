@@ -34,24 +34,20 @@ public class EditDeveloperController {
         return "developer/edit";
     }
 
-    //    todo rozwiązać problem z edycją dewelopera
-    @PostMapping("/{id}")
-    public String editDeveloperProfile(Model model,
-                                       @Valid EditDeveloperCommand editDeveloperCommand,
-                                       @PathVariable Long id,
-                                       BindingResult bindingResult) {
-        //todo obsługa błędów przez binding results!
-        log.debug("Złapano id={}", id.toString());
+    @PostMapping("/{id:[0-9]+}")
+    public String editDeveloper(@Valid EditDeveloperCommand editDeveloperCommand, BindingResult bindingResult) {
+        Long id = editDeveloperCommand.getId();
 
         try {
-            boolean success = developerService.editDeveloper(id, editDeveloperCommand);
+            boolean success = developerService.edit(editDeveloperCommand);
             log.debug("UDANA ZMIANA DANYCH!");
-            return "redirect:/" + id.toString();
+            return "redirect:/developers/list";
         } catch (RuntimeException re) {
             log.warn(re.getLocalizedMessage());
-            log.debug("Błąd przy edycji danych", re);
-            bindingResult.rejectValue(null, null, "Wystąpił Błąd...");
+            log.error("Błąd przy edycji danych", re);
+            bindingResult.rejectValue("errors", null, "Wystąpił nieznany błąd przy edycji DEWELOPERA");
         }
-        return "redirect:/developer/list";
+        return ("redirect:/developers/edit/" + id);
+
     }
 }

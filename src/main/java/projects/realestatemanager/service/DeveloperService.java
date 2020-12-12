@@ -33,7 +33,7 @@ public class DeveloperService {
 
         if (developerRepository.existsByDeveloperName(developerToCreate.getDeveloperName())) {
             log.debug("UWAGA! Próba dodania istniejącego DEWELOPERA");
-            throw new DeveloperAlreadyExistsException(String.format("DEWELOPER %s już istnieje",developerToCreate.getDeveloperName()));
+            throw new DeveloperAlreadyExistsException(String.format("DEWELOPER %s już istnieje", developerToCreate.getDeveloperName()));
         }
 
         setDefaultActive(developerToCreate);
@@ -43,18 +43,19 @@ public class DeveloperService {
         return developerToCreate.getId();
     }
 
-    //    todo rozwiązać problem z edycją dewelopera
     @Transactional
-    public boolean editDeveloper(Long id, EditDeveloperCommand editDeveloperCommand) {
+    public boolean edit(EditDeveloperCommand editDeveloperCommand) {
+        Long id = editDeveloperCommand.getId();
         if (!developerRepository.existsById(id)) {
             log.debug("UWAGA! DEWELOPER o id={} nie istnieje!!!", id);
-            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(",id));
+            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
         }
 
         Developer developer = developerRepository.getOne(id);
-
         log.debug("DEWELOPER do edycji: {}", developer);
         developer = developerConverter.from(editDeveloperCommand, developer);
+
+        log.debug("DEWELOPER zmodyfikowany {}", developer);
         return true;
     }
 
@@ -74,7 +75,7 @@ public class DeveloperService {
 
         if (!developerRepository.existsById(id)) {
             log.debug("UWAGA! DEWELOPER o id={} nie istnieje!!!", id);
-            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(",id));
+            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
         }
 
         return developerConverter.developerSummary(developer);

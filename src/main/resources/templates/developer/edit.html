@@ -7,15 +7,15 @@
 <body>
 <h1 th:text="|Edycja DEWELOPERA ${developerEdit.name}|">Edycja Developera</h1>
 <div>
-    <form th:action="@{/developer/edit}" th:method="post" th:object="${editDeveloperCommand}">
+    <form th:action="${developerEdit.id}" th:method="post" th:object="${editDeveloperCommand}">
         <fieldset>
             <div>
                 <label>Nazwa Dewelopera:
                     <input type="text"
                            th:value="${developerEdit.name}"
-                           th:name="*{developerName}"
-                           th:id="*{developerName}"
-                           required />
+                           id="developerName"
+                           name="developerName"
+                           required/>
                 </label>
                 <div
                         th:if="${#fields.hasErrors('developerName')}"
@@ -25,8 +25,8 @@
                     <label>Osoba kontaktowa:
                         <input type="text"
                                th:value="${developerEdit.contactPerson}"
-                               th:name="*{developerContactPerson}"
-                               th:id="*{developerContactPerson}"
+                               id="developerContactPerson"
+                               name="developerContactPerson"
                                required/>
                         <!--obsługa błędów-->
                     </label>
@@ -35,8 +35,8 @@
                     <label>Numer telefonu:
                         <input type="text"
                                th:value="${developerEdit.contactNumber}"
-                               th:name="*{developerContactNumber}"
-                               th:id="*{developerContactNumber}"
+                               id="developerContactNumber"
+                               name="developerContactNumber"
                                required>
                     </label>
                 </div>
