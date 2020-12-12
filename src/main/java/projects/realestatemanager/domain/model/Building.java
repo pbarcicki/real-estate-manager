@@ -74,16 +74,9 @@ public class Building {
     @Column(nullable = false, name = "building_construction_type")
     private String buildingConstructionType;
 
-    //todo relation or class embedable (słownik nazw)
-<<<<<<< HEAD
     @ManyToOne
     @JoinColumn(name = "developer_id")
     private Developer developer;
-=======
-//    @ManyToOne
-//    @JoinColumn(name = "developer_id")
-//    private Developer developer;
->>>>>>> develop
 
     @Column(nullable = false, name = "is_elevator_available")
     private Boolean isElevatorAvailable;
@@ -104,15 +97,10 @@ public class Building {
     //todo Object with photo???
     private String photosUrl;
 
-<<<<<<< HEAD
     @Column(nullable = false, name = "creation_date")
     private LocalDate creationDate;
 
     @OneToMany(mappedBy = "building")
     private List<Apartment> apartments;
-=======
-//    @OneToMany(mappedBy = "buildings")
-//    private List<Apartment> apartments;
->>>>>>> develop
 
 }
