@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import projects.realestatemanager.exception.ClientAlreadyExistException;
 import projects.realestatemanager.service.ClientService;
 import projects.realestatemanager.web.command.CreateClientCommand;
 
@@ -40,10 +41,12 @@ public class AddClientController {
             log.debug("Client created");
             return "redirect:/clients";
 
-        }catch(RuntimeException re){
-            log.warn(re.getLocalizedMessage());
-            log.debug("Error creating client", re);
-            bindings.rejectValue(null,null, "An error occured");
+        }catch(ClientAlreadyExistException cae){
+            log.debug("Error creating client", cae);
+            bindings.rejectValue("clientContactEmail",null, "Client with this e-mail already exist");
+            return "client/add";
+        }catch (RuntimeException re){
+            bindings.rejectValue(null,null, "Error");
             return "client/add";
         }
     }

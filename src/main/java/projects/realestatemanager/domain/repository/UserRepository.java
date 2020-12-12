@@ -8,6 +8,6 @@ import java.util.List;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    boolean existsByUsername(String username);
 
+    boolean existsByUserEmail(String userEmail);
 }

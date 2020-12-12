@@ -10,6 +10,5 @@ import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-
-
+    boolean existsByClientContactEmail(String clientName);
 }

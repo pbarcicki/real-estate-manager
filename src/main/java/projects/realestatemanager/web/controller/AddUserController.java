@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import projects.realestatemanager.exception.ClientAlreadyExistException;
+import projects.realestatemanager.exception.UserAlreadyExistException;
 import projects.realestatemanager.service.UserService;
 import projects.realestatemanager.web.command.CreateUserCommand;
 
@@ -39,10 +41,13 @@ public class AddUserController {
             userService.add(createUserCommand);
             log.debug("User created");
             return "redirect:/users";
+
+        }catch (UserAlreadyExistException uae){
+            log.debug("Error creating user", uae);
+            bindings.rejectValue("userEmail",null, "User with this e-mail already exist");
+            return "user/add";
         }catch (RuntimeException re){
-            log.warn(re.getLocalizedMessage());
-            log.debug("Error creating user", re);
-            bindings.rejectValue(null,null, "An error occured");
+            bindings.rejectValue(null,null, "Error");
             return "user/add";
         }
     }

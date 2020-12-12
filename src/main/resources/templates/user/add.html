@@ -13,16 +13,25 @@
                 <label>Username:
                     <input type="text" th:field="*{username}" name="username" required/>
                 </label>
+                <div th:if="${#fields.hasErrors('username')}">
+                    <span th:each="err : ${#fields.errors('username')}" th:text="${err}"></span>
+                </div>
             </div>
             <div>
                 <label>Password:
                     <input type="password" th:field="*{userPassword}" name="userPassword" required/>
                 </label>
+                <div th:if="${#fields.hasErrors('userPassword')}">
+                    <span th:each="err : ${#fields.errors('userPassword')}" th:text="${err}"></span>
+                </div>
             </div>
             <div>
                 <label>E-mail:
                     <input type="email" th:field="*{userEmail}" name="userEmail"/>
                 </label>
+                <div th:if="${#fields.hasErrors('userEmail')}">
+                    <span th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></span>
+                </div>
             </div>
         </fieldset>
         <fieldset>
