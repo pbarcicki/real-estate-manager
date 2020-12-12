@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import projects.realestatemanager.data.client.ClientSummary;
 import projects.realestatemanager.domain.model.Client;
 import projects.realestatemanager.web.command.CreateClientCommand;
+import projects.realestatemanager.web.command.EditClientCommand;
 
 @Component
 public class ClientConverter {
@@ -15,6 +16,14 @@ public class ClientConverter {
                 .clientInterest(createClientCommand.getClientInterest())
                 .clientRegistrationDate(createClientCommand.getClientRegistrationDate())
                 .build();
+    }
+
+    public Client from(EditClientCommand editClientCommand, Client client){
+        client.setClientName(editClientCommand.getClientName());
+        client.setClientContactEmail(editClientCommand.getClientContactEmail());
+        client.setClientContactNumber(editClientCommand.getClientContactNumber());
+        client.setClientInterest(editClientCommand.getClientInterest());
+        return client;
     }
 
     public ClientSummary toClientSummary(Client client) {

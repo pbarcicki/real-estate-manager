@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.service.ClientService;
 
 @Controller
-@RequestMapping("/clients")
+@RequestMapping("/clients/list")
 @Slf4j
 @RequiredArgsConstructor
 public class ClientListController {
@@ -18,7 +18,7 @@ public class ClientListController {
 
     @GetMapping
     public String getClientListPage(Model model){
-        model.addAttribute("clients", clientService.findClients());
+        model.addAttribute("clientsList", clientService.findClients());
         return "client/list";
     }
 }
