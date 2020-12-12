@@ -45,7 +45,7 @@ public class BuildingService {
             throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number %s already exists in DB", buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber()));
         }
 
-        buildingToAdd.setActive(true);
+        buildingToAdd.setIsActive(true);
         buildingToAdd.setCreationDate(LocalDate.now());
         buildingRepository.save(buildingToAdd);
         log.debug("Added building: {}", buildingToAdd);

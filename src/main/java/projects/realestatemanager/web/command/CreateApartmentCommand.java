@@ -49,14 +49,14 @@ public class CreateApartmentCommand {
     private boolean exclusivity;
 
     @NotBlank
-    @Size(min = 1, max = 30)
+    @Size(min = 5, max = 30)
     private String view;
 
     @NotBlank
     private boolean storageRoom;
 
     @NotBlank
-    @Size(min = 1, max = 160)
+    @Size(min = 13, max = 160)
     private String comment;
 
     @Size(min = 3, max = 16)

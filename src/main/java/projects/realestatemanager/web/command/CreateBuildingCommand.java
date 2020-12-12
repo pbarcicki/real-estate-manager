@@ -42,37 +42,44 @@ public class CreateBuildingCommand {
     @Size(max = 120)
     private String buildingDetails;
 
+    @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToKindergarten;
 
+    @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToSchool;
 
+    @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToShoppingCenters;
 
-    //@NotBlank
+    @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToPark;
 
+    @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer distanceToRiver;
 
+    @NotNull
     @Digits(integer = 4, fraction = 0)
     private Integer timeToCityCenterMin;
 
+    @NotNull
     @Digits(integer = 3, fraction = 0)
     private Integer timeToBusStopMin;
 
-    @Size(max = 120)
+
+    @Size(max = 150)
     private String buildingLocationDetails;
 
     //return Boolean.valueOf(booleanField);
     @NotNull
-    private boolean parkLot;
+    private Boolean parkLot;
 
     @NotNull
-    private boolean garageAvailable;
+    private Boolean garageAvailable;
 
     @NotBlank
     @Size(min=3, max = 15)
@@ -82,10 +89,10 @@ public class CreateBuildingCommand {
     private Long developerId;
 
     @NotNull
-    private boolean elevatorAvailable;
+    private Boolean elevatorAvailable;
 
     @NotNull
-    private boolean primaryMarket;
+    private Boolean primaryMarket;
 
     @Digits(fraction = 0, integer = 20)
     private Integer buildingSection;
@@ -95,7 +102,7 @@ public class CreateBuildingCommand {
     private LocalDate buildingRealizationTerm;
 
     @NotNull
-    private boolean connectedToMedia;
+    private Boolean connectedToMedia;
 
     @NotBlank
     @URL

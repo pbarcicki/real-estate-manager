@@ -22,7 +22,7 @@ public class Building {
     private String region;
 
     @Column(name = "is_active")
-    private boolean isActive;
+    private Boolean isActive;
 
     //todo lista miast
     @Column(nullable = false)
@@ -66,10 +66,10 @@ public class Building {
     private String buildingLocationDetails;
 
     @Column(nullable = false, name = "is_parking_available")
-    private boolean isParkingAvailable;
+    private Boolean isParkingAvailable;
 
     @Column(nullable = false, name = "is_garage_available")
-    private boolean isGarageAvailable;
+    private Boolean isGarageAvailable;
 
     @Column(nullable = false, name = "building_construction_type")
     private String buildingConstructionType;
@@ -80,10 +80,10 @@ public class Building {
     private Developer developer;
 
     @Column(nullable = false, name = "is_elevator_available")
-    private boolean isElevatorAvailable;
+    private Boolean isElevatorAvailable;
 
     @Column(nullable = false, name = "is_primary_market")
-    private boolean isPrimaryMarket;
+    private Boolean isPrimaryMarket;
 
     @Column(name = "building_section")
     private Integer buildingSection;
@@ -93,7 +93,7 @@ public class Building {
 
     //todo enum yes/no/not given?
     @Column(nullable = false, name = "is_connected_to_media")
-    private boolean isConnectedToMedia;
+    private Boolean isConnectedToMedia;
 
     //todo Object with photo???
     private String photosUrl;
