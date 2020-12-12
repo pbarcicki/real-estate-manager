@@ -1,26 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LISTA DEWELOPERÓW</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Lista Deweloperów</h1>
-<h2><a th:href="@{/developer/add}">Dodaj nowego DEWELOPERA...</a></h2>
-<div>
-    <table>
-        <tr>
-            <th>Nazwa</th>
-            <th>Osoba kontaktowa</th>
-            <th>Kontakt</th>
-        </tr>
-        <tr th:each="developer : ${developersList}">
-            <td th:text="${developer.name}"></td>
-            <td th:text="${developer.contactPerson}"></td>
-            <td th:text="${developer.contactNumber}"></td>
-            <td><a th:href="|edit/${developer.id}|">EDYTUJ</a></td>
-        </tr>
-    </table>
-</div>
+
 </body>
 </html>

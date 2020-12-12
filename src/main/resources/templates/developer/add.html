@@ -1,35 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dodaj DEWELOPERA</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Dodaj Dewelopera miły Panie...</h1>
-<div>
-    <form th:action="@{/developers/add}" th:method="post" th:object="${createDeveloperCommand}">
-        <fieldset>
-            <div>
-                <label>Nazwa Dewelopera:
-                    <input type="text" th:field="*{developerName}" name="developerName" required/>
-                </label>
-                <div th:if="${#fields.hasErrors('developerName')}" th:text="${#fields.errors('developerName')}">
-                </div>
-                <div>
-                    <label>Osoba kontaktowa:
-                        <input  type="text" th:field="*{developerContactPerson}" name="developerContactPerson" required/>
-                        <!--obsługa błędów-->
-                    </label>
-                </div>
-                <div>
-                    <label>Numer telefonu:
-                        <input type="text" th:field="*{developerContactNumber}" name="developerContactNumber" required></label>
-                </div>
-        </fieldset>
-        <fieldset>
-            <button type="submit">Dodaj deweloper milordzie...</button>
-        </fieldset>
-    </form>
-</div>
+
 </body>
 </html>
