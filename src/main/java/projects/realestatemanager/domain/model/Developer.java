@@ -26,6 +26,8 @@ public class Developer {
     @Column(nullable = false, name = "developer_contact_number")
     private String developerContactNumber;
 
+
     @OneToMany(mappedBy = "developer")
     private List<Building> buildings;
+
 }

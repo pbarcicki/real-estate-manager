@@ -74,13 +74,6 @@ public class Apartment {
     @JoinColumn(name = "building_id")
     private Building building;
 
-
-
-
-
-
-
-
 }
 
 
