@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "buildings")
+@Table(name = "building")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString
-@EqualsAndHashCode(of = {"street", "building_number"})
+@EqualsAndHashCode(of = {"street", "buildingNumber"})
 public class Building {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,9 @@ public class Building {
     //todo lista regionów
     @Column(nullable = false)
     private String region;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
 
     //todo lista miast
     @Column(nullable = false)
@@ -63,25 +66,30 @@ public class Building {
     private String buildingLocationDetails;
 
     @Column(nullable = false, name = "is_parking_available")
-    private boolean isParkingAvailable;
+    private Boolean isParkingAvailable;
 
     @Column(nullable = false, name = "is_garage_available")
-    private boolean isGarageAvailable;
+    private Boolean isGarageAvailable;
 
     @Column(nullable = false, name = "building_construction_type")
     private String buildingConstructionType;
 
     //todo relation or class embedable (słownik nazw)
+<<<<<<< HEAD
+    @ManyToOne
+    @JoinColumn(name = "developer_id")
+    private Developer developer;
+=======
 //    @ManyToOne
 //    @JoinColumn(name = "developer_id")
 //    private Developer developer;
+>>>>>>> develop
 
     @Column(nullable = false, name = "is_elevator_available")
-    private boolean isElevatorAvailable;
-
+    private Boolean isElevatorAvailable;
 
     @Column(nullable = false, name = "is_primary_market")
-    private boolean isPrimaryMarket;
+    private Boolean isPrimaryMarket;
 
     @Column(name = "building_section")
     private Integer buildingSection;
@@ -89,17 +97,22 @@ public class Building {
     @Column(nullable = false, name = "building_realization_term")
     private LocalDate buildingRealizationTerm;
 
-    @Column(nullable = false, name = "is_building_finished")
-    private boolean isBuildingFinished;
-
     //todo enum yes/no/not given?
     @Column(nullable = false, name = "is_connected_to_media")
-    private boolean isConnectedToMedia;
+    private Boolean isConnectedToMedia;
 
     //todo Object with photo???
     private String photosUrl;
 
+<<<<<<< HEAD
+    @Column(nullable = false, name = "creation_date")
+    private LocalDate creationDate;
+
+    @OneToMany(mappedBy = "building")
+    private List<Apartment> apartments;
+=======
 //    @OneToMany(mappedBy = "buildings")
 //    private List<Apartment> apartments;
+>>>>>>> develop
 
 }

@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "client")
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 @EqualsAndHashCode(of = {"clientName", "clientRegistrationDate"})
 @ToString

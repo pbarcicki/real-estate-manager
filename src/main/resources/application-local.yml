@@ -4,6 +4,8 @@ logging:
     sql: DEBUG
     projects.realestatemanager: DEBUG
 spring:
+  application:
+    name: real-estate-manager
   jpa:
     hibernate:
       ddl-auto: create
