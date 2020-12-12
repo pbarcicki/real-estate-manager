@@ -65,7 +65,7 @@ public class ClientService {
         }
         Client client = clientRepository.getOne(id);
         log.debug("Client to edit: {}", client);
-        client =  clientConverter.from(editClientCommand,client);
+        client =  clientConverter.from(editClientCommand, client);
         log.debug("Modified client: {}", client);
         return true;
     }

@@ -14,9 +14,10 @@
             <th>Username</th>
             <th>Email</th>
         </tr>
-        <tr th:each="user : ${users}">
+        <tr th:each="user : ${usersList}">
             <td th:text="${user.username}"></td>
             <td th:text="${user.userEmail}"></td>
+            <td><a th:href="|edit/${user.id}|">Edit</a></td>
         </tr>
     </table>
 </div>

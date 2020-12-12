@@ -2,47 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>EDYCJA DEWELOPERA</title>
+    <title>User edit</title>
 </head>
 <body>
-<h1 th:text="|Edycja DEWELOPERA ${developerEdit.name}|">Edycja Developera</h1>
+<h1 th:text="|Edit user ${userEdit.username}|">Edit user</h1>
 <div>
-    <form th:action="@{/developer/edit}" th:method="post" th:object="${editDeveloperCommand}">
+    <form th:action="${userEdit.id}" th:method="post" th:object="${editUserCommand}">
         <fieldset>
             <div>
-                <label>Nazwa Dewelopera:
-                    <input type="text"
-                           th:value="${developerEdit.name}"
-                           th:name="*{developerName}"
-                           th:id="*{developerName}"
-                           required />
+                <label>Username:
+                    <input type="text" th:value="${userEdit.username}"
+                           id="username" name="username" required>
                 </label>
-                <div
-                        th:if="${#fields.hasErrors('developerName')}"
-                        th:text="${#fields.errors('developerName')}">
+                <div th:if="${#fields.hasErrors('username')}">
+                    <span th:each="err : ${#fields.errors('username')}" th:text="${err}"></span>
                 </div>
-                <div>
-                    <label>Osoba kontaktowa:
-                        <input type="text"
-                               th:value="${developerEdit.contactPerson}"
-                               th:name="*{developerContactPerson}"
-                               th:id="*{developerContactPerson}"
-                               required/>
-                        <!--obsługa błędów-->
-                    </label>
+            </div>
+            <div>
+                <label>User e-mail:
+                    <input type="email" th:value="${userEdit.userEmail}"
+                           id="userEmail" name="userEmail" required>
+                </label>
+                <div th:if="${#fields.hasErrors('userEmail')}">
+                    <span th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></span>
                 </div>
-                <div>
-                    <label>Numer telefonu:
-                        <input type="text"
-                               th:value="${developerEdit.contactNumber}"
-                               th:name="*{developerContactNumber}"
-                               th:id="*{developerContactNumber}"
-                               required>
-                    </label>
-                </div>
+            </div>
+
         </fieldset>
         <fieldset>
-            <button type="submit">Zmień dane</button>
+            <button type="submit">Submit changes</button>
         </fieldset>
     </form>
 </div>

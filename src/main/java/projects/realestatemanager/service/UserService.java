@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.UserConverter;
 import projects.realestatemanager.data.user.UserSummary;
+import projects.realestatemanager.domain.model.Client;
 import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.UserRepository;
 import projects.realestatemanager.exception.ClientAlreadyExistException;
+import projects.realestatemanager.exception.ClientDoesNotExistException;
 import projects.realestatemanager.exception.UserAlreadyExistException;
+import projects.realestatemanager.exception.UserDoesNotExistException;
 import projects.realestatemanager.web.command.CreateUserCommand;
+import projects.realestatemanager.web.command.EditUserCommand;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -50,6 +54,30 @@ public class UserService {
         log.debug("Saved client: {}", userToCreate);
 
     }
+    public boolean edit(EditUserCommand editUserCommand){
+        Long id = editUserCommand.getId();
+        if(!userRepository.existsById(id)){
+            log.debug("User with id: {} doesn't exist", id);
+            throw new UserDoesNotExistException(String.format(
+                    "User with id: {} doesn't exist",id));
+        }
+        User user = userRepository.getOne(id);
+        log.debug("User to edit: {}", user);
+        user = userConverter.from(editUserCommand, user);
+        log.debug("Modified user: {}", user);
+        return true;
+    }
 
 
+    public UserSummary showUser(Long id) {
+        log.debug("User search with id: {}",id);
+        User user = userRepository.getOne(id);
+        if(!userRepository.existsById(id)){
+            log.debug("User with id: {} doesn't exist", id);
+            throw new UserDoesNotExistException(
+                    String.format("User with id: {} doesn't exist", id)
+            );
+        }
+        return userConverter.toUserSummary(user);
+    }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.service.UserService;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/users/list")
 @Slf4j @RequiredArgsConstructor
 public class UserListController {
 
@@ -17,7 +17,7 @@ public class UserListController {
 
     @GetMapping
     public String getUserListPage(Model model){
-        model.addAttribute("users", userService.findUsers());
+        model.addAttribute("usersList", userService.findUsers());
         return "user/list";
     }
 }
