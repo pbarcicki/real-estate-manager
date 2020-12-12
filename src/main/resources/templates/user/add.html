@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add user</title>
 </head>
 <body>
+<h1>Add user</h1>
+<div>
+    <form th:action="@{/users/add}" th:method="post" th:object="${createUserCommand}">
+        <fieldset>
+            <div>
+                <label>Username:
+                    <input type="text" th:field="*{username}" name="username" required/>
+                </label>
+                <div th:if="${#fields.hasErrors('username')}">
+                    <span th:each="err : ${#fields.errors('username')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>Password:
+                    <input type="password" th:field="*{userPassword}" name="userPassword" required/>
+                </label>
+                <div th:if="${#fields.hasErrors('userPassword')}">
+                    <span th:each="err : ${#fields.errors('userPassword')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>E-mail:
+                    <input type="email" th:field="*{userEmail}" name="userEmail"/>
+                </label>
+                <div th:if="${#fields.hasErrors('userEmail')}">
+                    <span th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <button type="submit">Add user</button>
+        </fieldset>
+    </form>
+</div>
 
 </body>
 </html>

@@ -1,15 +1,19 @@
 package projects.realestatemanager.domain.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "clients")
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
-@EqualsAndHashCode(of = {"client_name", "client_registration_date"})
+@EqualsAndHashCode(of = {"clientName", "clientRegistrationDate"})
 @ToString
 public class Client {
 

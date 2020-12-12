@@ -72,10 +72,9 @@ public class Building {
     private String buildingConstructionType;
 
     //todo relation or class embedable (słownik nazw)
-    @ManyToOne
-    @JoinColumn(name = "developer_id")
-    @Column(nullable = false)
-    private Developer developer;
+//    @ManyToOne
+//    @JoinColumn(name = "developer_id")
+//    private Developer developer;
 
     @Column(nullable = false, name = "is_elevator_available")
     private boolean isElevatorAvailable;
@@ -100,7 +99,7 @@ public class Building {
     //todo Object with photo???
     private String photosUrl;
 
-    @OneToMany(mappedBy = "buildings")
-    private List<Apartment> apartments;
+//    @OneToMany(mappedBy = "buildings")
+//    private List<Apartment> apartments;
 
 }
