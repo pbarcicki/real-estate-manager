@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>EDYCJA DEWELOPERA</title>
 </head>
 <body>
+<h1 th:text="|Edycja DEWELOPERA ${developerEdit.name}|">Edycja Developera</h1>
+<div>
+    <form th:action="@{/developer/edit}" th:method="post" th:object="${editDeveloperCommand}">
+        <fieldset>
+            <div>
+                <label>Nazwa Dewelopera:
+                    <input type="text"
+                           th:value="${developerEdit.name}"
+                           th:name="*{developerName}"
+                           th:id="*{developerName}"
+                           required />
+                </label>
+                <div
+                        th:if="${#fields.hasErrors('developerName')}"
+                        th:text="${#fields.errors('developerName')}">
+                </div>
+                <div>
+                    <label>Osoba kontaktowa:
+                        <input type="text"
+                               th:value="${developerEdit.contactPerson}"
+                               th:name="*{developerContactPerson}"
+                               th:id="*{developerContactPerson}"
+                               required/>
+                        <!--obsługa błędów-->
+                    </label>
+                </div>
+                <div>
+                    <label>Numer telefonu:
+                        <input type="text"
+                               th:value="${developerEdit.contactNumber}"
+                               th:name="*{developerContactNumber}"
+                               th:id="*{developerContactNumber}"
+                               required>
+                    </label>
+                </div>
+        </fieldset>
+        <fieldset>
+            <button type="submit">Zmień dane</button>
+        </fieldset>
+    </form>
+</div>
 
 </body>
 </html>
