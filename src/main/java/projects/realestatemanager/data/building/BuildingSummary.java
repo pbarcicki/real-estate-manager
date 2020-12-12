@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class BuildingSummary {
     private String region;
 
-    private boolean isActive;
+    private Boolean isActive;
 
     private String city;
 
@@ -41,9 +41,9 @@ public class BuildingSummary {
 
     private String buildingLocationDetails;
 
-    private boolean isParkingAvailable;
+    private Boolean isParkingAvailable;
 
-    private boolean isGarageAvailable;
+    private Boolean isGarageAvailable;
 
     private String buildingConstructionType;
 
@@ -51,18 +51,18 @@ public class BuildingSummary {
 
     private String developerContact;
 
-    private boolean isElevatorAvailable;
+    private Boolean isElevatorAvailable;
 
-    private boolean isPrimaryMarket;
+    private Boolean isPrimaryMarket;
 
     private Integer buildingSection;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate buildingRealizationTerm;
 
-    private boolean isBuildingFinished;
+    private Boolean isBuildingFinished;
 
-    private boolean isConnectedToMedia;
+    private Boolean isConnectedToMedia;
 
     private String photosUrl;
 

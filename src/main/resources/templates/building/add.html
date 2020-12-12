@@ -26,6 +26,9 @@
                         th:value="${cityOpt}" th:text="${cityOpt.displayValue}">
                 </option>
                 </select>
+                <div>
+                    <span th:each="err : ${#fields.errors('city')}" th:text="${err}"></span>
+                </div>
                 <br>
             </label>
 
