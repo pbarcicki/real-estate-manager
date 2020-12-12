@@ -45,4 +45,5 @@ public class ApartmentSummary {
 
     private  String comment;
 
+
 }

@@ -11,6 +11,7 @@ import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.exception.ApartmentAlreadyExistExeption;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
 
+
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;

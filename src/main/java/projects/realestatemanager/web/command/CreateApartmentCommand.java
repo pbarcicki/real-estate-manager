@@ -46,7 +46,7 @@ public class CreateApartmentCommand {
 
     @NotBlank
     @Size (min = 1, max = 10)
-    private String exclusivity;
+    private boolean exclusivity;
 
     @NotBlank
     @Size(min = 1, max = 30)
@@ -58,5 +58,8 @@ public class CreateApartmentCommand {
     @NotBlank
     @Size(min = 1, max = 160)
     private String comment;
+
+    @Size(min = 3, max = 16)
+    private String windowsDirection;
 
 }

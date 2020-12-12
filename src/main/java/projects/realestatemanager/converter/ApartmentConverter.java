@@ -3,7 +3,8 @@ package projects.realestatemanager.converter;
 import org.springframework.stereotype.Component;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
-import projects.web.command.CreateApartmentCommand;
+import projects.realestatemanager.web.command.CreateApartmentCommand;
+
 
 @Component
 public class ApartmentConverter {
