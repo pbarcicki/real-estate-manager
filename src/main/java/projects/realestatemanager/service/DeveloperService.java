@@ -82,7 +82,7 @@ public class DeveloperService {
     }
 
     private void setDefaultActive(Developer developerToCreate) {
-        developerToCreate.setActive(Boolean.TRUE);
+        developerToCreate.setIsActive(Boolean.TRUE);
     }
 
 }
