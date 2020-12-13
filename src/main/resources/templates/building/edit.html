@@ -13,9 +13,9 @@
         <div>
             <label> Active:
                 <input type="checkbox"
-                       th:checked="${editBuildingCommand.isActive}"
-                       id="isActive"
-                       name="isActive"/>
+                       th:field="*{isActive}"
+                       th:checked="${editBuildingCommand.isActive} ? 'checked' : 'unchecked'"
+                       />
                 <div>
                     <span th:each="err : ${#fields.errors('isActive')}" th:text="${err}"></span>
                 </div>
@@ -154,8 +154,8 @@
 
             <label> Park lot availability:
                 <input type="checkbox"
-                       th:checked="${editBuildingCommand.parkLot}"
-                       th:field="${editBuildingCommand.parkLot}"
+                       th:field="*{parkLot}"
+                       th:checked="${editBuildingCommand.parkLot} ? 'checked' : 'unchecked'"
                        id="parkLot"
                        name="parkLot"/>
                 <div>
