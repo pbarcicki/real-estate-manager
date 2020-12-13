@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.repository.DeveloperRepository;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.service.DeveloperService;
 import projects.realestatemanager.web.command.EditDeveloperCommand;
 
@@ -25,32 +25,51 @@ public class EditDeveloperController {
     private final DeveloperRepository developerRepository;
 
     @GetMapping("/{id:[0-9]+}")
-    public String showDeveloperEdit(Model model, @PathVariable Long id) {
-        Developer developer = developerRepository.getOne(id);
+    public String showDeveloperEdit(
+            Model model,
+            @PathVariable Long id) {
 
-        model.addAttribute(new EditDeveloperCommand());
-        model.addAttribute("developerEdit", developerService.showDeveloper(id));
-
-        return "developer/edit";
+        if (developerRepository.existsById(id)) {
+            model.addAttribute(new EditDeveloperCommand());
+            model.addAttribute("developerEdit", developerService.showDeveloper(id));
+            return "developer/edit";
+        } else {
+            return "redirect:/developers/list";
+        }
     }
 
     @PostMapping("/{id:[0-9]+}")
-    public String editDeveloper(@Valid EditDeveloperCommand editDeveloperCommand,
-                                BindingResult bindingResult) {
+    public String editDeveloper(
+            @Valid EditDeveloperCommand editDeveloperCommand) {
+
         Long id = editDeveloperCommand.getId();
-
-        log.warn("wartośc dev active={}",editDeveloperCommand.getIsActive());
-
+        log.debug("id DEWELOPERA do edycji = {}", id);
         try {
             boolean success = developerService.edit(editDeveloperCommand);
-            log.debug("UDANA ZMIANA DANYCH!");
+            log.debug("DEWELOPER od id={} został poprawnie zmodyfikowany", id);
             return "redirect:/developers/list";
         } catch (RuntimeException re) {
             log.warn(re.getLocalizedMessage());
-            log.error("Błąd przy edycji danych", re);
-            bindingResult.rejectValue("errors", null, "Wystąpił nieznany błąd przy edycji DEWELOPERA");
+            log.error("Nieznany błąd przy edycji danych DEWELOPERA", re);
         }
         return ("redirect:/developers/edit/" + id);
 
+    }
+
+    @PostMapping("/{id:[0-9]+}/delete")
+    public String deleteDeveloper(@PathVariable(value = "id") Long id) {
+        log.debug("Pobrano id={} DEWELOPERA do usunięcia", id);
+        try {
+            developerService.delete(id);
+            return "redirect:/developers/list";
+        } catch (EntityDoesNotExistException ddnee) {
+            log.warn(ddnee.getLocalizedMessage());
+            log.error("DEWELOPER od id={} nie istnieje! Nie ma kogo usunąć...", id);
+            return "redirect:/developers/list";
+        } catch (RuntimeException re) {
+            log.warn(re.getLocalizedMessage());
+            log.error("Nieznany błąd przy usuwaniu DEWELOPERA", re);
+            return "redirect:/developers/list";
+        }
     }
 }

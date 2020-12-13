@@ -12,6 +12,8 @@ import projects.realestatemanager.exception.DeveloperAlreadyExistsException;
 import projects.realestatemanager.service.DeveloperService;
 import projects.realestatemanager.web.command.CreateDeveloperCommand;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/developers/add")
 @Slf4j
@@ -26,7 +28,7 @@ public class AddNewDeveloperController {
     }
 
     @PostMapping
-    public String processAddDeveloper(CreateDeveloperCommand createDeveloperCommand, BindingResult bindingResult) {
+    public String processAddDeveloper(@Valid CreateDeveloperCommand createDeveloperCommand, BindingResult bindingResult) {
         log.debug("Dane DEWELOPERA do dodania: {}", createDeveloperCommand);
         if (bindingResult.hasErrors()) {
             log.debug("BŁĄD! Dane niepoprawne: {}", bindingResult.getAllErrors());
@@ -41,7 +43,7 @@ public class AddNewDeveloperController {
             bindingResult.rejectValue("developerName", null, "UWAGA! Deweloper o podobnej nazwie już istnieje...");
             return "developer/add";
         } catch (RuntimeException runtimeException) {
-            bindingResult.rejectValue(null, null, "UWAGA! Wystąpił błąd");
+            bindingResult.reject(null, "UWAGA! Wystąpił błąd");
             return "developer/add";
         }
     }

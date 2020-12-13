@@ -85,4 +85,19 @@ public class DeveloperService {
         developerToCreate.setIsActive(Boolean.TRUE);
     }
 
+    @Transactional
+    public boolean delete(Long id) {
+        log.debug("Wyszukiwanie DEWELOPERA o id={}", id);
+        Developer developer = developerRepository.getOne(id);
+
+        if (!developerRepository.existsById(id)) {
+            log.debug("UWAGA! DEWELOPER o id={} nie istnieje!!!", id);
+            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
+        }
+
+        developerRepository.delete(developer);
+        log.debug("DEWELOPER od id={} został pomyślnie usunięty",id);
+        return true;
+    }
+
 }

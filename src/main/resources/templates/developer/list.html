@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Lista Deweloperów</h1>
-<h2><a th:href="@{/developer/add}">Dodaj nowego DEWELOPERA...</a></h2>
+<h2><a th:href="@{/developers/add}">Dodaj nowego DEWELOPERA...</a></h2>
 <div>
     <table>
         <tr>
@@ -20,10 +20,6 @@
             <td th:text="${developer.name}"></td>
             <td th:text="${developer.contactPerson}"></td>
             <td th:text="${developer.contactNumber}"></td>
-<!--            <td><input type="checkbox"-->
-<!--                       disabled=true-->
-<!--                       th:checked="${developer.isActive()} ? 'true' : 'false'"-->
-<!--            ></td>-->
             <td
                     th:text="${developer.isActive()} ? 'active' : 'not active'"
                     th:style="${developer.isActive()} ? 'color: red' : 'color: grey'"
