@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name="developer")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @EqualsAndHashCode(of = "developerName")
-@ToString
+@ToString(exclude = "buildings")
 public class Developer {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

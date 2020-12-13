@@ -21,14 +21,12 @@
                 </div>
             </label>
             <label> Region:
-                <select th:field="*{region}">
+                <select id="region" name="region">
                     <option  th:each="regionOpt : ${T(projects.realestatemanager.enums.Region).values()}"
-                             th:value="${regionOpt}" th:text="${regionOpt.displayValue}"
-                                id="region"
-                                name="region">
+                             th:value="${regionOpt}"
+                             th:text="${regionOpt.displayValue}">
                     </option>
                 </select>
-                <br>
             </label>
 
             <label> City:
@@ -46,7 +44,7 @@
 
             <label> District:
                 <input type="text"
-                       th:value="${buildingEdit.region}"
+                       th:value="${buildingEdit.district}"
                        id="district"
                        name="district"/>
                 <div>
@@ -187,7 +185,8 @@
 
                 <select th:field="*{developerId}" name="developer">
                     <option th:each="developerOpt : ${availableDevelopers}"
-                            th:value="${developerOpt.id}" th:text="${developerOpt.name}">
+                            th:value="${developerOpt.id}"
+                            th:text="${developerOpt.name}">
                     </option>
                     <div>
                         <span th:each="err : ${#fields.errors('developerId')}" th:text="${err}"></span>

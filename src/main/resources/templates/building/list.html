@@ -52,16 +52,37 @@
                 <td th:text="${building.timeToCityCenterMin}"></td>
                 <td th:text="${building.timeToBusStopMin}"></td>
 <!--                todo true/false display-->
-                <td th:text="${building.isParkingAvailable}"></td>
-                <td><input type="checkbox" disabled="true" th:checked="building.getIsGarageAvailable ? 'checked' : 'unchecked'"/></td>
-                <td><input type="checkbox" disabled="true" th:checked="building.isElevatorAvailable ? 'checked' : 'unchecked'"/></td>
-                <td><input type="checkbox" disabled="true" th:checked="building.isConnectedToMedia ? 'checked' : 'unchecked'"/></td>
+<!--                <td-->
+<!--                        th:text="${building.isParkingAvailable} ? 'Y' : 'N'"-->
+<!--                        th:style="${building.isParkingAvailable} ? 'color: red' : 'color: grey'"-->
+<!--                ></td>-->
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${building.isParkingAvailable}">
+                </td>
+
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${building.isGarageAvailable}">
+                </td>
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${building.isElevatorAvailable}">
+                </td>
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${building.isConnectedToMedia}">
+                </td>
+
                 <td th:text="${building.buildingConstructionType}"></td>
                 <td th:text="${building.developerName}"></td>
-                <td><input type="checkbox" disabled="true" th:checked="building.isPrimaryMarket ? 'checked' : 'unchecked'"/></td>
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${building.isPrimaryMarket}">
+                </td>
 <!--                todo numberOfApartments display-->
                 <td th:text="${building.numberOfApartments}"></td>
-                <td th:if="${building.buildingSection != null}" th:text="${building.buildingSection}"></td>
+                <td th:text="${building.buildingSection}"></td>
                 <td th:text="${building.buildingRealizationTerm}"></td>
                 <td th:text="${building.photosUrl}"></td>
                 <td th:text="${building.creationDate}"></td>
