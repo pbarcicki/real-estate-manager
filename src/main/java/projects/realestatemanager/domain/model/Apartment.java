@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "apartments")
+@Table(name = "apartment")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,16 +18,16 @@ public class Apartment {
     private Long id;
 
     @Column(nullable = false)
-    private int floor;
+    private Integer floor;
 
     @Column(nullable = false, name = "on_corner")
-    private boolean onCorner;
+    private Boolean onCorner;
 
     @Column(nullable = false)
-    private double area;
+    private Double area;
 
     @Column(nullable = false, name = "rooms_number")
-    private int roomsNumber;
+    private Integer roomsNumber;
 
     //rodzaj kuchni jako string
     @Column(nullable = false, name = "type_of_kitchen")
@@ -35,10 +35,10 @@ public class Apartment {
 
     //cena może być niepodana
     @Column(nullable = false)
-    private int price;
+    private Integer price;
 
     @Column(nullable = false, name = "square_meter_price")
-    private double squareMeterPrice;
+    private Integer squareMeterPrice;
 
     //stan deweloperski/po wykończeniu/stary remont (enum???)
     @Column(nullable = false, name = "market_type")
@@ -60,15 +60,18 @@ public class Apartment {
     private String view;
 
     @Column(nullable = false, name = "storage_room")
-    private boolean storageRoom;
+    private Boolean storageRoom;
 
     private String comment;
 
     @Column(nullable = false)
-    private boolean active;
+    private Boolean active;
 
     @Column(nullable = false)
     private LocalDate creationDate;
+
+    @Column(name = "photos_url")
+    private String photosUrl;
 
     @ManyToOne
     @JoinColumn(name = "building_id")

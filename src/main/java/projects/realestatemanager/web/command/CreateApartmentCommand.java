@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -49,6 +50,9 @@ public class CreateApartmentCommand {
     @Size (min = 1, max = 10)
     private Boolean exclusivity;
 
+    @Size(min = 3, max = 16)
+    private String windowsDirection;
+
     @NotBlank
     @Size(min = 5, max = 30)
     private String view;
@@ -60,8 +64,9 @@ public class CreateApartmentCommand {
     @Size(min = 13, max = 160)
     private String comment;
 
-    @Size(min = 3, max = 16)
-    private String windowsDirection;
+    @NotBlank
+    @URL
+    private String photosUrl;
 
 
 

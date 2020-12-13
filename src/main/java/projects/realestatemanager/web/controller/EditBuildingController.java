@@ -36,8 +36,6 @@ public class EditBuildingController {
 
     @GetMapping("/{id:[0-9]+}")
     public String getBuildingEditPage(Model model, @PathVariable Long id) {
-        Building buildingToEdit = buildingRepository.getOne(id);
-
         model.addAttribute(new EditBuildingCommand());
         model.addAttribute("buildingEdit", buildingService.showBuildingById(id));
         model.addAttribute("buildingDelete", buildingService.deleteById(id));

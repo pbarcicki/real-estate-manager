@@ -39,7 +39,8 @@ public class AddNewBuildingController {
     }
 
     @PostMapping("/add")
-    public String processAddBuilding(@Valid CreateBuildingCommand createBuildingCommand, BindingResult bindingResult) {
+    public String processAddBuilding(@Valid CreateBuildingCommand createBuildingCommand,
+                                     BindingResult bindingResult) {
         log.debug("Data to create building");
 
         if (bindingResult.hasErrors()) {

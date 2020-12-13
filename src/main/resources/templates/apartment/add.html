@@ -42,25 +42,25 @@
                 <span th:each="err : ${#fields.errors('typeOfKitchen')}" th:text="${err}"></span>
             </div>
         </label>
-        <label>Price (PLN):
+        <label>Price (USD):
             <input type="text" th:field="*{price}"/>
             <div>
                 <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
             </div>
         </label>
-        <label>Price of square meter (PLN):
+        <label>Price of square meter (USD):
             <input type="text" th:field="*{squareMeterPrice}"/>
             <div>
                 <span th:each="err : ${#fields.errors('squareMeterPrice')}" th:text="${err}"></span>
             </div>
         </label>
-        <label>Type of market:
+        <label>Type of market (primary/secondary/to renovate):
             <input type="text" th:field="*{marketType}"/>
             <div>
                 <span th:each="err : ${#fields.errors('marketType')}" th:text="${err}"></span>
             </div>
         </label>
-        <label>Status:
+        <label>Status (free/reserved/ask developer):
             <input type="text" th:field="*{status}"/>
             <div>
                 <span th:each="err : ${#fields.errors('status')}" th:text="${err}"></span>
@@ -96,8 +96,8 @@
                 <span th:each="err : ${#fields.errors('comment')}" th:text="${err}"></span>
             </div>
         </label>
-        label> Photos URL:
-        <input type="text" th:field="*{apartmentPhotosUrl}"/>
+        <label> Photos URL:
+        <input type="text" th:field="*{photosUrl}"/>
         <div>
             <span th:each="err : ${#fields.errors('apartmentphotosUrl')}" th:text="${err}"></span>
         </div>

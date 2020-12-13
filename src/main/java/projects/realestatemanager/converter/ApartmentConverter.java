@@ -32,7 +32,7 @@ public class ApartmentConverter {
     public ApartmentSummary toApartmentSummary(Apartment apartment){
         return ApartmentSummary.builder()
                 .floor(apartment.getFloor())
-                .onCorner(apartment.isOnCorner())
+                .onCorner(apartment.getOnCorner())
                 .area(apartment.getArea())
                 .roomsNumber(apartment.getRoomsNumber())
                 .typeOfKitchen(apartment.getTypeOfKitchen())
@@ -42,7 +42,7 @@ public class ApartmentConverter {
                 .status(apartment.getStatus())
                 .exclusivity(apartment.isExclusivity())
                 .windowsDirection(apartment.getWindowsDirection())
-                .storageRoom(apartment.isStorageRoom())
+                .storageRoom(apartment.getStorageRoom())
                 .comment(apartment.getComment())
                 .build();
     }

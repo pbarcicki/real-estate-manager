@@ -28,23 +28,23 @@ public class ApartmentService {
     private final ApartmentRepository apartmentRepository;
     private final ApartmentConverter apartmentConverter;
 
-    public List<ApartmentSummary> findByAllApartments(){
+    public List<ApartmentSummary> findByAllApartments() {
         log.debug("Get all apartments info");
         return apartmentRepository.findAll().stream()
                 .map(apartmentConverter::toApartmentSummary)
                 .collect(Collectors.toList());
     }
 
-    public void add(@Valid CreateApartmentCommand createApartmentCommand){
+    public void add(@Valid CreateApartmentCommand createApartmentCommand) {
         log.debug("Apartment data to be saved: {}", createApartmentCommand);
         Apartment apartmentToAdd = apartmentConverter.from(createApartmentCommand);
         log.debug("Converted apartment entity to add: {}", apartmentToAdd);
-        if (apartmentRepository.existsById(apartmentToAdd.getId()){
-                Long id;
-        log.debug("Trying to add existing apartment");
-        throw new ApartmentAlreadyExistExeption(String.format(
-                "Apartment with %s area, numbers of rooms %s number of floor %s is already exist in DB",
-                apartmentToAdd.getArea(), apartmentToAdd.getRoomsNumber(), apartmentToAdd.getFloor()));
+        if (apartmentRepository.existsById(apartmentToAdd.getId())) {
+            Long id;
+            log.debug("Trying to add existing apartment");
+            throw new ApartmentAlreadyExistExeption(String.format(
+                    "Apartment with %s area, numbers of rooms %s number of floor %s is already exist in DB",
+                    apartmentToAdd.getArea(), apartmentToAdd.getRoomsNumber(), apartmentToAdd.getFloor()));
         }
 
 
@@ -55,25 +55,26 @@ public class ApartmentService {
 
     }
 
-    public Apartment showApartmentById(Long id) {
-    log.debug("Apartment id to find in DB: {}", id);
-    CreateApartmentCommand apartmentToEdit = apartmentRepository.existsById(Long id);
-    log.debug("Recived apartment to edit: {}", apartmentToEdit);
-    if (!apartmentRepository.existsById(id)){
-        log.debug("Trying to edit no existing apartment");
-        throw new ApartmentNoExistingException(String.format("Apartment with id %s isn't existing", id));
-    }
-    return apartmentConverter.from(apartmentToEdit);
+    public ApartmentSummary showApartmentById(Long id) {
+        log.debug("Apartment id to find in DB: {}", id);
+
+        Apartment apartmentToEdit = apartmentRepository.getOne(id);
+        log.debug("Received apartment to edit: {}", apartmentToEdit);
+        if (!apartmentRepository.existsById(id)) {
+            log.debug("Trying to edit no existing apartment");
+            throw new ApartmentNoExistingException(String.format("Apartment with id %s isn't existing", id));
+        }
+        return apartmentConverter.toApartmentSummary(apartmentToEdit);
     }
 
     public boolean editApartment(EditApartmentCommand editApartmentCommand) {
         Long id = editApartmentCommand.getId();
-        if(!apartmentRepository.existsById(id)){
+        if (!apartmentRepository.existsById(id)) {
             log.debug("Trying to edit no existing apartment");
             throw new ApartmentNoExistingException(String.format("Apartment with id %s isn't existing", id));
 
         }
-        Apartment apartmentToEdit =  apartmentRepository.existsById(Long id);
+        Apartment apartmentToEdit = apartmentRepository.getOne(id);
         log.debug("Apartment to edit: {}", apartmentToEdit);
         apartmentToEdit = apartmentConverter.from(editApartmentCommand, apartmentToEdit);
         log.debug("Apartment edited: {}", apartmentToEdit);
