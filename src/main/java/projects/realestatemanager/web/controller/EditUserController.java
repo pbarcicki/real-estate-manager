@@ -49,4 +49,22 @@ public class EditUserController {
         }
         return ("redirect:/users/edit/" +id);
     }
+    @PostMapping
+    public String deleteUser(@Valid EditUserCommand editUserCommand,
+                             BindingResult bindingResult) {
+        Long id = editUserCommand.getId();
+        log.warn("Value user active: {}", editUserCommand.getIsActive());
+        try {
+            userService.delete(editUserCommand);
+            log.debug("Successful user delete");
+            return "redirect:/users/list";
+        } catch (RuntimeException re) {
+            log.warn(re.getLocalizedMessage());
+            log.error("Error while editing data", re);
+            bindingResult.rejectValue("errors", null,
+                    "An unknown error occured while editing user");
+        }
+        return ("redirect:/users/edit/delete/" + id);
+    }
+
 }

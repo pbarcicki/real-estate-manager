@@ -46,9 +46,26 @@ public class EditClientController {
             log.warn(re.getLocalizedMessage());
             log.error("Error while editing data", re);
             bindingResult.rejectValue("errors", null,
-                    "An unknown error occured while editing client");
+                    "An unknown error occurred while editing client");
         }
         return ("redirect:/clients/edit/" + id);
+    }
+
+    @PostMapping("/{id:[0-9]+}/delete")
+    public String deleteClient(@Valid EditClientCommand editClientCommand,
+                               BindingResult bindingResult){
+        Long id = editClientCommand.getId();
+        try{
+            clientService.delete(editClientCommand);
+            log.debug("Success client delete");
+            return "redirect:/clients/list";
+        }catch (RuntimeException re){
+            log.warn(re.getLocalizedMessage());
+            log.error("Error while deleting client", re);
+            bindingResult.rejectValue("errors", null,
+                    "An unknown error occurred while deleting client");
+        }
+        return ("redirect:/clients/delete/" + id);
     }
 
 
