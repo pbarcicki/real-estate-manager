@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.domain.model.Client;
 import projects.realestatemanager.domain.repository.ClientRepository;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.service.ClientService;
 import projects.realestatemanager.web.command.EditClientCommand;
 
@@ -27,10 +28,13 @@ public class EditClientController {
 
     @GetMapping("/{id:[0-9]+}")
     public String showClientEdit(Model model, @PathVariable Long id){
-        Client client = clientRepository.getOne(id);
-        model.addAttribute(new EditClientCommand());
-        model.addAttribute("clientEdit", clientService.showClient(id));
-        return "client/edit";
+        if(clientRepository.existsById(id)){
+            model.addAttribute(new EditClientCommand());
+            model.addAttribute("clientEdit", clientService.showClient(id));
+            return "client/edit";
+        }else{
+            return "redirect:/clients/list";
+        }
     }
 
     @PostMapping("/{id:[0-9]+}")
@@ -57,6 +61,10 @@ public class EditClientController {
         try{
             clientService.delete(id);
             log.debug("Success client delete");
+            return "redirect:/clients/list";
+        }catch(EntityDoesNotExistException ddnee){
+            log.warn(ddnee.getLocalizedMessage());
+            log.error("Client with id: {} doen't exist", id);
             return "redirect:/clients/list";
         }catch (RuntimeException re){
             log.warn(re.getLocalizedMessage());

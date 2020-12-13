@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.UserRepository;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.service.UserService;
 import projects.realestatemanager.web.command.EditUserCommand;
 
@@ -27,11 +28,15 @@ public class EditUserController {
 
     @GetMapping("/{id:[0-9]+}")
     public String showUserEdit(Model model, @PathVariable Long id){
-        User user = userRepository.getOne(id);
-        model.addAttribute(new EditUserCommand());
-        model.addAttribute("userEdit", userService.showUser(id));
-        return "user/edit";
+        if(userRepository.existsById(id)){
+            model.addAttribute(new EditUserCommand());
+            model.addAttribute("userEdit", userService.showUser(id));
+            return "user/edit";
+        }else {
+            return "redirect:/users/list";
+        }
     }
+
     @PostMapping("/{id:[0-9]+}")
     public String editUser(@Valid EditUserCommand editUserCommand,
                            BindingResult bindingResult){
@@ -49,22 +54,21 @@ public class EditUserController {
         }
         return ("redirect:/users/edit/" +id);
     }
-    @PostMapping
-    public String deleteUser(@Valid EditUserCommand editUserCommand,
-                             BindingResult bindingResult) {
-        Long id = editUserCommand.getId();
-        log.warn("Value user active: {}", editUserCommand.getIsActive());
+    @PostMapping("/{id:[0-9]+}/delete")
+    public String deleteUser(@PathVariable(value = "id") Long id) {
+        log.debug("Id: {} user to delete", id);
         try {
-            //userService.delete(editUserCommand);
-            log.debug("Successful user delete");
+            userService.delete(id);
+            return "redirect:/users/list";
+        } catch (EntityDoesNotExistException ddnee) {
+            log.warn(ddnee.getLocalizedMessage());
+            log.error("User with id: {} doen't exist", id);
             return "redirect:/users/list";
         } catch (RuntimeException re) {
             log.warn(re.getLocalizedMessage());
             log.error("Error while editing data", re);
-            bindingResult.rejectValue("errors", null,
-                    "An unknown error occured while editing user");
+            return "redirect:/users/list";
         }
-        return ("redirect:/users/edit/delete/" + id);
     }
 
 }

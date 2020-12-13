@@ -5,7 +5,8 @@
     <title>Client edit</title>
 </head>
 <body>
-<h1 th:text="|Edit client ${clientEdit.clientName}|">Edit client</h1>
+<h1>Edit client:</h1>
+<h2 th:text="${clientEdit.clientName}"></h2>
 <div>
     <form th:action="${clientEdit.id}" th:method="post" th:object="${editClientCommand}">
         <fieldset>

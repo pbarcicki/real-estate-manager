@@ -5,7 +5,8 @@
     <title>User edit</title>
 </head>
 <body>
-<h1 th:text="|Edit user ${userEdit.username}|">Edit user</h1>
+<h1>Edit user:</h1>
+<h2 th:text="${userEdit.username}">Edit user</h2>
 <div>
     <form th:action="${userEdit.id}" th:method="post" th:object="${editUserCommand}">
         <fieldset>
