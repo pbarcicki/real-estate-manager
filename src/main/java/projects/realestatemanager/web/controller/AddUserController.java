@@ -40,7 +40,7 @@ public class AddUserController {
         try{
             userService.add(createUserCommand);
             log.debug("User created");
-            return "redirect:/users";
+            return "redirect:/users/list";
 
         }catch (UserAlreadyExistException uae){
             log.debug("Error creating user", uae);
