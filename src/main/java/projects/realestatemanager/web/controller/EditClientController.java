@@ -37,6 +37,7 @@ public class EditClientController {
     public String editClient(@Valid EditClientCommand editClientCommand,
                              BindingResult bindingResult){
         Long id = editClientCommand.getId();
+        log.warn("Value client active: {}", editClientCommand.getIsActive());
         try{
             boolean success = clientService.edit(editClientCommand);
             log.debug("Successful data change");

@@ -19,6 +19,7 @@ public class UserConverter {
     public User from(EditUserCommand editUserCommand, User user){
         user.setUsername(editUserCommand.getUsername());
         user.setUserEmail(editUserCommand.getUserEmail());
+        user.setIsActive(editUserCommand.getIsActive());
         return user;
     }
 
@@ -26,6 +27,7 @@ public class UserConverter {
         return UserSummary.builder()
                 .username(user.getUsername())
                 .userEmail(user.getUserEmail())
+                .isActive(user.getIsActive())
                 .build();
     }
 }

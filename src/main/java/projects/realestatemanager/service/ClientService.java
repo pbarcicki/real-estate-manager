@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.ClientConverter;
 import projects.realestatemanager.data.client.ClientSummary;
 import projects.realestatemanager.domain.model.Client;
+import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ClientRepository;
 import projects.realestatemanager.exception.ClientAlreadyExistException;
 import projects.realestatemanager.exception.ClientDoesNotExistException;
@@ -49,7 +50,7 @@ public class ClientService {
                     clientToCreate.getClientContactEmail()
             ));
         }
-        clientToCreate.setIsActive(true);
+        setDefaultActive(clientToCreate);
         clientToCreate.setClientRegistrationDate(LocalDate.now());
         clientRepository.save(clientToCreate);
         log.debug("Saved client: {}", clientToCreate);
@@ -81,6 +82,9 @@ public class ClientService {
             );
         }
         return clientConverter.toClientSummary(client);
+    }
+    private void setDefaultActive(Client clientToCreate) {
+        clientToCreate.setIsActive(Boolean.TRUE);
     }
 }
 

@@ -36,6 +36,7 @@ public class EditUserController {
     public String editUser(@Valid EditUserCommand editUserCommand,
                            BindingResult bindingResult){
         Long id = editUserCommand.getId();
+        log.warn("Value user active: {}", editUserCommand.getIsActive());
         try{
             boolean success = userService.edit(editUserCommand);
             log.debug("Successful data change");
@@ -45,6 +46,7 @@ public class EditUserController {
             log.error("Error while editing data", re);
             bindingResult.rejectValue("errors", null,
                     "An unknown error occured while editing user");
-        }return ("redirect:/users/edit/" +id);
+        }
+        return ("redirect:/users/edit/" +id);
     }
 }

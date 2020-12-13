@@ -47,12 +47,19 @@
             </div>
             <div>
                 <label>Is active:
-                    <input type="checkbox" th:value="${clientEdit.isActive}"
-                           id="isActive" name="isActive" required>
+                    <select id="isActive" name="isActive">
+                        <option
+                                value="true"
+                                th:selected="${clientEdit.isActive eq true}"
+                                th:text="ACTIVE">
+                        </option>
+                        <option
+                                value="false"
+                                th:selected="${clientEdit.isActive eq false}"
+                                th:text="INACTIVE">
+                        </option>
+                    </select>
                 </label>
-                <div th:if="${#fields.hasErrors('isActive')}">
-                    <span th:each="err : ${#fields.errors('isActive')}" th:text="${err}"></span>
-                </div>
             </div>
         </fieldset>
         <fieldset>

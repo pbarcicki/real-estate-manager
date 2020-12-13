@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.UserConverter;
 import projects.realestatemanager.data.user.UserSummary;
 import projects.realestatemanager.domain.model.Client;
+import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.UserRepository;
 import projects.realestatemanager.exception.ClientAlreadyExistException;
@@ -49,7 +50,7 @@ public class UserService {
                     userToCreate.getUserEmail()
             ));
         }
-        userToCreate.setIsActive(true);
+        setDefaultActive(userToCreate);
         userRepository.save(userToCreate);
         log.debug("Saved client: {}", userToCreate);
 
@@ -79,5 +80,8 @@ public class UserService {
             );
         }
         return userConverter.toUserSummary(user);
+    }
+    private void setDefaultActive(User userToCreate) {
+        userToCreate.setIsActive(Boolean.TRUE);
     }
 }

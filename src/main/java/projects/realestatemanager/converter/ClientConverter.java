@@ -23,6 +23,7 @@ public class ClientConverter {
         client.setClientContactEmail(editClientCommand.getClientContactEmail());
         client.setClientContactNumber(editClientCommand.getClientContactNumber());
         client.setClientInterest(editClientCommand.getClientInterest());
+        client.setIsActive(editClientCommand.getIsActive());
         return client;
     }
 
@@ -33,6 +34,7 @@ public class ClientConverter {
                 .clientContactNumber(client.getClientContactNumber())
                 .clientInterest(client.getClientInterest())
                 .clientRegistrationDate(client.getClientRegistrationDate())
+                .isActive(client.getIsActive())
                 .build();
     }
 }

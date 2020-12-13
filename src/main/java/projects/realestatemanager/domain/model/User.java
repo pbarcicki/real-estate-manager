@@ -1,6 +1,7 @@
 package projects.realestatemanager.domain.model;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,6 +33,7 @@ public class User  {
     private Set<String> roles = new HashSet<>();
 
     @Column(nullable = false, name = "is_active")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean isActive;
 
     @ManyToMany(mappedBy = "user")
