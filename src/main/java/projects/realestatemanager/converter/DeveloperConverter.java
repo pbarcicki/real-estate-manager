@@ -21,6 +21,7 @@ public class DeveloperConverter {
         developer.setDeveloperName(editDeveloperCommand.getDeveloperName());
         developer.setDeveloperContactPerson(editDeveloperCommand.getDeveloperContactPerson());
         developer.setDeveloperContactNumber(editDeveloperCommand.getDeveloperContactNumber());
+        developer.setIsActive(editDeveloperCommand.getIsActive());
         return developer;
     }
 
@@ -30,6 +31,7 @@ public class DeveloperConverter {
                 .name(developer.getDeveloperName())
                 .contactPerson(developer.getDeveloperContactPerson())
                 .contactNumber(developer.getDeveloperContactNumber())
+                .isActive(developer.getIsActive())
                 .build();
     }
 }

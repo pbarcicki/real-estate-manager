@@ -40,6 +40,23 @@
                                required>
                     </label>
                 </div>
+                <div>
+                    <label>Status dewelopera:
+                        <select id="isActive" name="isActive">
+                            <option
+                                    value="true"
+                                    th:selected="${developerEdit.isActive() eq true}"
+                                    th:text="AKTYWNY">
+                            </option>
+                            <option
+                                    value="false"
+                                    th:selected="${developerEdit.isActive() eq false}"
+                                    th:text="NIEAKTYWNY">
+                            </option>
+                        </select>
+                    </label>
+                </div>
+            </div>
         </fieldset>
         <fieldset>
             <button type="submit">Zmień dane</button>

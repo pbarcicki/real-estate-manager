@@ -35,8 +35,11 @@ public class EditDeveloperController {
     }
 
     @PostMapping("/{id:[0-9]+}")
-    public String editDeveloper(@Valid EditDeveloperCommand editDeveloperCommand, BindingResult bindingResult) {
+    public String editDeveloper(@Valid EditDeveloperCommand editDeveloperCommand,
+                                BindingResult bindingResult) {
         Long id = editDeveloperCommand.getId();
+
+        log.warn("wartośc dev active={}",editDeveloperCommand.getIsActive());
 
         try {
             boolean success = developerService.edit(editDeveloperCommand);
