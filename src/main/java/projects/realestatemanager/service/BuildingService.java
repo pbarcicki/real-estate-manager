@@ -85,4 +85,15 @@ public class BuildingService {
         log.debug("Building modified: {}", buildingToEdit);
         return true;
     }
+
+    public boolean deleteById(Long id) {
+        Building buildingToDelete = buildingRepository.getOne(id);
+
+        if (!buildingRepository.existsById(id)) {
+            log.debug("Tried to delete non-existing building!");
+            throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
+        }
+        if (buildingRepository.isConnectedWithApartment(id));
+
+    }
 }

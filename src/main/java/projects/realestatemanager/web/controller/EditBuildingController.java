@@ -39,6 +39,7 @@ public class EditBuildingController {
 
         model.addAttribute(new EditBuildingCommand());
         model.addAttribute("buildingEdit", buildingService.showBuildingById(id));
+        model.addAttribute("buildingDelete", buildingService.deleteById(id));
         return "building/edit";
     }
 
@@ -51,7 +52,7 @@ public class EditBuildingController {
             return "redirect:/buildings/list";
         } catch (EntityDoesNotExistException bdnee)  {
             log.debug("Trying to edit not existing building");
-            bindingResult.rejectValue("city", null, "Trying to edit not existing building");
+            bindingResult.reject(null, "Trying to edit not existing building");
             return "building/edit";
         } catch (RuntimeException re) {
             log.debug("Error while saving edited building: {}", re);
