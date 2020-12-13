@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import projects.realestatemanager.data.developer.DeveloperSummary;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.BuildingRepository;
-import projects.realestatemanager.exception.BuildingDoesNotExistException;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.service.DeveloperService;
 import projects.realestatemanager.web.command.EditBuildingCommand;
@@ -49,7 +49,7 @@ public class EditBuildingController {
             buildingService.editBuilding(editBuildingCommand);
             log.debug("Building successfully edited");
             return "redirect:/buildings/list";
-        } catch (BuildingDoesNotExistException bdnee)  {
+        } catch (EntityDoesNotExistException bdnee)  {
             log.debug("Trying to edit not existing building");
             bindingResult.rejectValue("city", null, "Trying to edit not existing building");
             return "building/edit";

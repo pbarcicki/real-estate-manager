@@ -7,10 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
-import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.BuildingAlreadyExistsException;
-import projects.realestatemanager.exception.BuildingDoesNotExistException;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 import projects.realestatemanager.web.command.EditBuildingCommand;
 
@@ -64,7 +63,7 @@ public class BuildingService {
 
         if (!buildingRepository.existsById(id)) {
             log.debug("Tried to edit non-existing building!");
-            throw new BuildingDoesNotExistException(String.format("Building with id %s does not exist!", id));
+            throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
         }
 
         return buildingConverter.from(buildingToEdit);
@@ -76,7 +75,7 @@ public class BuildingService {
 
         if (!buildingRepository.existsById(id)) {
             log.debug("Tried to edit non-existing building!");
-            throw new BuildingDoesNotExistException(String.format("Building with id %s does not exist!", id));
+            throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
         }
 
         Building buildingToEdit = buildingRepository.getOne(id);

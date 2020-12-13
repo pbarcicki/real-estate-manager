@@ -9,7 +9,7 @@ import projects.realestatemanager.data.developer.DeveloperSummary;
 import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.repository.DeveloperRepository;
 import projects.realestatemanager.exception.DeveloperAlreadyExistsException;
-import projects.realestatemanager.exception.DeveloperDoesNotExistException;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.web.command.CreateDeveloperCommand;
 import projects.realestatemanager.web.command.EditDeveloperCommand;
 
@@ -48,7 +48,7 @@ public class DeveloperService {
         Long id = editDeveloperCommand.getId();
         if (!developerRepository.existsById(id)) {
             log.debug("UWAGA! DEWELOPER o id={} nie istnieje!!!", id);
-            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
+            throw new EntityDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
         }
 
         Developer developer = developerRepository.getOne(id);
@@ -75,7 +75,7 @@ public class DeveloperService {
 
         if (!developerRepository.existsById(id)) {
             log.debug("UWAGA! DEWELOPER o id={} nie istnieje!!!", id);
-            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
+            throw new EntityDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
         }
 
         return developerConverter.developerSummary(developer);
