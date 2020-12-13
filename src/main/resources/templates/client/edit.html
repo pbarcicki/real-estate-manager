@@ -38,11 +38,20 @@
             </div>
             <div>
                 <label>Client interest:
-                    <textarea th:value="${clientEdit.clientInterest}"
+                    <textarea th:text="${clientEdit.clientInterest}"
                               id="clientInterest" name="clientInterest" required></textarea>
                 </label>
                 <div th:if="${#fields.hasErrors('clientInterest')}">
                     <span th:each="err : ${#fields.errors('clientInterest')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>Is active:
+                    <input type="checkbox" th:value="${clientEdit.isActive}"
+                           id="isActive" name="isActive" required>
+                </label>
+                <div th:if="${#fields.hasErrors('isActive')}">
+                    <span th:each="err : ${#fields.errors('isActive')}" th:text="${err}"></span>
                 </div>
             </div>
         </fieldset>

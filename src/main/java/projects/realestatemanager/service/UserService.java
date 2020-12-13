@@ -49,7 +49,7 @@ public class UserService {
                     userToCreate.getUserEmail()
             ));
         }
-        userToCreate.setActive(true);
+        userToCreate.setIsActive(true);
         userRepository.save(userToCreate);
         log.debug("Saved client: {}", userToCreate);
 

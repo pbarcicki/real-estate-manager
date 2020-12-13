@@ -23,6 +23,7 @@ public class EditUserCommand {
     private String username;
     @Email
     private String userEmail;
+    private Boolean isActive;
 
 
 

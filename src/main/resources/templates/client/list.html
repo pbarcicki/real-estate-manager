@@ -23,6 +23,7 @@
             <td th:text="${client.clientContactNumber}"></td>
             <td th:text="${client.clientInterest}"></td>
             <td th:text="${client.clientRegistrationDate}"></td>
+            <td th:text="${client.isActive} ? 'active' : 'not active'"></td>
             <td><a th:href="|edit/${client.id}|">Edit</a></td>
         </tr>
     </table>

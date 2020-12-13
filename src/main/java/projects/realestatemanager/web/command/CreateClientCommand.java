@@ -33,6 +33,7 @@ public class CreateClientCommand {
     private String clientInterest;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate clientRegistrationDate;
+    private Boolean isActive;
 
 
 

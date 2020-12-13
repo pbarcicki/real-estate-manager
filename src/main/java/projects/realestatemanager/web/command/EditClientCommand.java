@@ -30,5 +30,6 @@ public class EditClientCommand {
     private String clientContactEmail;
     @NotNull @Size(min=3, max = 160)
     private String clientInterest;
+    private Boolean isActive;
 
 }

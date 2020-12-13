@@ -49,7 +49,7 @@ public class ClientService {
                     clientToCreate.getClientContactEmail()
             ));
         }
-        clientToCreate.setActive(true);
+        clientToCreate.setIsActive(true);
         clientToCreate.setClientRegistrationDate(LocalDate.now());
         clientRepository.save(clientToCreate);
         log.debug("Saved client: {}", clientToCreate);

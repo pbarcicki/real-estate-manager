@@ -22,4 +22,5 @@ public class CreateUserCommand {
     private String userPassword;
     @Email @NotNull
     private String userEmail;
+    private Boolean isActive;
 }

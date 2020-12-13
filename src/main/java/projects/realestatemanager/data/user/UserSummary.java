@@ -17,7 +17,7 @@ public class UserSummary {
     private String username;
     private String userEmail;
     private Long id;
-    private boolean isActive;
+    private Boolean isActive;
     private List<Client> client;
 
 }

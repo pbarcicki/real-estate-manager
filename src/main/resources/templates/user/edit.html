@@ -27,7 +27,15 @@
                     <span th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></span>
                 </div>
             </div>
-
+            <div>
+                <label>Is active:
+                    <input type="checkbox" th:value="${userEdit.isActive}"
+                           id="isActive" name="isActive" required>
+                </label>
+                <div th:if="${#fields.hasErrors('isActive')}">
+                    <span th:each="err : ${#fields.errors('isActive')}" th:text="${err}"></span>
+                </div>
+            </div>
         </fieldset>
         <fieldset>
             <button type="submit">Submit changes</button>

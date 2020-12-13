@@ -32,7 +32,7 @@ public class User  {
     private Set<String> roles = new HashSet<>();
 
     @Column(nullable = false, name = "is_active")
-    private boolean isActive;
+    private Boolean isActive;
 
     @ManyToMany(mappedBy = "user")
     @Column(nullable = false)

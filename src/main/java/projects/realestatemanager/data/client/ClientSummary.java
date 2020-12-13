@@ -30,7 +30,7 @@ public class ClientSummary {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate clientRegistrationDate;
 
-    private boolean isActive;
+    private Boolean isActive;
 
     private List<User> user;
 }
