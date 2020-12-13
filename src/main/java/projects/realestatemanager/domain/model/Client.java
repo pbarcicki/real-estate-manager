@@ -38,7 +38,7 @@ public class Client {
     private String clientInterest;
 
     @Column(nullable = false, name = "is_active")
-    private boolean isActive;
+    private Boolean isActive;
 
     @ManyToMany
     @JoinColumn(name = "user_id")

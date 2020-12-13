@@ -39,7 +39,7 @@ public class AddClientController {
         try{
             clientService.add(createClientCommand);
             log.debug("Client created");
-            return "redirect:/clients";
+            return "redirect:/clients/list";
 
         }catch(ClientAlreadyExistException cae){
             log.debug("Error creating client", cae);

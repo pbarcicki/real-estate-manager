@@ -35,7 +35,7 @@
             </div>
             <div>
                 <label>Client interest:
-                    <textarea th:field="*{clientInterest}"></textarea>
+                    <textarea th:field="*{clientInterest}" name="clientInterest" required></textarea>
                 </label>
                 <div th:if="${#fields.hasErrors('clientInterest')}">
                     <span th:each="err : ${#fields.errors('clientInterest')}" th:text="${err}"></span>

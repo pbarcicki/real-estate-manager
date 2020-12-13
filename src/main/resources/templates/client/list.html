@@ -16,13 +16,18 @@
             <th>Number</th>
             <th>Interest</th>
             <th>Registration date</th>
+            <th>Status</th>
         </tr>
-        <tr th:each="client : ${clients}">
+        <tr th:each="client : ${clientsList}">
             <td th:text="${client.clientName}"></td>
             <td th:text="${client.clientContactEmail}"></td>
             <td th:text="${client.clientContactNumber}"></td>
             <td th:text="${client.clientInterest}"></td>
             <td th:text="${client.clientRegistrationDate}"></td>
+            <td th:text="${client.isActive} ? 'active' : 'not active'"
+                th:style="${client.isActive} ? 'color: red' : 'color: grey'">
+            </td>
+            <td><a th:href="|edit/${client.id}|">Edit</a></td>
         </tr>
     </table>
 </div>

@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Client edit</title>
 </head>
 <body>
-
+<h1 th:text="|Edit client ${clientEdit.clientName}|">Edit client</h1>
+<div>
+    <form th:action="${clientEdit.id}" th:method="post" th:object="${editClientCommand}">
+        <fieldset>
+            <div>
+                <label>Client name:
+                    <input type="text" th:value="${clientEdit.clientName}"
+                    id="clientName" name="clientName" required>
+                </label>
+                <div th:if="${#fields.hasErrors('clientName')}">
+                    <span th:each="err : ${#fields.errors('clentName')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>Phone number:
+                    <input type="number" th:value="${clientEdit.clientContactNumber}"
+                           id="clientContactNumber" name="clientContactNumber" required>
+                </label>
+                <div th:if="${#fields.hasErrors('clientContactNumber')}">
+                    <span th:each="err : ${#fields.errors('clientContactNumber')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>E-mail:
+                    <input type="email" th:value="${clientEdit.clientContactEmail}"
+                           id="clientContactEmail" name="clientContactEmail" required>
+                </label>
+                <div th:if="${#fields.hasErrors('clientContactEmail')}">
+                    <span th:each="err : ${#fields.errors('clientContactEmail')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>Client interest:
+                    <textarea th:text="${clientEdit.clientInterest}"
+                              id="clientInterest" name="clientInterest" required></textarea>
+                </label>
+                <div th:if="${#fields.hasErrors('clientInterest')}">
+                    <span th:each="err : ${#fields.errors('clientInterest')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <label>Is active:
+                    <select id="isActive" name="isActive">
+                        <option
+                                value="true"
+                                th:selected="${clientEdit.isActive eq true}"
+                                th:text="ACTIVE">
+                        </option>
+                        <option
+                                value="false"
+                                th:selected="${clientEdit.isActive eq false}"
+                                th:text="INACTIVE">
+                        </option>
+                    </select>
+                </label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <button type="submit">Submit changes</button>
+        </fieldset>
+    </form>
+    <form>
+        <div><a th:href="@{/clients/{id:[0-9]+}/delete}">Delete client</a></div>
+    </form>
+</div>
 </body>
 </html>
