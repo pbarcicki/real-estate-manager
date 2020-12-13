@@ -10,6 +10,7 @@ import projects.realestatemanager.data.developer.DeveloperSummary;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.EntityDoesNotExistException;
+import projects.realestatemanager.exception.EntityHasConnectionsException;
 import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.service.DeveloperService;
 import projects.realestatemanager.web.command.EditBuildingCommand;
@@ -59,6 +60,23 @@ public class EditBuildingController {
             bindingResult.rejectValue("city", null, "Error while saving edited building!");
         }
         return ("redirect:/buildings/edit/" + id);
+    }
+
+    @PostMapping("/{id:[0-9]+}/delete")
+    public String deleteBuilding(@PathVariable(value = "id") Long id){
+        log.debug("Building id to delete: {}", id);
+        try {
+            buildingService.deleteById(id);
+            return "redirect:/buildings/list";
+        } catch (EntityDoesNotExistException ddnee) {
+            log.warn(ddnee.getLocalizedMessage());
+            log.error("Building with id {} does nor exist", id);
+            return "redirect:/buildings/list";
+        } catch (EntityHasConnectionsException ehce) {
+            log.debug("Trying to edit not existing building");
+            return "redirect:/buildings/list";
+        }
+
     }
 
 }

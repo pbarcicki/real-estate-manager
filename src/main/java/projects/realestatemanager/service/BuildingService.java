@@ -10,6 +10,7 @@ import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.BuildingAlreadyExistsException;
 import projects.realestatemanager.exception.EntityDoesNotExistException;
+import projects.realestatemanager.exception.EntityHasConnectionsException;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 import projects.realestatemanager.web.command.EditBuildingCommand;
 
@@ -87,13 +88,19 @@ public class BuildingService {
     }
 
     public boolean deleteById(Long id) {
-        Building buildingToDelete = buildingRepository.getOne(id);
+        log.debug("Building to delete: {}", buildingRepository.getOne(id));
 
         if (!buildingRepository.existsById(id)) {
             log.debug("Tried to delete non-existing building!");
             throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
         }
-        if (buildingRepository.isConnectedWithApartment(id));
-
+//        if (buildingRepository.isConnectedWithApartment(id)>0) {
+        if (false){
+            log.debug("Tried to delete building which has apartments!");
+            throw new EntityHasConnectionsException("Building has connected apartments!");
+        }
+        buildingRepository.deleteById(id);
+        log.debug("Deleted building with id: {}", id);
+        return true;
     }
 }

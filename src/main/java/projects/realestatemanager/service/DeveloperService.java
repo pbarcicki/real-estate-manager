@@ -92,7 +92,7 @@ public class DeveloperService {
 
         if (!developerRepository.existsById(id)) {
             log.debug("UWAGA! DEWELOPER o id={} nie istnieje!!!", id);
-            throw new DeveloperDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
+            throw new EntityDoesNotExistException(String.format("DEWELOPER o id=%s nie istnieje :(", id));
         }
 
         developerRepository.delete(developer);

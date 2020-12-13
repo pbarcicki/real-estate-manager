@@ -267,7 +267,7 @@
             </div>
         </div>
     </form>
-    <form th:action="${buildingDelete.id}" th:method="post">
+    <form th:action="|${buildingEdit.id}/delete|" th:method="post">
         <div>
             <button type="submit">Delete building</button>
         </div>
