@@ -12,6 +12,8 @@ import org.springframework.format.annotation.NumberFormat;
 @Builder
 public class ApartmentSummary {
 
+    private Long id;
+
     @NumberFormat
     private int floor;
 

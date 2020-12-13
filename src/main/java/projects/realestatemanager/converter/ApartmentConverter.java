@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
+import projects.realestatemanager.web.command.EditApartmentCommand;
 
 
 @Component
@@ -12,7 +13,7 @@ public class ApartmentConverter {
     public Apartment from(CreateApartmentCommand createApartmentCommand){
         return Apartment.builder()
                 .floor(createApartmentCommand.getFloor())
-                .onCorner(createApartmentCommand.isOnCorner())
+                .onCorner(createApartmentCommand.getOnCorner())
                 .area(createApartmentCommand.getArea())
                 .roomsNumber(createApartmentCommand.getRoomsNumber())
                 .typeOfKitchen(createApartmentCommand.getTypeOfKitchen())
@@ -20,9 +21,9 @@ public class ApartmentConverter {
                 .squareMeterPrice(createApartmentCommand.getSquareMeterPrice())
                 .marketType(createApartmentCommand.getMarketType())
                 .status(createApartmentCommand.getStatus())
-                .exclusivity(createApartmentCommand.isExclusivity())
+                .exclusivity(createApartmentCommand.getExclusivity())
                 .windowsDirection(createApartmentCommand.getWindowsDirection())
-                .storageRoom(createApartmentCommand.isStorageRoom())
+                .storageRoom(createApartmentCommand.getStorageRoom())
                 .comment(createApartmentCommand.getComment())
                 .build();
     }
@@ -44,5 +45,24 @@ public class ApartmentConverter {
                 .storageRoom(apartment.isStorageRoom())
                 .comment(apartment.getComment())
                 .build();
+    }
+
+    public Apartment from(EditApartmentCommand editApartmentCommand, Apartment apartment){
+        apartment.setId(editApartmentCommand.getId());
+        apartment.setFloor(editApartmentCommand.getFloor());
+        apartment.setOnCorner(editApartmentCommand.getOnCorner());
+        apartment.setArea(editApartmentCommand.getArea());
+        apartment.setRoomsNumber(editApartmentCommand.getRoomsNumber());
+        apartment.setTypeOfKitchen(editApartmentCommand.getTypeOfKitchen());
+        apartment.setPrice(editApartmentCommand.getPrice());
+        apartment.setSquareMeterPrice(editApartmentCommand.getSquareMeterPrice());
+        apartment.setMarketType(editApartmentCommand.getMarketType());
+        apartment.setStatus(editApartmentCommand.getStatus());
+        apartment.setExclusivity(editApartmentCommand.getExclusivity());
+        apartment.setWindowsDirection(editApartmentCommand.getWindowsDirection());
+        apartment.setStorageRoom(editApartmentCommand.getStorageRoom());
+        apartment.setComment(editApartmentCommand.getComment());
+
+        return apartment;
     }
 }

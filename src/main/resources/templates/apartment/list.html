@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Apartments list</title>
 </head>
 <body>
+<div>
+    <h1>Apartments list</h1>
+    <h3>
+        <a th:href="@{/apartments/add}">Add new apartment</a>
+    </h3>
 
+    <table>
+        <tr>
+            <th>Floor</th>
+            <th>Flat on Corner</th>
+            <th>Area</th>
+            <th>Rooms number</th>
+            <th>Type of kitchen</th>
+            <th>Price (PLN)</th>
+            <th>Square meter price</th>
+            <th>Type of market</th>
+            <th>Status</th>
+            <th>Exclusivity</th>
+            <th>Direction of windows</th>
+            <th>Storageroom</th>
+            <th>Comment</th>
+            <th>Active</th>
+            <th>Date of creation</th>
+            <th>Photos/Plan</th>
+            <th>Added to DB</th>
+        </tr>
+        <tr th:each="apartment : ${apartments}">
+            <td th:text="${apartment.floor}"></td>
+            <td th:text="${apartment.onCorner}"></td>
+            <td th:text="${apartment.area}"></td>
+            <td th:text="${apartment.roomsNumber}"></td>
+            <td th:text="${apartment.typeOfKitchen}"></td>
+            <td th:text="${apartment.price}"></td>
+            <td th:text="${apartmentsquareMeterPrice}"></td>
+            <td th:text="${apartment.status}"></td>
+            <td><input type="checkbox" disabled="true" th:checked="Is exclusivity ? 'checked' : 'unchecked'"/></td>
+            <td th:text="${apartment.windowsDirection}"></td>
+            <td th:text="${apartment.view}"></td>
+            <td><input type="checkbox" disabled="true" th:checked="apartment.active ? 'checked' : 'unchecked'"/></td>
+            <td th:text="${building.isParkingAvailable}"></td>
+            <td><input type="checkbox" disabled="true" th:checked="building.getIsGarageAvailable ? 'checked' : 'unchecked'"/></td>
+            <td><input type="checkbox" disabled="true" th:checked="building.isElevatorAvailable ? 'checked' : 'unchecked'"/></td>
+            <td><input type="checkbox" disabled="true" th:checked="building.isConnectedToMedia ? 'checked' : 'unchecked'"/></td>
+            <td th:text="${building.buildingConstructionType}"></td>
+            <td th:text="${building.developerName}"></td>
+            <td> <a th:href="|edit/${apartment.id}|">Edit</a> </td>
+
+        </tr>
+    </table>
+
+</div>
 </body>
 </html>
