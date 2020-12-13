@@ -85,14 +85,14 @@ public class UserService {
         userToCreate.setIsActive(Boolean.TRUE);
     }
 
-    public boolean delete(EditUserCommand editUserCommand) {
-        Long id = editUserCommand.getId();
+    public boolean delete(Long id) {
+        log.debug("Searching user with id: {}", id);
+        User user = userRepository.getOne(id);
         if(!userRepository.existsById(id)){
             log.debug("Client with id: {} doesn't exist", id);
             throw new ClientDoesNotExistException(String.format(
                     "Client with id: {} doesn't exist", id));
         }
-        User user = userRepository.getOne(id);
         log.debug("Client to delete: {}", user);
         userRepository.delete(user);
         return true;

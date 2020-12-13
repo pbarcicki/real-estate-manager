@@ -50,6 +50,6 @@ public class EditApartmentController {
             log.debug("Error while saving edited apartment: {}", re);
             bindingResult.rejectValue("id", null, "Error while saving edited apartment");
         }
-        return ("redirect:/buildings/edit/" + id);
+        return ("redirect:/apartments/edit/" + id);
     }
 }

@@ -49,6 +49,11 @@
         </fieldset>
     </form>
 </div>
+<fieldset>
+    <form th:action="|${userEdit.id}/delete|" th:method="post">
+        <button type="submit">Delete</button>
+    </form>
+</fieldset>
 
 </body>
 </html>

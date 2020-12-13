@@ -30,7 +30,7 @@ public class AddNewApartmentController {
     @GetMapping("/add")
     public String getAddApartmentPage(Model model) {
         model.addAttribute(new CreateApartmentCommand());
-        return "building/add";
+        return "apartment/add";
     }
 
     @PostMapping("/add")

@@ -71,6 +71,8 @@ public class EditApartmentCommand {
     @URL
     private String apartmentPhotosUrl;
 
+    private Boolean active;
+
 
 
 }

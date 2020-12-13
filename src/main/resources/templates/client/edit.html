@@ -66,9 +66,11 @@
             <button type="submit">Submit changes</button>
         </fieldset>
     </form>
-    <form>
-        <div><a th:href="@{/clients/{id:[0-9]+}/delete}">Delete client</a></div>
-    </form>
+    <fieldset>
+        <form th:action="|${clientEdit.id}/delete|" th:method="post">
+            <button type="submit">Delete</button>
+        </form>
+    </fieldset>
 </div>
 </body>
 </html>

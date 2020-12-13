@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,6 +48,12 @@ public class ApartmentSummary {
     private boolean storageRoom;
 
     private  String comment;
+
+    private Boolean active;
+
+    private LocalDate creationDate;
+
+    private String photosUrl;
 
 
 }

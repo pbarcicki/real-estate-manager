@@ -55,7 +55,7 @@ public class EditUserController {
         Long id = editUserCommand.getId();
         log.warn("Value user active: {}", editUserCommand.getIsActive());
         try {
-            userService.delete(editUserCommand);
+            //userService.delete(editUserCommand);
             log.debug("Successful user delete");
             return "redirect:/users/list";
         } catch (RuntimeException re) {

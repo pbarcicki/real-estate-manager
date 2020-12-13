@@ -87,14 +87,14 @@ public class ClientService {
         clientToCreate.setIsActive(Boolean.TRUE);
     }
 
-    public boolean delete(EditClientCommand editClientCommand) {
-        Long id = editClientCommand.getId();
+    public boolean delete(Long id) {
+        log.debug("Searching client with id: {}", id);
+        Client client = clientRepository.getOne(id);
         if(!clientRepository.existsById(id)){
             log.debug("Client with id: {} doesn't exist", id);
             throw new ClientDoesNotExistException(String.format(
                     "Client with id: {} doesn't exist", id));
         }
-        Client client = clientRepository.getOne(id);
         log.debug("Client to delete: {}", client);
         clientRepository.delete(client);
         return true;

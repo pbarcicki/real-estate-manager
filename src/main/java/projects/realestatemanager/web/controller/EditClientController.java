@@ -52,20 +52,18 @@ public class EditClientController {
     }
 
     @PostMapping("/{id:[0-9]+}/delete")
-    public String deleteClient(@Valid EditClientCommand editClientCommand,
-                               BindingResult bindingResult){
-        Long id = editClientCommand.getId();
+    public String deleteClient(@PathVariable(value = "id") Long id){
+        log.debug("Id: {} client to delete", id);
         try{
-            clientService.delete(editClientCommand);
+            clientService.delete(id);
             log.debug("Success client delete");
             return "redirect:/clients/list";
         }catch (RuntimeException re){
             log.warn(re.getLocalizedMessage());
             log.error("Error while deleting client", re);
-            bindingResult.rejectValue("errors", null,
-                    "An unknown error occurred while deleting client");
+           return "redirect:/clients/list";
         }
-        return ("redirect:/clients/delete/" + id);
+
     }
 
 

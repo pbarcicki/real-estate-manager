@@ -38,20 +38,22 @@
             <td th:text="${apartment.roomsNumber}"></td>
             <td th:text="${apartment.typeOfKitchen}"></td>
             <td th:text="${apartment.price}"></td>
-            <td th:text="${apartmentsquareMeterPrice}"></td>
+            <td th:text="${apartment.squareMeterPrice}"></td>
             <td th:text="${apartment.status}"></td>
-            <td><input type="checkbox" disabled="true" th:checked="Is exclusivity ? 'checked' : 'unchecked'"/></td>
+            <!--            <td><input type="checkbox" disabled="true" th:checked="Is exclusivity ? 'checked' : 'unchecked'"/></td>-->
+            <td><input type="checkbox" disabled="true" th:checked="${apartment.isExclusivity()} ? 'checked' : 'unchecked'"/></td>
             <td th:text="${apartment.windowsDirection}"></td>
             <td th:text="${apartment.view}"></td>
             <td><input type="checkbox" disabled="true" th:checked="apartment.active ? 'checked' : 'unchecked'"/></td>
+        <tr th:each="building : ${buildings}">
             <td th:text="${building.isParkingAvailable}"></td>
             <td><input type="checkbox" disabled="true" th:checked="building.getIsGarageAvailable ? 'checked' : 'unchecked'"/></td>
             <td><input type="checkbox" disabled="true" th:checked="building.isElevatorAvailable ? 'checked' : 'unchecked'"/></td>
             <td><input type="checkbox" disabled="true" th:checked="building.isConnectedToMedia ? 'checked' : 'unchecked'"/></td>
             <td th:text="${building.buildingConstructionType}"></td>
             <td th:text="${building.developerName}"></td>
-            <td> <a th:href="|edit/${apartment.id}|">Edit</a> </td>
-
+        </tr>
+        <td> <a th:href="|edit/${apartment.id}|">Edit</a> </td>
         </tr>
     </table>
 

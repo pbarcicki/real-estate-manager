@@ -23,8 +23,11 @@ public class ApartmentConverter {
                 .status(createApartmentCommand.getStatus())
                 .exclusivity(createApartmentCommand.getExclusivity())
                 .windowsDirection(createApartmentCommand.getWindowsDirection())
+                .view(createApartmentCommand.getView())
                 .storageRoom(createApartmentCommand.getStorageRoom())
                 .comment(createApartmentCommand.getComment())
+                .creationDate(createApartmentCommand.getCreationDate())
+                .photosUrl(createApartmentCommand.getPhotosUrl())
                 .build();
     }
 
@@ -42,8 +45,12 @@ public class ApartmentConverter {
                 .status(apartment.getStatus())
                 .exclusivity(apartment.isExclusivity())
                 .windowsDirection(apartment.getWindowsDirection())
+                .view(apartment.getView())
                 .storageRoom(apartment.getStorageRoom())
                 .comment(apartment.getComment())
+                .active(apartment.getActive())
+                .creationDate(apartment.getCreationDate())
+                .photosUrl(apartment.getPhotosUrl())
                 .build();
     }
 
@@ -60,8 +67,11 @@ public class ApartmentConverter {
         apartment.setStatus(editApartmentCommand.getStatus());
         apartment.setExclusivity(editApartmentCommand.getExclusivity());
         apartment.setWindowsDirection(editApartmentCommand.getWindowsDirection());
+        apartment.setView(editApartmentCommand.getView());
         apartment.setStorageRoom(editApartmentCommand.getStorageRoom());
         apartment.setComment(editApartmentCommand.getComment());
+        apartment.setActive(editApartmentCommand.getActive());
+        apartment.setPhotosUrl(editApartmentCommand.getApartmentPhotosUrl());
 
         return apartment;
     }
