@@ -1,6 +1,7 @@
 package projects.realestatemanager.domain.model;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +23,8 @@ public class Developer {
     private String developerContactPerson;
 
     @Column(nullable = false, name = "is_active")
-    private boolean isActive;
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private Boolean isActive;
 
     @Column(nullable = false, name = "developer_contact_number")
     private String developerContactNumber;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.BuildingRepository;
+import projects.realestatemanager.exception.BuildingDoesNotExistException;
 import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.web.command.EditBuildingCommand;
 
@@ -41,8 +42,12 @@ public class EditBuildingController {
             buildingService.editBuilding(editBuildingCommand);
             log.debug("Building successfully edited");
             return "redirect:/buildings/list";
+        } catch (BuildingDoesNotExistException bdnee)  {
+            log.debug("Trying to edit not existing building");
+            bindingResult.rejectValue("city", null, "Trying to edit not existing building");
+            return "building/list";
         } catch (RuntimeException re) {
-            log.debug("Error while saving edited building!: {}", re);
+            log.debug("Error while saving edited building: {}", re);
             bindingResult.rejectValue("city", null, "Error while saving edited building!");
             return "building/list";
         }
