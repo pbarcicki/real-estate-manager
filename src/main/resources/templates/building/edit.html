@@ -23,7 +23,7 @@
             <label> Region:
                 <select id="region" name="region">
                     <option  th:each="regionOpt : ${T(projects.realestatemanager.enums.Region).values()}"
-                             th:value="${regionOpt}"
+                             th:value="${regionOpt.displayValue}"
                              th:text="${regionOpt.displayValue}">
                     </option>
                 </select>
@@ -205,43 +205,39 @@
                 </div>
             </label>
 
-            <div>
-                <p>Type of market:</p>
-                <div>
-                    <input type="radio" id="primary" th:checked="${editBuildingCommand.primaryMarket} ? 'checked' : 'unchecked'"
-                           th:field="${editBuildingCommand.primaryMarket}"
-                           th:value="true">
-                    <label for="primary">Primary</label>
-                </div>
-
-                <div>
-                    <input type="radio" id="secondary" th:checked="${editBuildingCommand.primaryMarket} ? 'checked' : 'unchecked'"
-                           th:field="${editBuildingCommand.primaryMarket}"
-                           th:value="false" name="market-type">
-                    <label for="secondary">Secondary</label>
-                </div>
+            <label> Primary market:
+                <input type="checkbox" th:checked="${editBuildingCommand.primaryMarket} ? 'checked' : 'unchecked'"
+                       th:value="${editBuildingCommand.elevatorAvailable}"
+                       id="primaryMarket"
+                       name="primaryMarket"/>
                 <div>
                     <span th:each="err : ${#fields.errors('primaryMarket')}" th:text="${err}"></span>
                 </div>
 
-            </div>
+            </label>
 
             <label> Number of apartments:
-                <input type="number" th:field="*{numberOfApartments}"/>
+                <input type="text" th:value="${buildingEdit.numberOfApartments}"
+                       id="numberOfApartments"
+                       name="numberOfApartments"/>
                 <div>
                     <span th:each="err : ${#fields.errors('numberOfApartments')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Building section:
-                <input type="text" th:field="*{buildingSection}"/>
+                <input type="text" th:value="${buildingEdit.buildingSection}"
+                       id="buildingSection"
+                       name="buildingSection"/>
                 <div>
                     <span th:each="err : ${#fields.errors('buildingSection')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Building realization term:
-                <input type="date" th:field="*{buildingRealizationTerm}"/>
+                <input type="text" th:value="${buildingEdit.buildingRealizationTerm}"
+                       id="buildingRealizationTerm"
+                       name="buildingRealizationTerm"/>
                 <div>
                     <span th:each="err : ${#fields.errors('buildingRealizationTerm')}" th:text="${err}"></span>
                 </div>
@@ -255,7 +251,9 @@
             </label>
 
             <label> Photos URL:
-                <input type="text" th:field="*{photosUrl}"/>
+                <input type="text" th:value="${buildingEdit.photosUrl}"
+                       id="photosUrl"
+                       name="photosUrl"/>
                 <div>
                     <span th:each="err : ${#fields.errors('photosUrl')}" th:text="${err}"></span>
                 </div>

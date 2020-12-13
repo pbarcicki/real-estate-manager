@@ -158,30 +158,15 @@
                 </div>
             </label>
 
-            <div>
-                <p>Type of market:</p>
-                <div>
-                    <input type="radio" id="primary" th:field="${createBuildingCommand.primaryMarket}" th:value="true" name="market-type">
-                    <label for="primary">Primary</label>
-                </div>
+            <label> Primary market
+                <input type="checkbox" th:field="${createBuildingCommand.garageAvailable}"/>
 
-                <div>
-                    <input type="radio" id="secondary" th:field="${createBuildingCommand.primaryMarket}" th:value="false" name="market-type">
-                    <label for="secondary">Secondary</label>
-                </div>
                 <div>
                     <span th:each="err : ${#fields.errors('primaryMarket')}" th:text="${err}"></span>
                 </div>
 
-            </div>
+            </label>
 
-<!--            <label> Type of market:-->
-<!--                <input type="checkbox" th:text="Primary" name="isPrimaryMarket" th:checked="${true}" name="elevator-availability"/>-->
-<!--                <input type="checkbox" th:text="Secondary" name="isPrimaryMarket" th:checked="${false}" name="elevator-availability"/>-->
-<!--                <div>-->
-<!--                    <span th:each="err : ${#fields.errors('isElevatorAvailable')}" th:text="${err}"></span>-->
-<!--                </div>-->
-<!--            </label>-->
             <label> Building section:
                 <input type="text" th:field="*{buildingSection}"/>
                 <div>
