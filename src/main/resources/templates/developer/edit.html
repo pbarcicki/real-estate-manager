@@ -5,9 +5,14 @@
     <title>EDYCJA DEWELOPERA</title>
 </head>
 <body>
-<h1 th:text="|Edycja DEWELOPERA ${developerEdit.name}|">Edycja Developera</h1>
+<h1>EDYCJA DEWELOPERA</h1>
+<h2 th:text="${developerEdit.name}"></h2>
+
 <div>
-    <form th:action="${developerEdit.id}" th:method="post" th:object="${editDeveloperCommand}">
+    <form
+            th:action="${developerEdit.id}"
+            th:method="post"
+            th:object="${editDeveloperCommand}">
         <fieldset>
             <div>
                 <label>Nazwa Dewelopera:
@@ -28,7 +33,10 @@
                                id="developerContactPerson"
                                name="developerContactPerson"
                                required/>
-                        <!--obsługa błędów-->
+                        <div
+                                th:if="${#fields.hasErrors('developerContactPerson')}"
+                                th:text="${#fields.errors('developerContactPerson')}">
+                        </div>
                     </label>
                 </div>
                 <div>
@@ -37,7 +45,11 @@
                                th:value="${developerEdit.contactNumber}"
                                id="developerContactNumber"
                                name="developerContactNumber"
-                               required>
+                               required/>
+                        <div
+                                th:if="${#fields.hasErrors('developerContactNumber')}"
+                                th:text="${#fields.errors('developerContactNumber')}">
+                        </div>
                     </label>
                 </div>
                 <div>
@@ -59,10 +71,14 @@
             </div>
         </fieldset>
         <fieldset>
-            <button type="submit">Zmień dane</button>
+            <button type="submit"> >> Zmień DANE <<</button>
         </fieldset>
     </form>
 </div>
-
+<fieldset>
+    <form th:action="|${developerEdit.id}/delete|" th:method="post">
+        <button type="submit"> >>>USUN<<<</button>
+    </form>
+</fieldset>
 </body>
 </html>
