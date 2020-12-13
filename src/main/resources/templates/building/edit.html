@@ -13,7 +13,7 @@
         <div>
             <label> Active:
                 <input type="checkbox"
-                       th:checked="${editBuildingCommand.isActive} ? 'checked' : 'unchecked'"
+                       th:checked="${editBuildingCommand.isActive}"
                        id="isActive"
                        name="isActive"/>
                 <div>
@@ -153,8 +153,9 @@
 
 
             <label> Park lot availability:
-                <input type="checkbox" th:checked="${editBuildingCommand.parkLot} ? 'checked' : 'unchecked'"
-                       th:value="${editBuildingCommand.parkLot}"
+                <input type="checkbox"
+                       th:checked="${editBuildingCommand.parkLot}"
+                       th:field="${editBuildingCommand.parkLot}"
                        id="parkLot"
                        name="parkLot"/>
                 <div>
@@ -163,8 +164,9 @@
             </label>
 
             <label> Garage availability:
-                <input type="checkbox" th:checked="${editBuildingCommand.garageAvailable} ? 'checked' : 'unchecked'"
-                       th:value="${editBuildingCommand.garageAvailable}"
+                <input type="checkbox"
+                       th:checked="${editBuildingCommand.garageAvailable}"
+                       th:field="${editBuildingCommand.garageAvailable}"
                        id="garageAvailable"
                        name="garageAvailable"/>
                 <div>
@@ -198,6 +200,7 @@
             <label> Elevator availability:
                 <input type="checkbox" th:checked="${editBuildingCommand.elevatorAvailable}"
                        th:value="${editBuildingCommand.elevatorAvailable}"
+                       th:field="${editBuildingCommand.elevatorAvailable}"
                        id="elevatorAvailable"
                        name="elevatorAvailable"/>
                 <div>
@@ -206,8 +209,9 @@
             </label>
 
             <label> Primary market:
-                <input type="checkbox" th:checked="${editBuildingCommand.primaryMarket} ? 'checked' : 'unchecked'"
-                       th:value="${editBuildingCommand.elevatorAvailable}"
+                <input type="checkbox" th:checked="${editBuildingCommand.primaryMarket}"
+                       th:value="${editBuildingCommand.primaryMarket}"
+                       th:field="${editBuildingCommand.primaryMarket}"
                        id="primaryMarket"
                        name="primaryMarket"/>
                 <div>

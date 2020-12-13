@@ -116,7 +116,8 @@
             </label>
 
             <label> Park lot availability:
-                <input type="checkbox" th:field="${createBuildingCommand.parkLot}" />
+                <input type="checkbox"
+                       th:field="${createBuildingCommand.parkLot}" />
                 <div>
                     <span th:each="err : ${#fields.errors('parkLot')}" th:text="${err}"></span>
                 </div>
@@ -159,12 +160,20 @@
             </label>
 
             <label> Primary market
-                <input type="checkbox" th:field="${createBuildingCommand.garageAvailable}"/>
+                <input type="checkbox" th:field="${createBuildingCommand.primaryMarket}"/>
 
                 <div>
                     <span th:each="err : ${#fields.errors('primaryMarket')}" th:text="${err}"></span>
                 </div>
 
+            </label>
+
+            <label> Number of apartments:
+                <input type="number" th:field="${createBuildingCommand.numberOfApartments}">
+
+                <div>
+                    <span th:each="err : ${#fields.errors('numberOfApartments')}" th:text="${err}"></span>
+                </div>
             </label>
 
             <label> Building section:

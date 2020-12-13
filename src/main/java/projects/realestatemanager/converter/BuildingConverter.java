@@ -19,7 +19,8 @@ public class BuildingConverter {
     private final DeveloperRepository developerRepository;
 
     public BuildingSummary from(Building building) {
-        log.debug("number of apartments received: {}:", building.getNumberOfApartments());
+        log.debug("Garage before: {}:", building.getIsGarageAvailable());
+
 
         return BuildingSummary.builder()
                 .id(building.getId())
@@ -39,6 +40,7 @@ public class BuildingConverter {
                 .timeToBusStopMin(building.getTimeToBusStopMin())
                 .buildingLocationDetails(building.getBuildingLocationDetails())
                 .isParkingAvailable(building.getIsParkingAvailable())
+                .isGarageAvailable(building.getIsGarageAvailable())
                 .buildingConstructionType(building.getBuildingConstructionType())
                 .developerName(building.getDeveloper().getDeveloperName())
                 .isElevatorAvailable(building.getIsElevatorAvailable())
@@ -87,7 +89,6 @@ public class BuildingConverter {
     }
 
     public Building from(EditBuildingCommand editBuildingCommand, Building building) {
-                building.setId(editBuildingCommand.getId());
                 building.setEditDate(LocalDate.now());
                 building.setIsActive(editBuildingCommand.getIsActive());
                 building.setRegion(editBuildingCommand.getRegion());

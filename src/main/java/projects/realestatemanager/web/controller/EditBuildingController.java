@@ -34,7 +34,7 @@ public class EditBuildingController {
     }
 
     @GetMapping("/{id:[0-9]+}")
-    public String getBuildingEditPage(@PathVariable Long id, Model model) {
+    public String getBuildingEditPage(Model model, @PathVariable Long id) {
         Building buildingToEdit = buildingRepository.getOne(id);
 
         model.addAttribute(new EditBuildingCommand());
@@ -44,7 +44,7 @@ public class EditBuildingController {
 
     @PostMapping("/{id:[0-9]+}")
     public String processEditBuilding(@Valid EditBuildingCommand editBuildingCommand, BindingResult bindingResult) {
-
+        Long id = editBuildingCommand.getId();
         try {
             buildingService.editBuilding(editBuildingCommand);
             log.debug("Building successfully edited");
@@ -52,12 +52,12 @@ public class EditBuildingController {
         } catch (BuildingDoesNotExistException bdnee)  {
             log.debug("Trying to edit not existing building");
             bindingResult.rejectValue("city", null, "Trying to edit not existing building");
-            return "building/list";
+            return "building/edit";
         } catch (RuntimeException re) {
             log.debug("Error while saving edited building: {}", re);
             bindingResult.rejectValue("city", null, "Error while saving edited building!");
-            return "building/list";
         }
+        return ("redirect:/buildings/edit/" + id);
     }
 
 }

@@ -52,10 +52,7 @@
                 <td th:text="${building.timeToCityCenterMin}"></td>
                 <td th:text="${building.timeToBusStopMin}"></td>
 <!--                todo true/false display-->
-<!--                <td-->
-<!--                        th:text="${building.isParkingAvailable} ? 'Y' : 'N'"-->
-<!--                        th:style="${building.isParkingAvailable} ? 'color: red' : 'color: grey'"-->
-<!--                ></td>-->
+
                 <td>
                     <input type="checkbox" disabled="true"
                            th:checked="${building.isParkingAvailable}">
@@ -65,6 +62,7 @@
                     <input type="checkbox" disabled="true"
                            th:checked="${building.isGarageAvailable}">
                 </td>
+
                 <td>
                     <input type="checkbox" disabled="true"
                            th:checked="${building.isElevatorAvailable}">

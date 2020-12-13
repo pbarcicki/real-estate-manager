@@ -80,13 +80,10 @@ public class BuildingService {
         }
 
         Building buildingToEdit = buildingRepository.getOne(id);
-
+        log.debug("Building to edit: {}", buildingToEdit);
         buildingToEdit = buildingConverter.from(editBuildingCommand, buildingToEdit);
-//        buildingToEdit.setId();
-//        buildingToEdit.setEditDate(LocalDate.now());
 
-        //buildingRepository.save(buildingToEdit);
-
+        log.debug("Building modified: {}", buildingToEdit);
         return true;
     }
 }
