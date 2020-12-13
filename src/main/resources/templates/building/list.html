@@ -13,6 +13,7 @@
 
         <table>
             <tr>
+                <th>Id</th>
                 <th>Region</th>
                 <th>City</th>
                 <th>District</th>
@@ -39,6 +40,7 @@
                 <th>Added to DB</th>
             </tr>
             <tr th:each="building : ${buildings}">
+                <td th:text="${building.id}"></td>
                 <td th:text="${building.region}"></td>
                 <td th:text="${building.city}"></td>
                 <td th:text="${building.district}"></td>
@@ -52,7 +54,6 @@
                 <td th:text="${building.timeToCityCenterMin}"></td>
                 <td th:text="${building.timeToBusStopMin}"></td>
 <!--                todo true/false display-->
-
                 <td>
                     <input type="checkbox" disabled="true"
                            th:checked="${building.isParkingAvailable}">

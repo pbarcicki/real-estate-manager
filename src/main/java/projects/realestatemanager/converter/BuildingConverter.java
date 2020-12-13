@@ -19,9 +19,6 @@ public class BuildingConverter {
     private final DeveloperRepository developerRepository;
 
     public BuildingSummary from(Building building) {
-        log.debug("Garage before: {}:", building.getIsGarageAvailable());
-
-
         return BuildingSummary.builder()
                 .id(building.getId())
                 .region(building.getRegion())

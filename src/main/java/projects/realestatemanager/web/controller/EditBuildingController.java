@@ -31,20 +31,28 @@ public class EditBuildingController {
 
     @ModelAttribute("availableDevelopers")
     public List<DeveloperSummary> availableDevelopers() {
-        return developerService.showAllDevelopers(); //todo getAllDevelopers które wyciąga listę developerów z dalszą konwertacją na summary
+        return developerService.showAllDevelopers();
     }
 
     @GetMapping("/{id:[0-9]+}")
     public String getBuildingEditPage(Model model, @PathVariable Long id) {
-        model.addAttribute(new EditBuildingCommand());
-        model.addAttribute("buildingEdit", buildingService.showBuildingById(id));
-        model.addAttribute("buildingDelete", buildingService.deleteById(id));
-        return "building/edit";
+
+//        model.addAttribute("buildingDelete", buildingService.deleteById(id));
+
+        if (buildingRepository.existsById(id)) {
+            model.addAttribute(new EditBuildingCommand());
+            model.addAttribute("buildingEdit", buildingService.showBuildingById(id));
+            return "building/edit";
+        } else {
+            return "redirect:/buildings/list";
+        }
+
     }
 
     @PostMapping("/{id:[0-9]+}")
     public String processEditBuilding(@Valid EditBuildingCommand editBuildingCommand, BindingResult bindingResult) {
         Long id = editBuildingCommand.getId();
+        log.debug("Developer to edit id: {}", id);
         try {
             buildingService.editBuilding(editBuildingCommand);
             log.debug("Building successfully edited");
@@ -72,6 +80,10 @@ public class EditBuildingController {
             return "redirect:/buildings/list";
         } catch (EntityHasConnectionsException ehce) {
             log.debug("Trying to edit not existing building");
+            return "redirect:/buildings/list";
+        } catch (RuntimeException re) {
+            log.warn(re.getLocalizedMessage());
+            log.error("Unknown error while deleting building", re);
             return "redirect:/buildings/list";
         }
 

@@ -22,7 +22,7 @@ public class ApartmentSummary {
     private boolean onCorner;
 
     @NumberFormat
-    private double area;
+    private int area;
 
     @NumberFormat
     private  int roomsNumber;
@@ -33,7 +33,7 @@ public class ApartmentSummary {
     private int price;
 
     @NumberFormat
-    private double squareMeterPrice;
+    private int squareMeterPrice;
 
     private String marketType;
 

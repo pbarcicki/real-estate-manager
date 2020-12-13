@@ -31,22 +31,20 @@ public class ApartmentService {
     public List<ApartmentSummary> findByAllApartments() {
         log.debug("Get all apartments info");
         return apartmentRepository.findAll().stream()
-                .map(apartmentConverter::toApartmentSummary)
+                .map(apartmentConverter::from)
                 .collect(Collectors.toList());
     }
 
-    public void add(@Valid CreateApartmentCommand createApartmentCommand) {
+    public void add(CreateApartmentCommand createApartmentCommand) {
         log.debug("Apartment data to be saved: {}", createApartmentCommand);
-        Apartment apartmentToAdd = apartmentConverter.from(createApartmentCommand);
-        log.debug("Converted apartment entity to add: {}", apartmentToAdd);
-        if (apartmentRepository.existsById(apartmentToAdd.getId())) {
-            Long id;
-            log.debug("Trying to add existing apartment");
-            throw new ApartmentAlreadyExistExeption(String.format(
-                    "Apartment with %s area, numbers of rooms %s number of floor %s is already exist in DB",
-                    apartmentToAdd.getArea(), apartmentToAdd.getRoomsNumber(), apartmentToAdd.getFloor()));
-        }
 
+        Apartment apartmentToAdd = apartmentConverter.from(createApartmentCommand);
+
+        if (apartmentRepository.existsByFloorAndAreaAndBuildingAndWindowsDirection(apartmentToAdd.getFloor(), apartmentToAdd.getArea(), apartmentToAdd.getBuilding(), apartmentToAdd.getWindowsDirection())) {
+            log.debug("Trying to add existing apartment");
+            throw new ApartmentAlreadyExistExeption(
+                    "Apartment already exists");
+        }
 
         apartmentToAdd.setActive(true);
         apartmentToAdd.setCreationDate(LocalDate.now());
@@ -64,7 +62,7 @@ public class ApartmentService {
             log.debug("Trying to edit no existing apartment");
             throw new ApartmentNoExistingException(String.format("Apartment with id %s isn't existing", id));
         }
-        return apartmentConverter.toApartmentSummary(apartmentToEdit);
+        return apartmentConverter.from(apartmentToEdit);
     }
 
     public boolean editApartment(EditApartmentCommand editApartmentCommand) {
@@ -80,5 +78,14 @@ public class ApartmentService {
         log.debug("Apartment edited: {}", apartmentToEdit);
 
         return true;
+    }
+
+    public List<ApartmentSummary> findAllApartments() {
+        log.debug("Getting all apartments info");
+
+        return apartmentRepository.findAll().stream()
+                .map(apartmentConverter::from)
+                .collect(Collectors.toList());
+
     }
 }

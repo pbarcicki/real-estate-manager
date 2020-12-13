@@ -26,7 +26,7 @@ public class EditApartmentCommand {
     private Boolean onCorner;
 
     @NotNull
-    private Double area;
+    private Integer area;
 
     @NotNull
     private Integer roomsNumber;
@@ -37,9 +37,6 @@ public class EditApartmentCommand {
 
     @NotNull
     private Integer price;
-
-    @NotNull
-    private Integer squareMeterPrice;
 
     @NotBlank
     @Size(min = 1, max = 4)

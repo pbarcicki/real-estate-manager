@@ -24,7 +24,7 @@ public class Apartment {
     private Boolean onCorner;
 
     @Column(nullable = false)
-    private Double area;
+    private Integer area;
 
     @Column(nullable = false, name = "rooms_number")
     private Integer roomsNumber;
@@ -37,9 +37,6 @@ public class Apartment {
     @Column(nullable = false)
     private Integer price;
 
-    @Column(nullable = false, name = "square_meter_price")
-    private Integer squareMeterPrice;
-
     //stan deweloperski/po wykończeniu/stary remont (enum???)
     @Column(nullable = false, name = "market_type")
     private String marketType;
@@ -49,7 +46,7 @@ public class Apartment {
 
     @Column(nullable = false)
     // tutaj nie wiem dokładnie
-    private boolean exclusivity;
+    private Boolean exclusivity;
     //plan i zdjęcia TODO
 
     @Column(name = "windows_direction")

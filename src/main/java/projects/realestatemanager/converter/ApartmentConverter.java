@@ -18,7 +18,6 @@ public class ApartmentConverter {
                 .roomsNumber(createApartmentCommand.getRoomsNumber())
                 .typeOfKitchen(createApartmentCommand.getTypeOfKitchen())
                 .price(createApartmentCommand.getPrice())
-                .squareMeterPrice(createApartmentCommand.getSquareMeterPrice())
                 .marketType(createApartmentCommand.getMarketType())
                 .status(createApartmentCommand.getStatus())
                 .exclusivity(createApartmentCommand.getExclusivity())
@@ -26,13 +25,12 @@ public class ApartmentConverter {
                 .view(createApartmentCommand.getView())
                 .storageRoom(createApartmentCommand.getStorageRoom())
                 .comment(createApartmentCommand.getComment())
-                .creationDate(createApartmentCommand.getCreationDate())
                 .photosUrl(createApartmentCommand.getPhotosUrl())
                 .build();
     }
 
 
-    public ApartmentSummary toApartmentSummary(Apartment apartment){
+    public ApartmentSummary from(Apartment apartment){
         return ApartmentSummary.builder()
                 .floor(apartment.getFloor())
                 .onCorner(apartment.getOnCorner())
@@ -40,10 +38,10 @@ public class ApartmentConverter {
                 .roomsNumber(apartment.getRoomsNumber())
                 .typeOfKitchen(apartment.getTypeOfKitchen())
                 .price(apartment.getPrice())
-                .squareMeterPrice(apartment.getSquareMeterPrice())
+                .squareMeterPrice((int)apartment.getPrice()/apartment.getArea())
                 .marketType(apartment.getMarketType())
                 .status(apartment.getStatus())
-                .exclusivity(apartment.isExclusivity())
+                .exclusivity(apartment.getExclusivity())
                 .windowsDirection(apartment.getWindowsDirection())
                 .view(apartment.getView())
                 .storageRoom(apartment.getStorageRoom())
@@ -55,14 +53,12 @@ public class ApartmentConverter {
     }
 
     public Apartment from(EditApartmentCommand editApartmentCommand, Apartment apartment){
-        apartment.setId(editApartmentCommand.getId());
         apartment.setFloor(editApartmentCommand.getFloor());
         apartment.setOnCorner(editApartmentCommand.getOnCorner());
         apartment.setArea(editApartmentCommand.getArea());
         apartment.setRoomsNumber(editApartmentCommand.getRoomsNumber());
         apartment.setTypeOfKitchen(editApartmentCommand.getTypeOfKitchen());
         apartment.setPrice(editApartmentCommand.getPrice());
-        apartment.setSquareMeterPrice(editApartmentCommand.getSquareMeterPrice());
         apartment.setMarketType(editApartmentCommand.getMarketType());
         apartment.setStatus(editApartmentCommand.getStatus());
         apartment.setExclusivity(editApartmentCommand.getExclusivity());

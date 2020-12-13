@@ -14,7 +14,7 @@ import projects.realestatemanager.web.command.CreateApartmentCommand;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/apartments")
+@RequestMapping("/apartments/add")
 @Slf4j
 @RequiredArgsConstructor
 public class AddNewApartmentController {
@@ -27,13 +27,13 @@ public class AddNewApartmentController {
 //        return developerService.showAllDevelopers();
 //    }
 
-    @GetMapping("/add")
+    @GetMapping
     public String getAddApartmentPage(Model model) {
         model.addAttribute(new CreateApartmentCommand());
         return "apartment/add";
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public String processAddApartment(@Valid CreateApartmentCommand createApartmentCommand,
                                       BindingResult bindingResult) {
         log.debug("Data to create apartment: {}", createApartmentCommand);

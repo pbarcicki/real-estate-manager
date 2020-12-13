@@ -9,7 +9,7 @@
     <h1>Add new apartment</h1>
 </section>
 <section>
-    <form th:action="@{add}" th:method="post" th:object="${createApartmentCommand}">
+    <form th:action="@{/apartments/add}" th:method="post" th:object="${createApartmentCommand}">
     <div>
         <label>Floor:
         <input type="text" th:field="*{floor}"/>
@@ -48,12 +48,6 @@
                 <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
             </div>
         </label>
-        <label>Price of square meter (USD):
-            <input type="text" th:field="*{squareMeterPrice}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('squareMeterPrice')}" th:text="${err}"></span>
-            </div>
-        </label>
         <label>Type of market (primary/secondary/to renovate):
             <input type="text" th:field="*{marketType}"/>
             <div>
@@ -79,7 +73,7 @@
             </div>
         </label>
         <label>View:
-            <input type="textarea" th:field="*{view}"/>
+            <input type="text" th:field="*{view}"/>
             <div>
                 <span th:each="err : ${#fields.errors('view')}" th:text="${err}"></span>
             </div>
@@ -97,10 +91,10 @@
             </div>
         </label>
         <label> Photos URL:
-        <input type="text" th:field="*{photosUrl}"/>
-        <div>
-            <span th:each="err : ${#fields.errors('apartmentphotosUrl')}" th:text="${err}"></span>
-        </div>
+            <input type="text" th:field="*{photosUrl}"/>
+            <div>
+                <span th:each="err : ${#fields.errors('photosUrl')}" th:text="${err}"></span>
+            </div>
         </label>
         <div>
             <button type="submit">Save</button>
