@@ -16,16 +16,16 @@
             <div>
                 <label>Active:
                     <input type="checkbox"
-                            th:field="*{active}"
-                            th:checked="${editApartmentCommand.active} ? 'checked' : 'unchecked'"/>
+                           th:field="*{active}"
+                           th:checked="${editApartmentCommand.active} ? 'checked' : 'unchecked'"/>
                     <div>
                         <span th:each="err : ${#fields.errors('active')}" th:text="${err}"></span>
                     </div>
                 </label>
                 <label>Floor:
                     <input type="text" th:value="${apartmentEdit.floor}"
-                    id="floor"
-                    name="floor"/>
+                           id="floor"
+                           name="floor"/>
                     <div>
                         <span th:each="err : ${#fields.errors('floor')}" th:text="${err}"></span>
                     </div>

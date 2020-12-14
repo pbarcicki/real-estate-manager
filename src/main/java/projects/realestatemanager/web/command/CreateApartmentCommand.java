@@ -59,7 +59,7 @@ public class CreateApartmentCommand {
     @NotNull
     private Boolean storageRoom;
 
-    @Size(min = 13, max = 160)
+    @Size(max = 160)
     private String comment;
 
     @NotBlank
