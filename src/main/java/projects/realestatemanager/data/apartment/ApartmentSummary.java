@@ -16,23 +16,18 @@ public class ApartmentSummary {
 
     private Long id;
 
-    @NumberFormat
     private Integer floor;
 
     private Boolean onCorner;
 
-    @NumberFormat
     private Integer area;
 
-    @NumberFormat
     private Integer roomsNumber;
 
     private String typeOfKitchen;
 
-    @NumberFormat
     private Integer price;
 
-    @NumberFormat
     private Integer pricePerSquareMeter;
 
     private String marketType;

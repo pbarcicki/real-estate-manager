@@ -48,7 +48,6 @@ public class Apartment {
     private String status;
 
     @Column(nullable = false)
-    // tutaj nie wiem dokładnie
     private Boolean exclusivity;
     //plan i zdjęcia TODO
 

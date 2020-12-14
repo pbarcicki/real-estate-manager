@@ -23,7 +23,7 @@ public class ApartmentListController {
 
     @GetMapping()
     public String getApartmentListPage(Model model){
-        model.addAttribute("apartments", apartmentService.findByAllApartments());
+        model.addAttribute("apartments", apartmentService.findAllApartments());
         model.addAttribute("buildings", buildingService.findAllBuildings());
         model.addAttribute("developers", developerService.showAllDevelopers());
         return "apartment/list";

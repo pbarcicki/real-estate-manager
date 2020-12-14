@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class CreateApartmentCommand {
 
     @NotNull
-    @Digits(fraction = 0, integer = 2)
+    //@Digits(fraction = 0, integer = 2)
     private Integer floor;
 
     @NotNull
