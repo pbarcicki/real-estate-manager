@@ -10,102 +10,102 @@
 </section>
 <section>
     <form th:action="@{/apartments/add}" th:method="post" th:object="${createApartmentCommand}">
-    <div>
-        <label>Floor:
-        <input type="text" th:field="*{floor}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('floor')}" th:text="${err}"></span>
-            </div>
-        </label>
-
-        <label>Flat on building corner:
-            <input type="checkbox" th:field="${createApartmentCommand.onCorner}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('onCorner')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Area (square meters):
-            <input type="text" th:field="*{area}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('area')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Number of rooms:
-            <input type="text" th:field="*{roomsNumber}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('roomsNumber')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Type of kitchen:
-            <input type="text" th:field="*{typeOfKitchen}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('typeOfKitchen')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Price (USD):
-            <input type="text" th:field="*{price}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Price per square meter:
-            <input type="text" th:field="*{pricePerSquareMeter}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('pricePerSquareMeter')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Type of market (primary/secondary/to renovate):
-            <input type="text" th:field="*{marketType}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('marketType')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Status (free/reserved/ask developer):
-            <input type="text" th:field="*{status}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('status')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Exclusivity:
-            <input type="checkbox" th:field="${createApartmentCommand.exclusivity}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('exclusivity')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Direction of windows:
-            <input type="text" th:field="*{windowsDirection}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('windowsDirection')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>View:
-            <input type="text" th:field="*{view}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('view')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Storage room:
-            <input type="checkbox" th:field="${createApartmentCommand.storageRoom}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('storageRoom')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label>Comment:
-            <textarea th:field="*{comment}" name="comment"></textarea>
-            <div>
-                <span th:each="err : ${#fields.errors('comment')}" th:text="${err}"></span>
-            </div>
-        </label>
-        <label> Photos URL:
-            <input type="text" th:field="*{photosUrl}"/>
-            <div>
-                <span th:each="err : ${#fields.errors('photosUrl')}" th:text="${err}"></span>
-            </div>
-        </label>
         <div>
-            <button type="submit">Save</button>
+            <label>Floor:
+                <input type="text" th:field="*{floor}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('floor')}" th:text="${err}"></span>
+                </div>
+            </label>
+
+            <label>Flat on building corner:
+                <input type="checkbox" th:field="${createApartmentCommand.onCorner}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('onCorner')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Area (square meters):
+                <input type="text" th:field="*{area}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('area')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Number of rooms:
+                <input type="text" th:field="*{roomsNumber}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('roomsNumber')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Type of kitchen:
+                <input type="text" th:field="*{typeOfKitchen}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('typeOfKitchen')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Price (USD):
+                <input type="text" th:field="*{price}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Price per square meter:
+                <input type="text" th:field="*{pricePerSquareMeter}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('pricePerSquareMeter')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Type of market (primary/secondary/to renovate):
+                <input type="text" th:field="*{marketType}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('marketType')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Status (free/reserved/ask developer):
+                <input type="text" th:field="*{status}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('status')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Exclusivity:
+                <input type="checkbox" th:field="${createApartmentCommand.exclusivity}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('exclusivity')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Direction of windows:
+                <input type="text" th:field="*{windowsDirection}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('windowsDirection')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>View:
+                <input type="text" th:field="*{view}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('view')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Storage room:
+                <input type="checkbox" th:field="${createApartmentCommand.storageRoom}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('storageRoom')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label>Comment:
+                <textarea th:field="*{comment}" name="comment"></textarea>
+                <div>
+                    <span th:each="err : ${#fields.errors('comment')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <label> Photos URL:
+                <input type="text" th:field="*{photosUrl}"/>
+                <div>
+                    <span th:each="err : ${#fields.errors('photosUrl')}" th:text="${err}"></span>
+                </div>
+            </label>
+            <div>
+                <button type="submit">Save</button>
+            </div>
         </div>
-    </div>
     </form>
 </section>
 

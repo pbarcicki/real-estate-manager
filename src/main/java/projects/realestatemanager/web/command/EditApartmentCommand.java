@@ -19,7 +19,7 @@ public class EditApartmentCommand {
     private Long id;
 
     @NotNull
-   // @Size(min=1, max = 3)
+    // @Size(min=1, max = 3)
     private Integer floor;
 
     @NotNull
