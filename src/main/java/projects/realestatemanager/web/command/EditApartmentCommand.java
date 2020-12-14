@@ -70,6 +70,8 @@ public class EditApartmentCommand {
 
     private Boolean active;
 
+    private Integer pricePerSquareMeter;
+
 
 
 }

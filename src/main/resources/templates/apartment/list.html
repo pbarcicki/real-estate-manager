@@ -41,15 +41,15 @@
             <td th:text="${apartment.roomsNumber}"></td>
             <td th:text="${apartment.typeOfKitchen}"></td>
             <td th:text="${apartment.price}"></td>
-            <td th:text="${apartment.squareMeterPrice}"></td>
+            <td th:text="${apartment.pricePerSquareMeter}"></td>
             <td th:text="${apartment.marketType}"></td>
             <td th:text="${apartment.status}"></td>
             <td>
                 <input type="checkbox" disabled="true"
-                       th:checked="${apartment.isExclusivity()}"/></td>
+                       th:checked="${apartment.exclusivity}"/></td>
             <td th:text="${apartment.windowsDirection}"></td>
             <td th:text="${apartment.view}"></td>
-            <td><input type="checkbox" disabled="true" th:checked="${apartment.isStorageRoom()}"/></td>
+            <td><input type="checkbox" disabled="true" th:checked="${apartment.storageRoom}"/></td>
             <td th:text="${apartment.comment}"></td>
             <td th:text="${apartment.photosUrl}"></td>
             <td th:text="${apartment.creationDate}"></td>

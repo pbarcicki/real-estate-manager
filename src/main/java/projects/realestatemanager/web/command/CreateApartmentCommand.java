@@ -68,4 +68,5 @@ public class CreateApartmentCommand {
 
     private LocalDate creationDate;
 
+    private Integer pricePerSquareMeter;
 }

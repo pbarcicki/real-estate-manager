@@ -17,37 +17,37 @@ public class ApartmentSummary {
     private Long id;
 
     @NumberFormat
-    private int floor;
+    private Integer floor;
 
-    private boolean onCorner;
-
-    @NumberFormat
-    private int area;
+    private Boolean onCorner;
 
     @NumberFormat
-    private  int roomsNumber;
+    private Integer area;
+
+    @NumberFormat
+    private Integer roomsNumber;
 
     private String typeOfKitchen;
 
     @NumberFormat
-    private int price;
+    private Integer price;
 
     @NumberFormat
-    private int squareMeterPrice;
+    private Integer pricePerSquareMeter;
 
     private String marketType;
 
     private String status;
 
-    private boolean exclusivity;
+    private Boolean exclusivity;
 
     private String windowsDirection;
 
     private String view;
 
-    private boolean storageRoom;
+    private Boolean storageRoom;
 
-    private  String comment;
+    private String comment;
 
     private Boolean active;
 

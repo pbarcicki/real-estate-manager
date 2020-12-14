@@ -18,6 +18,7 @@ public class ApartmentConverter {
                 .roomsNumber(createApartmentCommand.getRoomsNumber())
                 .typeOfKitchen(createApartmentCommand.getTypeOfKitchen())
                 .price(createApartmentCommand.getPrice())
+                .pricePerSquareMeter(createApartmentCommand.getPricePerSquareMeter())
                 .marketType(createApartmentCommand.getMarketType())
                 .status(createApartmentCommand.getStatus())
                 .exclusivity(createApartmentCommand.getExclusivity())
@@ -39,7 +40,7 @@ public class ApartmentConverter {
                 .roomsNumber(apartment.getRoomsNumber())
                 .typeOfKitchen(apartment.getTypeOfKitchen())
                 .price(apartment.getPrice())
-                .squareMeterPrice(apartment.getPricePerSquareMeter())
+                .pricePerSquareMeter(apartment.getPricePerSquareMeter())
                 .marketType(apartment.getMarketType())
                 .status(apartment.getStatus())
                 .exclusivity(apartment.getExclusivity())
@@ -60,6 +61,7 @@ public class ApartmentConverter {
         apartment.setRoomsNumber(editApartmentCommand.getRoomsNumber());
         apartment.setTypeOfKitchen(editApartmentCommand.getTypeOfKitchen());
         apartment.setPrice(editApartmentCommand.getPrice());
+        apartment.setPricePerSquareMeter(editApartmentCommand.getPricePerSquareMeter());
         apartment.setMarketType(editApartmentCommand.getMarketType());
         apartment.setStatus(editApartmentCommand.getStatus());
         apartment.setExclusivity(editApartmentCommand.getExclusivity());

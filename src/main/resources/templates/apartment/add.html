@@ -48,6 +48,12 @@
                 <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
             </div>
         </label>
+        <label>Price per square meter:
+            <input type="text" th:field="*{pricePerSquareMeter}"/>
+            <div>
+                <span th:each="err : ${#fields.errors('pricePerSquareMeter')}" th:text="${err}"></span>
+            </div>
+        </label>
         <label>Type of market (primary/secondary/to renovate):
             <input type="text" th:field="*{marketType}"/>
             <div>
