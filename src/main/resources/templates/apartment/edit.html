@@ -16,8 +16,9 @@
             <div>
                 <label>Active:
                     <input type="checkbox"
-                           th:field="*{active}"
-                           th:checked="${editApartmentCommand.active} ? 'checked' : 'unchecked'"/>
+                           name="active"
+                           id="active"
+                           th:checked="${apartmentEdit.getActive()} ? 'true' : 'false'"/>
                     <div>
                         <span th:each="err : ${#fields.errors('active')}" th:text="${err}"></span>
                     </div>
@@ -31,11 +32,10 @@
                     </div>
                 </label>
                 <label>Flat on corner:
-                    <input type="checkbox" th:checked="${editApartmentCommand.onCorner}"
-                           th:value="${editApartmentCommand.onCorner}"
-                           th:field="${editApartmentCommand.onCorner}"
+                    <input type="checkbox"
+                           name="onCorner"
                            id="onCorner"
-                           name="onCorner"/>
+                           th:checked="${apartmentEdit.getOnCorner()} ? 'true' : 'false'"/>
                     <div>
                         <span th:each="err : ${#fields.errors('onCorner')}" th:text="${err}"></span>
                     </div>
@@ -98,10 +98,9 @@
                 </label>
                 <label>Exclusivity:
                     <input type="checkbox"
-                           th:checked="${editApartmentCommand.exclusivity}"
-                           th:field="${editApartmentCommand.exclusivity}"
+                           name="exclusivity"
                            id="exclusivity"
-                           name="exclusivity"/>
+                           th:checked="${apartmentEdit.getExclusivity()} ? 'true' : 'false'"/>
                     <div>
                         <span th:each="err : ${#fields.errors('exclusivity')}" th:text="${err}"></span>
                     </div>
@@ -124,10 +123,9 @@
                 </label>
                 <label>Storage room:
                     <input type="checkbox"
-                           th:checked="${editApartmentCommand.storageRoom}"
-                           th:field="${editApartmentCommand.storageRoom}"
+                           name="storageRoom"
                            id="storageRoom"
-                           name="storageRoom"/>
+                           th:checked="${apartmentEdit.getStorageRoom()} ? 'true' : 'false'"/>
                     <div>
                         <span th:each="err : ${#fields.errors('storageRoom')}" th:text="${err}"></span>
                     </div>

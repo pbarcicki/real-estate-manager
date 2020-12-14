@@ -78,9 +78,8 @@ public class ClientService {
         Client client = clientRepository.getOne(id);
         if(!clientRepository.existsById(id)){
             log.debug("Client with id: {} doesn't exist", id);
-            throw new ClientDoesNotExistException(
-                    String.format("Client with id: {} doesn't exist", id)
-            );
+            throw new EntityDoesNotExistException(
+                    String.format("Client with id: {} doesn't exist", id));
         }
         return clientConverter.toClientSummary(client);
     }
@@ -98,6 +97,7 @@ public class ClientService {
         }
         log.debug("Client to delete: {}", client);
         clientRepository.delete(client);
+        log.debug("Deleted client: {}", client);
         return true;
     }
 }

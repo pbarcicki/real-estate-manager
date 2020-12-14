@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
+@ToString(exclude = "building")
 @EqualsAndHashCode(of = "id") //todo ewentualnie do zmiany
 public class Apartment {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Apartment {
     @Column(nullable = false)
     private Integer floor;
 
-    @Column(nullable = false, name = "on_corner")
+    @Column(name = "on_corner")
     private Boolean onCorner;
 
     @Column(nullable = false)
@@ -45,7 +45,6 @@ public class Apartment {
     @Column(nullable = false)
     private String status;
 
-    @Column(nullable = false)
     private Boolean exclusivity;
     //plan i zdjęcia TODO
 
@@ -55,12 +54,11 @@ public class Apartment {
     @Column(nullable = false)
     private String view;
 
-    @Column(nullable = false, name = "storage_room")
+    @Column(name = "storage_room")
     private Boolean storageRoom;
 
     private String comment;
 
-    @Column(nullable = false)
     private Boolean active;
 
     @Column(nullable = false)

@@ -12,8 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
-@ToString(exclude = "userPassword")
 @EqualsAndHashCode(of = "username")
+@ToString(exclude = {"client", "userPassword"})
 public class User  {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
