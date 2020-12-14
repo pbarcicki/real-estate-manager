@@ -29,15 +29,13 @@ public class Apartment {
     @Column(nullable = false, name = "rooms_number")
     private Integer roomsNumber;
 
-    //rodzaj kuchni jako string
     @Column(nullable = false, name = "type_of_kitchen")
     private String typeOfKitchen;
 
-    //cena może być niepodana
     @Column(nullable = false)
     private Integer price;
 
-    @Column(name = "price_per_sqare_meter")
+    @Column(name = "price_per_square_meter")
     private Integer pricePerSquareMeter;
 
     //stan deweloperski/po wykończeniu/stary remont (enum???)
@@ -48,14 +46,12 @@ public class Apartment {
     private String status;
 
     @Column(nullable = false)
-    // tutaj nie wiem dokładnie
     private Boolean exclusivity;
     //plan i zdjęcia TODO
 
-    @Column(name = "windows_direction")
+    @Column(nullable = false, name = "windows_direction")
     private String windowsDirection;
 
-    //todo enum?
     @Column(nullable = false)
     private String view;
 
@@ -70,7 +66,7 @@ public class Apartment {
     @Column(nullable = false)
     private LocalDate creationDate;
 
-    @Column(name = "photos_url")
+    @Column(nullable = false, name = "photos_url")
     private String photosUrl;
 
     @ManyToOne
