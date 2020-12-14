@@ -32,13 +32,14 @@ public class ApartmentConverter {
 
     public ApartmentSummary from(Apartment apartment){
         return ApartmentSummary.builder()
+                .id((apartment.getId()))
                 .floor(apartment.getFloor())
                 .onCorner(apartment.getOnCorner())
                 .area(apartment.getArea())
                 .roomsNumber(apartment.getRoomsNumber())
                 .typeOfKitchen(apartment.getTypeOfKitchen())
                 .price(apartment.getPrice())
-                .squareMeterPrice((int)apartment.getPrice()/apartment.getArea())
+                .squareMeterPrice(apartment.getPricePerSquareMeter())
                 .marketType(apartment.getMarketType())
                 .status(apartment.getStatus())
                 .exclusivity(apartment.getExclusivity())

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.repository.DeveloperRepository;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 import projects.realestatemanager.web.command.EditBuildingCommand;
@@ -39,7 +40,7 @@ public class BuildingConverter {
                 .isParkingAvailable(building.getIsParkingAvailable())
                 .isGarageAvailable(building.getIsGarageAvailable())
                 .buildingConstructionType(building.getBuildingConstructionType())
-                .developerName(building.getDeveloper().getDeveloperName())
+                .developerName(building.getDeveloperName())
                 .isElevatorAvailable(building.getIsElevatorAvailable())
                 .isPrimaryMarket(building.getIsPrimaryMarket())
                 .numberOfApartments(building.getNumberOfApartments())
@@ -51,11 +52,10 @@ public class BuildingConverter {
                 .creationDate(building.getCreationDate())
                 .numberOfApartments(building.getApartments().size())
                 .build();
-
     }
 
 
-    public Building from(CreateBuildingCommand createBuildingCommand) {
+    public Building from(CreateBuildingCommand createBuildingCommand, Developer developer) {
         return Building.builder()
                 .region(createBuildingCommand.getRegion())
                 .city(createBuildingCommand.getCity())
@@ -74,7 +74,7 @@ public class BuildingConverter {
                 .isParkingAvailable(createBuildingCommand.getParkLot())
                 .isGarageAvailable(createBuildingCommand.getGarageAvailable())
                 .buildingConstructionType(createBuildingCommand.getBuildingConstructionType())
-                .developer(developerRepository.getById(createBuildingCommand.getDeveloperId()))
+                .developer(developer)
                 .isElevatorAvailable(createBuildingCommand.getElevatorAvailable())
                 .isPrimaryMarket(createBuildingCommand.getPrimaryMarket())
                 .numberOfApartments(createBuildingCommand.getNumberOfApartments())
@@ -85,7 +85,7 @@ public class BuildingConverter {
                 .build();
     }
 
-    public Building from(EditBuildingCommand editBuildingCommand, Building building) {
+    public Building from(EditBuildingCommand editBuildingCommand, Building building, Developer developer) {
                 building.setEditDate(LocalDate.now());
                 building.setIsActive(editBuildingCommand.getIsActive());
                 building.setRegion(editBuildingCommand.getRegion());
@@ -107,7 +107,7 @@ public class BuildingConverter {
                 building.setIsElevatorAvailable(editBuildingCommand.getElevatorAvailable());
                 building.setIsConnectedToMedia(editBuildingCommand.getConnectedToMedia());
                 building.setBuildingConstructionType(editBuildingCommand.getBuildingConstructionType());
-                building.setDeveloper(developerRepository.getById(editBuildingCommand.getDeveloperId()));
+                building.setDeveloper(developer);
                 building.setIsPrimaryMarket(editBuildingCommand.getPrimaryMarket());
                 building.setNumberOfApartments(editBuildingCommand.getNumberOfApartments());
                 building.setBuildingSection(editBuildingCommand.getBuildingSection());

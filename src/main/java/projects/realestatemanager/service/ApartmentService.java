@@ -48,6 +48,7 @@ public class ApartmentService {
 
         apartmentToAdd.setActive(true);
         apartmentToAdd.setCreationDate(LocalDate.now());
+        apartmentToAdd.setPricePerSquareMeter((int) apartmentToAdd.getArea()/apartmentToAdd.getPrice());
         apartmentRepository.save(apartmentToAdd);
         log.debug("Added apartment: {}", apartmentToAdd);
 

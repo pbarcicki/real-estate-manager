@@ -37,6 +37,9 @@ public class Apartment {
     @Column(nullable = false)
     private Integer price;
 
+    @Column(name = "price_per_sqare_meter")
+    private Integer pricePerSquareMeter;
+
     //stan deweloperski/po wykończeniu/stary remont (enum???)
     @Column(nullable = false, name = "market_type")
     private String marketType;

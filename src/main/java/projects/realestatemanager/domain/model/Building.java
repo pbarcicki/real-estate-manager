@@ -86,6 +86,8 @@ public class Building {
     @JoinColumn(name = "developer_id")
     private Developer developer;
 
+    private String developerName;
+
     @Column(nullable = false, name = "is_primary_market")
     private Boolean isPrimaryMarket;
 

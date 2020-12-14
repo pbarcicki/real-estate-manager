@@ -47,7 +47,7 @@ public class AddNewApartmentController {
             log.debug("Apartment added");
             return "redirect:/apartments/list";
         } catch (ApartmentAlreadyExistExeption apaee) {
-            bindingResult.rejectValue("id", null, "Apartment with this id already exist");
+            bindingResult.rejectValue(null, null, "Apartment with this id already exist");
             return "apartment/add";
         } catch (RuntimeException re) {
             bindingResult.rejectValue(null, null, "Error");

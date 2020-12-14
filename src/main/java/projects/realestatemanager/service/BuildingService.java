@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.repository.BuildingRepository;
+import projects.realestatemanager.domain.repository.DeveloperRepository;
 import projects.realestatemanager.exception.BuildingAlreadyExistsException;
 import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.exception.EntityHasConnectionsException;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 public class BuildingService {
 
     private final BuildingRepository buildingRepository;
+    private final DeveloperRepository developerRepository;
     private final BuildingConverter buildingConverter;
 
     public List<BuildingSummary> findAllBuildings(){
@@ -39,8 +42,8 @@ public class BuildingService {
 
     public void add(CreateBuildingCommand createBuildingCommand) {
         log.debug("Building data to be saved: {}", createBuildingCommand);
-
-        Building buildingToAdd = buildingConverter.from(createBuildingCommand);
+        Developer developerConnection = developerRepository.getOne(createBuildingCommand.getDeveloperId());
+        Building buildingToAdd = buildingConverter.from(createBuildingCommand, developerConnection);
         log.debug("Converted building entity to add: {}", buildingToAdd);
 
         if (buildingRepository.existsByCityAndStreetAndBuildingNumber(buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber())) {
@@ -48,8 +51,13 @@ public class BuildingService {
             throw new BuildingAlreadyExistsException(String.format("Building in %s on $s street, number %s already exists in DB", buildingToAdd.getCity(), buildingToAdd.getStreet(), buildingToAdd.getBuildingNumber()));
         }
 
+        if (!developerRepository.existsById(createBuildingCommand.getDeveloperId())) {
+            throw new EntityDoesNotExistException(String.format("Developer with id %s does not exist", createBuildingCommand.getDeveloperId()));
+        }
+
         buildingToAdd.setIsActive(true);
         buildingToAdd.setCreationDate(LocalDate.now());
+        buildingToAdd.setDeveloperName(buildingToAdd.getDeveloper().getDeveloperName());
         buildingRepository.save(buildingToAdd);
         log.debug("Added building: {}", buildingToAdd);
     }
@@ -73,15 +81,20 @@ public class BuildingService {
     //todo
     public boolean editBuilding(EditBuildingCommand editBuildingCommand) {
         Long id = editBuildingCommand.getId();
+        Developer developerConnection = developerRepository.getOne(editBuildingCommand.getDeveloperId());
 
         if (!buildingRepository.existsById(id)) {
             log.debug("Tried to edit non-existing building!");
             throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
         }
 
+        if (!developerRepository.existsById(editBuildingCommand.getDeveloperId())) {
+            throw new EntityDoesNotExistException(String.format("Developer with id %s does not exist", editBuildingCommand.getDeveloperId()));
+        }
+
         Building buildingToEdit = buildingRepository.getOne(id);
         log.debug("Building to edit: {}", buildingToEdit);
-        buildingToEdit = buildingConverter.from(editBuildingCommand, buildingToEdit);
+        buildingToEdit = buildingConverter.from(editBuildingCommand, buildingToEdit, developerConnection);
 
         log.debug("Building modified: {}", buildingToEdit);
         return true;
