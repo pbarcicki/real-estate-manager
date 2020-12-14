@@ -91,7 +91,7 @@
             </div>
         </label>
         <label>Comment:
-            <input type="textarea" th:field="*{comment}"/>
+            <textarea th:field="*{comment}" name="comment"></textarea>
             <div>
                 <span th:each="err : ${#fields.errors('comment')}" th:text="${err}"></span>
             </div>

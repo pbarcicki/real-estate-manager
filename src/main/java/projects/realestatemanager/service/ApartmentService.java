@@ -8,8 +8,7 @@ import projects.realestatemanager.converter.ApartmentConverter;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
-import projects.realestatemanager.exception.ApartmentAlreadyExistExeption;
-import projects.realestatemanager.exception.ApartmentNoExistingException;
+import projects.realestatemanager.exception.*;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
 import projects.realestatemanager.web.command.EditApartmentCommand;
 
@@ -28,11 +27,13 @@ public class ApartmentService {
     private final ApartmentRepository apartmentRepository;
     private final ApartmentConverter apartmentConverter;
 
-    public List<ApartmentSummary> findByAllApartments() {
-        log.debug("Get all apartments info");
+    public List<ApartmentSummary> findAllApartments() {
+        log.debug("Getting all apartments info");
+
         return apartmentRepository.findAll().stream()
                 .map(apartmentConverter::from)
                 .collect(Collectors.toList());
+
     }
 
     public void add(CreateApartmentCommand createApartmentCommand) {
@@ -81,12 +82,18 @@ public class ApartmentService {
         return true;
     }
 
-    public List<ApartmentSummary> findAllApartments() {
-        log.debug("Getting all apartments info");
 
-        return apartmentRepository.findAll().stream()
-                .map(apartmentConverter::from)
-                .collect(Collectors.toList());
+    public boolean delete(Long id) {
+        log.debug("Apartment to delete: {}", apartmentRepository.getOne(id));
+        Apartment apartment = apartmentRepository.getOne(id);
+        if(!apartmentRepository.existsById(id)){
+            log.debug("Apartment with id: {} doesn't exist", id);
+            throw new EntityDoesNotExistException(String.format(
+                    "Apartment with id: {} doesn't exist", id));
+        }
+        log.debug("Apartment to delete: {}", apartment);
+        apartmentRepository.delete(apartment);
+        return true;
 
     }
 }

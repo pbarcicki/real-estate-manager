@@ -70,7 +70,7 @@ public class ApartmentConverter {
         apartment.setStorageRoom(editApartmentCommand.getStorageRoom());
         apartment.setComment(editApartmentCommand.getComment());
         apartment.setActive(editApartmentCommand.getActive());
-        apartment.setPhotosUrl(editApartmentCommand.getApartmentPhotosUrl());
+        apartment.setPhotosUrl(editApartmentCommand.getPhotosUrl());
 
         return apartment;
     }

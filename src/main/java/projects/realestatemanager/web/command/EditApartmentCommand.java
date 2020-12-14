@@ -19,7 +19,7 @@ public class EditApartmentCommand {
     private Long id;
 
     @NotNull
-    @Size(min=1, max = 3)
+   // @Size(min=1, max = 3)
     private Integer floor;
 
     @NotNull
@@ -47,7 +47,6 @@ public class EditApartmentCommand {
     private String status;
 
     @NotNull
-    @Size (min = 1, max = 10)
     private Boolean exclusivity;
 
     @NotBlank
@@ -57,7 +56,6 @@ public class EditApartmentCommand {
     @NotNull
     private Boolean storageRoom;
 
-    @NotBlank
     @Size(min = 13, max = 160)
     private String comment;
 
@@ -66,10 +64,12 @@ public class EditApartmentCommand {
 
     @NotBlank
     @URL
-    private String apartmentPhotosUrl;
+    private String photosUrl;
+
 
     private Boolean active;
 
+    @NotNull
     private Integer pricePerSquareMeter;
 
 

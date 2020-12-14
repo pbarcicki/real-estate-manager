@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.exception.EntityDoesNotExistException;
+import projects.realestatemanager.exception.EntityHasConnectionsException;
 import projects.realestatemanager.service.ApartmentService;
 import projects.realestatemanager.web.command.EditApartmentCommand;
 
@@ -28,16 +29,21 @@ public class EditApartmentController {
 
     @GetMapping("/{id:[0-9]+}")
     public String getApartmentEditPage(@PathVariable Long id, Model model) {
-        model.addAttribute(new EditApartmentCommand());
-        model.addAttribute("apartmentEdit", apartmentService.showApartmentById(id));
-        return "apartment/edit";
+        if(apartmentRepository.existsById(id)){
+            model.addAttribute(new EditApartmentCommand());
+            model.addAttribute("apartmentEdit", apartmentService.showApartmentById(id));
+            return "apartment/edit";
+        }else{
+            return "redirect:/apartments/list";
+        }
+
     }
 
     @PostMapping("/{id:[0-9]+}")
     public String processEditApartment(@Valid EditApartmentCommand editApartmentCommand,
                                        BindingResult bindingResult) {
         Long id = editApartmentCommand.getId();
-
+        log.debug("Apartment to edit id: {}", id);
         try {
             apartmentService.editApartment(editApartmentCommand);
             log.debug("Apartment edited");
@@ -51,5 +57,24 @@ public class EditApartmentController {
             bindingResult.rejectValue("id", null, "Error while saving edited apartment");
         }
         return ("redirect:/apartments/edit/" + id);
+    }
+    @PostMapping("/{id:[0-9]+}/delete")
+    public String deleteApartment(@PathVariable(value = "id") Long id) {
+        log.debug("Apartment id to delete: {}", id);
+        try {
+            apartmentService.delete(id);
+            return "redirect:/apartments/list";
+        } catch (EntityDoesNotExistException ddnee) {
+            log.warn(ddnee.getLocalizedMessage());
+            log.error("Apartment with id {} does nor exist", id);
+            return "redirect:/apartments/list";
+        } catch (EntityHasConnectionsException ehce) {
+            log.debug("Trying to edit not existing apartment");
+            return "redirect:/apartments/list";
+        } catch (RuntimeException re) {
+            log.warn(re.getLocalizedMessage());
+            log.error("Unknown error while deleting apartment", re);
+            return "redirect:/apartments/list";
+        }
     }
 }
