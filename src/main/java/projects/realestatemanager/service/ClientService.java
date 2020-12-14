@@ -12,6 +12,7 @@ import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ClientRepository;
 import projects.realestatemanager.exception.ClientAlreadyExistException;
 import projects.realestatemanager.exception.ClientDoesNotExistException;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.web.command.CreateClientCommand;
 import projects.realestatemanager.web.command.EditClientCommand;
 
@@ -92,7 +93,7 @@ public class ClientService {
         Client client = clientRepository.getOne(id);
         if(!clientRepository.existsById(id)){
             log.debug("Client with id: {} doesn't exist", id);
-            throw new ClientDoesNotExistException(String.format(
+            throw new EntityDoesNotExistException(String.format(
                     "Client with id: {} doesn't exist", id));
         }
         log.debug("Client to delete: {}", client);
