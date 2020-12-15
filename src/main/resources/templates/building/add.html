@@ -13,15 +13,19 @@
         <div>
             <label> Region:
                 <select th:field="*{region}">
-                <option  th:each="regionOpt : ${T(projects.realestatemanager.enums.Region).values()}"
+                <option value=" " selected>Make your choice</option>
+                <option th:each="regionOpt : ${T(projects.realestatemanager.enums.Region).values()}"
                         th:value="${regionOpt}" th:text="${regionOpt.displayValue}">
                 </option>
                 </select>
-                <br>
+                <div>
+                    <span th:each="err : ${#fields.errors('region')}" th:text="${err}"></span>
+                </div>
             </label>
 
             <label> City:
                 <select th:field="*{city}">
+                    <option value=" " selected>Make your choice</option>
                 <option th:each="cityOpt : ${T(projects.realestatemanager.enums.City).values()}"
                         th:value="${cityOpt}" th:text="${cityOpt.displayValue}">
                 </option>
@@ -132,24 +136,30 @@
 
             <label> Building construction type:
                 <select th:field="*{buildingConstructionType}">
+                    <option value="null" selected>Make your choice</option>
                     <option th:each="constructionOpt : ${T(projects.realestatemanager.enums.BuildingConstructionType).values()}"
                     th:value="${constructionOpt}" th:text="${constructionOpt.displayValue}">
                     </option>
-                </select><br>
-            </label>
+                </select>
 
-<!--            todo-->
-            <label> Developer:
-
-                <select th:field="*{developerId}" name="developer">
-                <option th:each="developerOpt : ${availableDevelopers}"
-                        th:value="${developerOpt.id}" th:text="${developerOpt.name}">
-                </option>
+                <br>
                 <div>
                     <span th:each="err : ${#fields.errors('developerId')}" th:text="${err}"></span>
                 </div>
-                </select><br>
+            </label>
 
+
+            <label> Developer:
+                <select th:field="*{developerId}" name="developer">
+                <option th:value="null" selected>Make your choice</option>
+                <option th:each="developerOpt : ${availableDevelopers}"
+                        th:value="${developerOpt.id}" th:text="${developerOpt.name}">
+                </option>
+                </select>
+                <br>
+                <div>
+                    <span th:each="err : ${#fields.errors('developerId')}" th:text="${err}"></span>
+                </div>
             </label>
 
             <label> Elevator availability:

@@ -66,17 +66,17 @@ public class Building {
     @Column(name = "building_location_details")
     private String buildingLocationDetails;
 
-    @Column(nullable = false, name = "is_parking_available")
+    @Column(name = "is_parking_available")
     private Boolean isParkingAvailable;
 
-    @Column(nullable = false, name = "is_garage_available")
+    @Column(name = "is_garage_available")
     private Boolean isGarageAvailable;
 
-    @Column(nullable = false, name = "is_elevator_available")
+    @Column(name = "is_elevator_available")
     private Boolean isElevatorAvailable;
 
     //todo enum yes/no/not given?
-    @Column(nullable = false, name = "is_connected_to_media")
+    @Column(name = "is_connected_to_media")
     private Boolean isConnectedToMedia;
 
     @Column(nullable = false, name = "building_construction_type")
@@ -88,7 +88,7 @@ public class Building {
 
     private String developerName;
 
-    @Column(nullable = false, name = "is_primary_market")
+    @Column(name = "is_primary_market")
     private Boolean isPrimaryMarket;
 
     @Column(nullable = false, name = "number_of_apartments")

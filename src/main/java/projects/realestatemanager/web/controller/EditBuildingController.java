@@ -37,8 +37,6 @@ public class EditBuildingController {
     @GetMapping("/{id:[0-9]+}")
     public String getBuildingEditPage(Model model, @PathVariable Long id) {
 
-//        model.addAttribute("buildingDelete", buildingService.deleteById(id));
-
         if (buildingRepository.existsById(id)) {
             model.addAttribute(new EditBuildingCommand());
             model.addAttribute("buildingEdit", buildingService.showBuildingById(id));
@@ -53,6 +51,12 @@ public class EditBuildingController {
     public String processEditBuilding(@Valid EditBuildingCommand editBuildingCommand, BindingResult bindingResult) {
         Long id = editBuildingCommand.getId();
         log.debug("Developer to edit id: {}", id);
+
+//        if (bindingResult.hasErrors()) {
+//            log.debug("Wrong input: {}", bindingResult.getAllErrors());
+//            return "building/edit";
+//        }
+
         try {
             buildingService.editBuilding(editBuildingCommand);
             log.debug("Building successfully edited");
