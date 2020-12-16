@@ -51,6 +51,7 @@ public class ApartmentConverter {
                 .active(apartment.getActive())
                 .creationDate(apartment.getCreationDate())
                 .photosUrl(apartment.getPhotosUrl())
+                .favourite(apartment.getFavourite())
                 .build();
     }
 
@@ -71,7 +72,7 @@ public class ApartmentConverter {
         apartment.setComment(editApartmentCommand.getComment());
         apartment.setActive(editApartmentCommand.getActive());
         apartment.setPhotosUrl(editApartmentCommand.getPhotosUrl());
-
+        apartment.setFavourite(editApartmentCommand.getFavourite());
         return apartment;
     }
 }

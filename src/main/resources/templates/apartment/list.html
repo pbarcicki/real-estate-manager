@@ -7,8 +7,11 @@
 <body>
 <div>
     <h1>Apartments list</h1>
-    <h3>
+    <h2>
         <a th:href="@{/apartments/add}">Add new apartment</a>
+    </h2>
+    <h3>
+        <a th:href="@{/apartments/favouriteList}">Show list of favourite apartments</a>
     </h3>
 
     <table>
@@ -31,6 +34,7 @@
             <th>Photos/Plan</th>
             <th>Date of creation</th>
             <th>Flat on Corner</th>
+            <th>Favourite</th>
 
         </tr>
         <tr th:each="apartment : ${apartments}">
@@ -54,6 +58,9 @@
             <td th:text="${apartment.photosUrl}"></td>
             <td th:text="${apartment.creationDate}"></td>
             <td th:text="${apartment.onCorner}"></td>
+            <td th:text="${apartment.favourite} ? 'true' : 'false'"
+                th:style="${apartment.favourite} ? 'color: red' : 'color: grey'">
+            </td>
             <td> <a th:href="|edit/${apartment.id}|">Edit</a> </td>
 
         <tr th:each="building : ${buildings}">

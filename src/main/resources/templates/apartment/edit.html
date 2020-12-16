@@ -147,6 +147,22 @@
                     </div>
                 </label>
                 <div>
+                    <label>Favourite:
+                        <select id="favourite" name="favourite">
+                            <option
+                                    value="true"
+                                    th:selected="${apartmentEdit.favourite eq true}"
+                                    th:text="TRUE">
+                            </option>
+                            <option
+                                    value="false"
+                                    th:selected="${apartmentEdit.favourite eq false}"
+                                    th:text="FALSE">
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div>
                     <button type="submit">Save changes</button>
                 </div>
             </div>

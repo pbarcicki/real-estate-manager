@@ -20,6 +20,6 @@ public class FavouriteApartmentListController {
     public String getFavouriteApartmentListPage(Model model){
         model.addAttribute("favouriteApartmentsList",
                 apartmentService.findFavouriteApartments());
-        return "client/favouriteList";
+        return "apartment/favouriteList";
     }
 }

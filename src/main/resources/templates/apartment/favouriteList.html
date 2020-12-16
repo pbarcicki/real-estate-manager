@@ -26,7 +26,7 @@
         <th>Date of creation</th>
         <th>Flat on Corner</th>
     </tr>
-        <tr th:each="favApart : ${favouriteApartmentsList}"></tr>
+    <tr th:each="favApart : ${favouriteApartmentsList}">
         <td th:text="${favApart.id}"></td>
         <td th:text="${favApart.floor}"></td>
         <td th:text="${favApart.area}"></td>
@@ -48,6 +48,7 @@
         <td th:text="${favApart.photosUrl}"></td>
         <td th:text="${favApart.creationDate}"></td>
         <td th:text="${favApart.onCorner}"></td>
+    </tr>
 </table>
 <h3>
     <a th:href="@{/apartments/list}">Back to list of all apartments</a>
