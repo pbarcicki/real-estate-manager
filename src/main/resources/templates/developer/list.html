@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>LISTA DEWELOPERÓW</title>
@@ -13,18 +13,18 @@
             <th>Nazwa</th>
             <th>Osoba kontaktowa</th>
             <th>Kontakt</th>
-            <th>Status</th>
-            <th>status2</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Status</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')"></th>
         </tr>
         <tr th:each="developer : ${developersList}">
             <td th:text="${developer.name}"></td>
             <td th:text="${developer.contactPerson}"></td>
             <td th:text="${developer.contactNumber}"></td>
-            <td
+            <td  sec:authorize="hasRole('ROLE_ADMIN')"
                     th:text="${developer.isActive()} ? 'active' : 'not active'"
                     th:style="${developer.isActive()} ? 'color: red' : 'color: grey'"
             ></td>
-            <td><a th:href="|edit/${developer.id}|">EDYTUJ</a></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="|edit/${developer.id}|">EDYTUJ</a></td>
         </tr>
     </table>
 </div>
