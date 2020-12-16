@@ -15,7 +15,7 @@
                 <select th:field="*{region}">
                 <option value=" " selected>Make your choice</option>
                 <option th:each="regionOpt : ${T(projects.realestatemanager.enums.Region).values()}"
-                        th:value="${regionOpt}" th:text="${regionOpt.displayValue}">
+                        th:value="${regionOpt.displayValue}" th:text="${regionOpt.displayValue}">
                 </option>
                 </select>
                 <div>

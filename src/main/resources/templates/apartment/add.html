@@ -61,11 +61,20 @@
                 </div>
             </label>
             <label>Status (free/reserved/ask developer):
-                <input type="text" th:field="*{status}"/>
+                <select th:field="*{status}">
+                    <option value=" " selected>Make your choice</option>
+                    <option th:each="statusOpt : ${T(projects.realestatemanager.enums.ApartmentStatus).values()}"
+                            th:value="${statusOpt.displayValue}" th:text="${statusOpt.displayValue}">
+                    </option>
+                </select>
                 <div>
                     <span th:each="err : ${#fields.errors('status')}" th:text="${err}"></span>
                 </div>
             </label>
+            <div>
+                <span th:each="err : ${#fields.errors('status')}" th:text="${err}"></span>
+            </div>
+
             <label>Exclusivity:
                 <input type="checkbox" th:field="${createApartmentCommand.exclusivity}"/>
                 <div>
