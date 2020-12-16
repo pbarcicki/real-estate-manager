@@ -43,4 +43,6 @@ public class Client {
     @ManyToMany
     @JoinColumn(name = "user_id")
     private List<User> user;
+
+    private Boolean favourite;
 }

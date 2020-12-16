@@ -9,6 +9,9 @@
     <h2>
         <a th:href="@{/clients/add}">Add new client</a>
     </h2>
+    <h3>
+        <a th:href="@{/clients/favouriteclients}">Show list of favourite clients</a>
+    </h3>
     <table>
         <tr>
             <th>Name</th>
@@ -17,6 +20,7 @@
             <th>Interest</th>
             <th>Registration date</th>
             <th>Status</th>
+            <th>Favourite</th>
         </tr>
         <tr th:each="client : ${clientsList}">
             <td th:text="${client.clientName}"></td>
@@ -26,6 +30,9 @@
             <td th:text="${client.clientRegistrationDate}"></td>
             <td th:text="${client.isActive} ? 'active' : 'not active'"
                 th:style="${client.isActive} ? 'color: red' : 'color: grey'">
+            </td>
+            <td th:text="${client.favourite} ? 'true' : 'false'"
+                th:style="${client.favourite} ? 'color: red' : 'color: grey'">
             </td>
             <td><a th:href="|edit/${client.id}|">Edit</a></td>
         </tr>

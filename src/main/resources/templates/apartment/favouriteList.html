@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Favourite apartments</title>
+</head>
+<body>
+<h1>List of favourite apartments:</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Floor</th>
+        <th>Area</th>
+        <th>Rooms number</th>
+        <th>Type of kitchen</th>
+        <th>Price (USD)</th>
+        <th>Square meter price (USD)</th>
+        <th>Type of market</th>
+        <th>Status</th>
+        <th>Exclusivity</th>
+        <th>Direction of windows</th>
+        <th>View</th>
+        <th>Storage room</th>
+        <th>Comment</th>
+        <th>Photos/Plan</th>
+        <th>Date of creation</th>
+        <th>Flat on Corner</th>
+    </tr>
+        <tr th:each="favApart : ${favouriteApartmentsList}"></tr>
+        <td th:text="${favApart.id}"></td>
+        <td th:text="${favApart.floor}"></td>
+        <td th:text="${favApart.area}"></td>
+        <td th:text="${favApart.roomsNumber}"></td>
+        <td th:text="${favApart.typeOfKitchen}"></td>
+        <td th:text="${favApart.price}"></td>
+        <td th:text="${favApart.pricePerSquareMeter}"></td>
+        <td th:text="${favApart.marketType}"></td>
+        <td th:text="${favApart.status}"></td>
+        <td>
+            <input type="checkbox" disabled="true"
+               th:checked="${favApart.exclusivity}"/></td>
+        <td th:text="${favApart.windowsDirection}"></td>
+        <td th:text="${favApart.view}"></td>
+        <td>
+            <input type="checkbox" disabled="true"
+                   th:checked="${favApart.storageRoom}"/></td>
+        <td th:text="${favApart.comment}"></td>
+        <td th:text="${favApart.photosUrl}"></td>
+        <td th:text="${favApart.creationDate}"></td>
+        <td th:text="${favApart.onCorner}"></td>
+</table>
+<h3>
+    <a th:href="@{/apartments/list}">Back to list of all apartments</a>
+</h3>
+
+</body>
+</html>

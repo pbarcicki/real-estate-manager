@@ -34,6 +34,7 @@ public class CreateClientCommand {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate clientRegistrationDate;
     private Boolean isActive;
+    private Boolean favourite;
 
 
 

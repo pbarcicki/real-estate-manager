@@ -96,4 +96,13 @@ public class ApartmentService {
         return true;
 
     }
+
+    public List<ApartmentSummary> findFavouriteApartments() {
+        log.debug("Getting favourite apartments");
+
+        return apartmentRepository.findByFavourite(true).stream()
+                .map(apartmentConverter::from)
+                .collect(Collectors.toList());
+
+    }
 }

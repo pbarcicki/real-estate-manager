@@ -72,6 +72,8 @@ public class EditApartmentCommand {
     @NotNull
     private Integer pricePerSquareMeter;
 
+    private Boolean favourite;
+
 
 
 }

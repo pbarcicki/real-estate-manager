@@ -31,5 +31,6 @@ public class EditClientCommand {
     @NotNull @Size(min=3, max = 160)
     private String clientInterest;
     private Boolean isActive;
+    private Boolean favourite;
 
 }

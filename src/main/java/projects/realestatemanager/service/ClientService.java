@@ -29,6 +29,7 @@ public class ClientService {
     private final ClientRepository clientRepository;
     private final ClientConverter clientConverter;
 
+
     public List<ClientSummary> findClients() {
         log.debug("Getting customer information");
         return clientRepository.findAll().stream()
@@ -100,7 +101,17 @@ public class ClientService {
         log.debug("Deleted client: {}", client);
         return true;
     }
+
+    public List<ClientSummary> findFavouriteClients() {
+        log.debug("Getting favourite clients");
+
+            return clientRepository.findByFavourite(true).stream()
+                    .map(clientConverter::toClientSummary)
+                    .collect(Collectors.toList());
+
+    }
 }
+
 
 
 

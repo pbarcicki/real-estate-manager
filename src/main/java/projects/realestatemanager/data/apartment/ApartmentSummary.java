@@ -50,5 +50,7 @@ public class ApartmentSummary {
 
     private String photosUrl;
 
+    private Boolean favourite;
+
 
 }

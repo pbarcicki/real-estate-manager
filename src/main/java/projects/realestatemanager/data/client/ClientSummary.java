@@ -33,4 +33,6 @@ public class ClientSummary {
     private Boolean isActive;
 
     private List<User> user;
+
+    private Boolean favourite;
 }

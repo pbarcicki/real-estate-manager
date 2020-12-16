@@ -62,6 +62,22 @@
                     </select>
                 </label>
             </div>
+            <div>
+                <label>Favourite:
+                    <select id="favourite" name="favourite">
+                        <option
+                                value="true"
+                                th:selected="${clientEdit.favourite eq true}"
+                                th:text="TRUE">
+                        </option>
+                        <option
+                                value="false"
+                                th:selected="${clientEdit.favourite eq false}"
+                                th:text="FALSE">
+                        </option>
+                    </select>
+                </label>
+            </div>
         </fieldset>
         <fieldset>
             <button type="submit">Submit changes</button>

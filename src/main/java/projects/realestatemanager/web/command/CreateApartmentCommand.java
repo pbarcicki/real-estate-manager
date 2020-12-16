@@ -69,4 +69,6 @@ public class CreateApartmentCommand {
     private LocalDate creationDate;
 
     private Integer pricePerSquareMeter;
+
+    private Boolean favourite;
 }
