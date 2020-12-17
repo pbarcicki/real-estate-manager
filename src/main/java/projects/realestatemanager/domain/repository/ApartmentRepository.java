@@ -68,4 +68,6 @@ public interface ApartmentRepository extends JpaRepository <Apartment, Long> {
 
     @Query("SELECT a.id FROM Apartment a WHERE a.id IN ?1 AND a.active=true")
     List<Long> findAllByActive(List<Long> apartmentsId);
+
+    boolean existsByBuildingId(Long id);
 }

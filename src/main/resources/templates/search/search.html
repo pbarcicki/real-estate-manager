@@ -96,7 +96,12 @@
 
                <fieldset>
                    <label>Type of kitchen:
-                       <input type="text" th:field="*{typeOfKitchen}"/>
+                       <select th:field="*{typeOfKitchen}">
+                           <option th:value="null" selected>Make your choice</option>
+                           <option th:each="kitchenOpt : ${T(projects.realestatemanager.enums.KitchenType).values()}"
+                                   th:value="${kitchenOpt.displayValue}" th:text="${kitchenOpt.displayValue}">
+                           </option>
+                       </select>
                        <div>
                            <span th:each="err : ${#fields.errors('typeOfKitchen')}" th:text="${err}"></span>
                        </div>
@@ -136,11 +141,16 @@
                 </fieldset>
 
                 <fieldset>
-                    <label>Type of market (primary/secondary/to renovate):
-                        <input type="text" th:field="*{marketType}"/>
-                        <div>
-                            <span th:each="err : ${#fields.errors('marketType')}" th:text="${err}"></span>
-                        </div>
+                    <label> Type of market:
+                    <select th:field="*{marketType}">
+                        <option th:value="null" selected>Make your choice</option>
+                        <option th:each="marketOpt : ${T(projects.realestatemanager.enums.ApartmentTypeOfMarket).values()}"
+                                th:value="${marketOpt.displayValue}" th:text="${marketOpt.displayValue}">
+                        </option>
+                    </select>
+                    <div>
+                        <span th:each="err : ${#fields.errors('marketType')}" th:text="${err}"></span>
+                    </div>
                     </label>
                 </fieldset>
 
@@ -185,8 +195,15 @@
                 </fieldset>
 
                 <fieldset>Localization details:
+                    <br>
+
                     <label>Windows direction:
-                        <input type="text" th:field="*{windowsDirection}"/>
+                        <select th:field="*{windowsDirection}">
+                            <option th:value="null" selected>Make your choice</option>
+                            <option th:each="windowsOpt : ${T(projects.realestatemanager.enums.WindRose).values()}"
+                                    th:value="${windowsOpt.displayValue}" th:text="${windowsOpt.displayValue}">
+                            </option>
+                        </select>
                         <div>
                             <span th:each="err : ${#fields.errors('windowsDirection')}" th:text="${err}"></span>
                         </div>
@@ -200,7 +217,7 @@
                 </fieldset>
 
                 <fieldset>
-                    <label>Apartment status (free/reserved/ask developer):
+                    <label>Apartment status:
                         <select th:field="*{status}">
                             <option th:value="null" selected>Make your choice</option>
                             <option th:each="statusOpt : ${T(projects.realestatemanager.enums.ApartmentStatus).values()}"

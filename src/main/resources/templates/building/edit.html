@@ -17,13 +17,31 @@
             <div>
                 <label> Active:
                     <input type="checkbox"
-                           th:field="*{isActive}"
-                           th:checked="${editBuildingCommand.isActive} ? 'checked' : 'unchecked'"
+                           name="isActive"
+                           id="isActive"
+                           th:checked="${buildingEdit.isActive} ? 'true' : 'false'"
                     />
                     <div>
                         <span th:each="err : ${#fields.errors('isActive')}" th:text="${err}"></span>
                     </div>
                 </label>
+
+                <!--            todo-->
+                <label> Developer:
+                    <select th:field="*{developerId}" name="developer">
+                        <option th:text="|Confirm developer: ${buildingEdit.developerName}|"
+                                th:value="${buildingEdit.id}"></option>
+                        <option th:each="developerOpt : ${availableDevelopers}"
+                                th:value="${developerOpt.id}"
+                                th:text="${developerOpt.name}">
+                        </option>
+                        <div>
+                            <span th:each="err : ${#fields.errors('developerId')}" th:text="${err}"></span>
+                        </div>
+                    </select><br>
+
+                </label>
+
                 <label> Region:
                     <select th:field="*{region}">
                         <option th:text="${buildingEdit.region}"
@@ -43,7 +61,7 @@
                         <option th:text="${buildingEdit.city}"
                                 th:value="${buildingEdit.city}"></option>
                         <option th:each="cityOpt : ${T(projects.realestatemanager.enums.City).values()}"
-                                th:value="${cityOpt}" th:text="${cityOpt.displayValue}"
+                                th:value="${cityOpt.displayValue}" th:text="${cityOpt.displayValue}"
                                 id="city"
                                 name="city">
                         </option>
@@ -73,7 +91,7 @@
                 </label>
 
                 <label> Building number:
-                    <input type="text" th:value="${buildingEdit.buildingNumber}"
+                    <input type="number" th:value="${buildingEdit.buildingNumber}"
                            id="buildingNumber"
                            name="buildingNumber"/>
                     <div>
@@ -91,7 +109,7 @@
                 </label>
 
                 <label> Distance to kindergarten (meters):
-                    <input type="text" th:field="${buildingEdit.distanceToKindergarten}"
+                    <input type="number" th:field="${buildingEdit.distanceToKindergarten}"
                            id="distanceToKindergarten"
                            name="distanceToKindergarten"/>
                     <div>
@@ -100,7 +118,7 @@
                 </label>
 
                 <label> Distance to school (meters):
-                    <input type="text" th:value="${buildingEdit.distanceToSchool}"
+                    <input type="number" th:value="${buildingEdit.distanceToSchool}"
                            id="distanceToSchool"
                            name="distanceToSchool"/>
                     <div>
@@ -109,7 +127,7 @@
                 </label>
 
                 <label> Distance to shopping mall (meters):
-                    <input type="text" th:value="${buildingEdit.distanceToShoppingCenters}"
+                    <input type="number" th:value="${buildingEdit.distanceToShoppingCenters}"
                            id="distanceToShoppingCenters"
                            name="distanceToShoppingCenters"/>
                     <div>
@@ -118,7 +136,7 @@
                 </label>
 
                 <label> Distance to park (meters):
-                    <input type="text" th:value="${buildingEdit.distanceToPark}"
+                    <input type="number" th:value="${buildingEdit.distanceToPark}"
                            id="distanceToPark"
                            name="distanceToPark"/>
                     <div>
@@ -127,7 +145,7 @@
                 </label>
 
                 <label> Distance to river (meters):
-                    <input type="text" th:value="${buildingEdit.distanceToRiver}"
+                    <input type="number" th:value="${buildingEdit.distanceToRiver}"
                            id="distanceToRiver"
                            name="distanceToRiver"/>
                     <div>
@@ -136,7 +154,7 @@
                 </label>
 
                 <label> Time to city center (minutes):
-                    <input type="text" th:value="${buildingEdit.timeToCityCenterMin}"
+                    <input type="number" th:value="${buildingEdit.timeToCityCenterMin}"
                            id="timeToCityCenterMin"
                            name="timeToCityCenterMin"/>
                     <div>
@@ -145,7 +163,7 @@
                 </label>
 
                 <label> Time to bus stop (minutes by feet):
-                    <input type="text" th:value="${buildingEdit.timeToBusStopMin}"
+                    <input type="number" th:value="${buildingEdit.timeToBusStopMin}"
                            id="timeToBusStopMin"
                            name="timeToBusStopMin"/>
                     <div>
@@ -162,11 +180,11 @@
                     </div>
                 </label>
 
-
                 <label> Park lot availability:
                     <input type="checkbox"
-                           th:field="*{parkLot}"
-                           th:checked="${editBuildingCommand.parkLot} ? 'checked' : 'unchecked'"
+                           name="parkLot"
+                           id="parkLot"
+                           th:checked="${buildingEdit.isParkingAvailable} ? 'true' : 'false'"
                     />
                     <div>
                         <span th:each="err : ${#fields.errors('parkLot')}" th:text="${err}"></span>
@@ -175,8 +193,9 @@
 
                 <label> Garage availability:
                     <input type="checkbox"
-                           th:field="*{garageAvailable}"
-                           th:checked="${editBuildingCommand.garageAvailable} ? 'checked' : 'unchecked'"
+                           name="garageAvailable"
+                           id="garageAvailable"
+                           th:checked="${buildingEdit.isGarageAvailable} ? 'true' : 'false'"
                     />
                     <div>
                         <span th:each="err : ${#fields.errors('garageAvailable')}" th:text="${err}"></span>
@@ -193,27 +212,14 @@
                     </select><br>
                 </label>
 
-                <!--            todo-->
-                <label> Developer:
-                    <select th:field="*{developerId}" name="developer">
-                        <option th:text="|Confirm developer: ${buildingEdit.developerName}|"
-                        th:value="null"></option>
-                        <option th:each="developerOpt : ${availableDevelopers}"
-                                th:value="${developerOpt.id}"
-                                th:text="${developerOpt.name}">
-                        </option>
-                        <div>
-                            <span th:each="err : ${#fields.errors('developerId')}" th:text="${err}"></span>
-                        </div>
-                    </select><br>
-
-                </label>
-
                 <label> Elevator availability:
                     <input type="checkbox"
                            name="elevatorAvailable"
                            id="elevatorAvailable"
-                           th:checked="${editBuildingCommand.getElevatorAvailable()} ? 'true' : 'false'"/>
+                           th:checked="${buildingEdit.isElevatorAvailable} ? 'true' : 'false'"
+                    />
+
+
                     <div>
                         <span th:each="err : ${#fields.errors('elevatorAvailable')}" th:text="${err}"></span>
                     </div>
@@ -221,8 +227,9 @@
 
                 <label> Primary market:
                     <input type="checkbox"
-                           th:field="*{primaryMarket}"
-                           th:checked="${editBuildingCommand.primaryMarket} ? 'checked' : 'unchecked'"
+                           name="primaryMarket"
+                           id="primaryMarket"
+                           th:checked="${buildingEdit.isPrimaryMarket} ? 'true' : 'false'"
                     />
                     <div>
                         <span th:each="err : ${#fields.errors('primaryMarket')}" th:text="${err}"></span>
@@ -231,7 +238,7 @@
                 </label>
 
                 <label> Number of apartments:
-                    <input type="text" th:value="${buildingEdit.numberOfApartments}"
+                    <input type="number" th:value="${buildingEdit.numberOfApartments}"
                            id="numberOfApartments"
                            name="numberOfApartments"/>
                     <div>
@@ -240,7 +247,7 @@
                 </label>
 
                 <label> Building section:
-                    <input type="text" th:value="${buildingEdit.buildingSection}"
+                    <input type="number" th:value="${buildingEdit.buildingSection}"
                            id="buildingSection"
                            name="buildingSection"/>
                     <div>
@@ -249,7 +256,7 @@
                 </label>
 
                 <label> Building realization term:
-                    <input type="text" th:value="${buildingEdit.buildingRealizationTerm}"
+                    <input type="date" th:value="${buildingEdit.buildingRealizationTerm}"
                            id="buildingRealizationTerm"
                            name="buildingRealizationTerm"/>
                     <div>
@@ -259,8 +266,9 @@
 
                 <label> Connection to media:
                     <input type="checkbox"
-                           th:field="*{connectedToMedia}"
-                           th:checked="${editBuildingCommand.connectedToMedia} ? 'checked' : 'unchecked'"
+                           name="connectedToMedia"
+                           id="connectedToMedia"
+                           th:checked="${buildingEdit.isConnectedToMedia} ? 'true' : 'false'"
                     />
                     <div>
                         <span th:each="err : ${#fields.errors('connectedToMedia')}" th:text="${err}"></span>

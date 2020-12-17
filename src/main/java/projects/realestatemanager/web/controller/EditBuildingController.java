@@ -52,10 +52,10 @@ public class EditBuildingController {
         Long id = editBuildingCommand.getId();
         log.debug("Developer to edit id: {}", id);
 
-//        if (bindingResult.hasErrors()) {
-//            log.debug("Wrong input: {}", bindingResult.getAllErrors());
-//            return "building/edit";
-//        }
+        if (bindingResult.hasErrors()) {
+            log.debug("Wrong input: {}", bindingResult.getAllErrors());
+            bindingResult.rejectValue(null,null, "Wrong input!");
+        }
 
         try {
             buildingService.editBuilding(editBuildingCommand);
@@ -81,10 +81,10 @@ public class EditBuildingController {
         } catch (EntityDoesNotExistException ddnee) {
             log.warn(ddnee.getLocalizedMessage());
             log.error("Building with id {} does nor exist", id);
-            return "redirect:/buildings/list";
+            return "errors/non-existing-entity";
         } catch (EntityHasConnectionsException ehce) {
             log.debug("Trying to edit not existing building");
-            return "redirect:/buildings/list";
+            return "errors/connected-entities";
         } catch (RuntimeException re) {
             log.warn(re.getLocalizedMessage());
             log.error("Unknown error while deleting building", re);

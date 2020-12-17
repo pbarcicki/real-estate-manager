@@ -27,7 +27,7 @@
                 <select th:field="*{city}">
                     <option value=" " selected>Make your choice</option>
                 <option th:each="cityOpt : ${T(projects.realestatemanager.enums.City).values()}"
-                        th:value="${cityOpt}" th:text="${cityOpt.displayValue}">
+                        th:value="${cityOpt.displayValue}" th:text="${cityOpt.displayValue}">
                 </option>
                 </select>
                 <div>
@@ -50,7 +50,7 @@
             </label>
 
             <label> Building number:
-                <input type="text" th:field="*{buildingNumber}"/>
+                <input type="number" th:field="*{buildingNumber}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('buildingNumber')}" th:text="${err}"></span>
                 </div>
@@ -64,49 +64,49 @@
             </label>
 
             <label> Distance to kindergarten (meters):
-                <input type="text" th:field="*{distanceToKindergarten}"/>
+                <input type="number" th:field="*{distanceToKindergarten}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('distanceToKindergarten')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Distance to school (meters):
-                <input type="text" th:field="*{distanceToSchool}"/>
+                <input type="number" th:field="*{distanceToSchool}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('distanceToSchool')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Distance to shopping mall (meters):
-                <input type="text" th:field="*{distanceToShoppingCenters}"/>
+                <input type="number" th:field="*{distanceToShoppingCenters}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('distanceToShoppingCenters')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Distance to park (meters):
-                <input type="text" th:field="*{distanceToPark}"/>
+                <input type="number" th:field="*{distanceToPark}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('distanceToPark')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Distance to river (meters):
-                <input type="text" th:field="*{distanceToRiver}"/>
+                <input type="number" th:field="*{distanceToRiver}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('distanceToRiver')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Time to city center (minutes):
-                <input type="text" th:field="*{timeToCityCenterMin}"/>
+                <input type="number" th:field="*{timeToCityCenterMin}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('timeToCityCenterMin')}" th:text="${err}"></span>
                 </div>
             </label>
 
             <label> Time to bus stop (minutes by feet):
-                <input type="text" th:field="*{timeToBusStopMin}"/>
+                <input type="number" th:field="*{timeToBusStopMin}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('timeToBusStopMin')}" th:text="${err}"></span>
                 </div>
@@ -148,7 +148,6 @@
                 </div>
             </label>
 
-
             <label> Developer:
                 <select th:field="*{developerId}" name="developer">
                 <option th:value="null" selected>Make your choice</option>
@@ -187,7 +186,7 @@
             </label>
 
             <label> Building section:
-                <input type="text" th:field="*{buildingSection}"/>
+                <input type="number" th:field="*{buildingSection}"/>
                 <div>
                     <span th:each="err : ${#fields.errors('buildingSection')}" th:text="${err}"></span>
                 </div>
