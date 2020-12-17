@@ -54,10 +54,10 @@
                             <span th:each="err : ${#fields.errors('minFloor')}" th:text="${err}"></span>
                         </div>
                     </label>
-                    <label> Min floor:
-                        <input type="number" th:field="*{minFloor}"/>
+                    <label> Max floor:
+                        <input type="number" th:field="*{maxFloor}"/>
                         <div>
-                            <span th:each="err : ${#fields.errors('minFloor')}" th:text="${err}"></span>
+                            <span th:each="err : ${#fields.errors('maxFloor')}" th:text="${err}"></span>
                         </div>
                     </label>
                 </fieldset>
@@ -146,12 +146,6 @@
 
                 <fieldset> Distance to kindergarten:
                     <br>
-                    <label> Min:
-                        <input type="number" th:field="*{minDistanceToKindergarten}"/>
-                        <div>
-                            <span th:each="err : ${#fields.errors('minDistanceToKindergarten')}" th:text="${err}"></span>
-                        </div>
-                    </label>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToKindergarten}"/>
                         <div>
@@ -162,12 +156,6 @@
 
                 <fieldset> Distance to school:
                     <br>
-                    <label> Min:
-                        <input type="number" th:field="*{minDistanceToSchool}"/>
-                        <div>
-                            <span th:each="err : ${#fields.errors('minDistanceToSchool')}" th:text="${err}"></span>
-                        </div>
-                    </label>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToSchool}"/>
                         <div>
@@ -178,12 +166,6 @@
 
                 <fieldset> Distance to shopping malls:
                     <br>
-                    <label> Min:
-                        <input type="number" th:field="*{minDistanceToShoppingCenters}"/>
-                        <div>
-                            <span th:each="err : ${#fields.errors('minDistanceToShoppingCenters')}" th:text="${err}"></span>
-                        </div>
-                    </label>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToShoppingCenters}"/>
                         <div>
@@ -194,12 +176,6 @@
 
                 <fieldset> Distance to park:
                     <br>
-                    <label> Min:
-                        <input type="number" th:field="*{minDistanceToPark}"/>
-                        <div>
-                            <span th:each="err : ${#fields.errors('minDistanceToPark')}" th:text="${err}"></span>
-                        </div>
-                    </label>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToPark}"/>
                         <div>
@@ -226,7 +202,7 @@
                 <fieldset>
                     <label>Apartment status (free/reserved/ask developer):
                         <select th:field="*{status}">
-                            <option value=" " selected>Make your choice</option>
+                            <option th:value="null" selected>Make your choice</option>
                             <option th:each="statusOpt : ${T(projects.realestatemanager.enums.ApartmentStatus).values()}"
                                     th:value="${statusOpt.displayValue}" th:text="${statusOpt.displayValue}">
                             </option>

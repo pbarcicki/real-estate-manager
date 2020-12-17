@@ -62,15 +62,7 @@ public class SearchApartmentCommand {
 
     //building
     @Digits(integer = 4, fraction = 0)
-    private Integer minDistanceToKindergarten;
-
-    //building
-    @Digits(integer = 4, fraction = 0)
     private Integer maxDistanceToKindergarten;
-
-    //building
-    @Digits(integer = 4, fraction = 0)
-    private Integer minDistanceToSchool;
 
     //building
     @Digits(integer = 4, fraction = 0)
@@ -78,15 +70,7 @@ public class SearchApartmentCommand {
 
     //building
     @Digits(integer = 4, fraction = 0)
-    private Integer minDistanceToShoppingCenters;
-
-    //building
-    @Digits(integer = 4, fraction = 0)
     private Integer maxDistanceToShoppingCenters;
-
-    //building
-    @Digits(integer = 4, fraction = 0)
-    private Integer minDistanceToPark;
 
     //building
     @Digits(integer = 4, fraction = 0)

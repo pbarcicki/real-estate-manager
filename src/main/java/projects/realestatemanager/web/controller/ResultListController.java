@@ -23,12 +23,12 @@ public class ResultListController {
     private final ApartmentService apartmentService;
     private final ApartmentRepository apartmentRepository;
 
-    @GetMapping("/{ids:id[?]+[0-9]+[&]*}")
-    public String getSearchPage(Model model, @PathVariable (value = "ids") String ids) {
+    //todo regex
+    @GetMapping("/{ids:\\d+}")
+    public String getSearchPage(@PathVariable (value = "ids") String ids, Model model) {
         List<Long> idList = new ArrayList();
         log.debug("Received ids in show controller: {}", ids);
-        idList.add(1L);
-        idList.add(2L);
+
         //todo parse variable string into is list
 
         model.addAttribute("apartmentsToShow", apartmentService.showByIds(idList));
