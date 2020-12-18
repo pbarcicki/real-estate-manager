@@ -36,11 +36,7 @@ public class ResultListController {
             idList.add(Long.parseLong(idsArray[i]));
         }
 
-
         log.debug("Received list of ids: {}", idList.size());
-
-
-        //todo parse variable string into is list
 
         model.addAttribute("apartmentsToShow", apartmentService.showByIds(idList));
         return "search/results";

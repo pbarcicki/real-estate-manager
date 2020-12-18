@@ -80,7 +80,7 @@ public class BuildingService {
         return buildingConverter.from(buildingToEdit);
 
     }
-    //todo
+
     public boolean editBuilding(EditBuildingCommand editBuildingCommand) {
         Long id = editBuildingCommand.getId();
         log.debug("Connected developer idL {}", editBuildingCommand.getDeveloperId());
@@ -114,12 +114,18 @@ public class BuildingService {
             log.debug("Tried to delete building with connected apartments");
             throw new EntityHasConnectionsException("Tried to delete building with connected apartments");
         }
-        if (false){
-            log.debug("Tried to delete building which has apartments!");
-            throw new EntityHasConnectionsException("Building has connected apartments!");
-        }
+
         buildingRepository.deleteById(id);
         log.debug("Deleted building with id: {}", id);
         return true;
+    }
+
+    public Building findBuildingById(Long id) {
+        log.debug("Building id to show: {}", id);
+        if (!buildingRepository.existsById(id)) {
+            log.debug("Tried to delete non-existing building!");
+            throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
+        }
+        return buildingRepository.getOne(id);
     }
 }

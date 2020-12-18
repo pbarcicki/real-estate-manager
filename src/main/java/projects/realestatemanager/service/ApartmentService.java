@@ -98,9 +98,17 @@ public class ApartmentService {
     }
 
     public List<ApartmentSummary> showByIds(List<Long> idList) {
-        List <Apartment> apartmentEntities = apartmentRepository.findAllByIdIn(idList);
-        return apartmentEntities.stream()
-                .map(apartmentConverter::from)
-                .collect(Collectors.toList());
+        log.debug("Id list to look in db: {}", idList.toString());
+
+        try {
+            List <Apartment> apartmentEntities = apartmentRepository.findAllByIdIn(idList);
+            return apartmentEntities.stream()
+                    .map(apartmentConverter::from)
+                    .collect(Collectors.toList());
+        } catch (RuntimeException re) {
+            log.error(re.getLocalizedMessage());
+            return null;
+        }
+
     }
 }
