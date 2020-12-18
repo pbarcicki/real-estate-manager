@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class SearchController {
         return developerService.showAllDevelopers();
     }
 
-    @RequestMapping
+    @GetMapping
     public String getSearchPage(Model model) {
         model.addAttribute(new SearchApartmentCommand());
         return "search/search";
@@ -54,8 +55,8 @@ public class SearchController {
             bindingResult.rejectValue(null, null, "All fields are null");
             return "search/search";
         } catch (RuntimeException re) {
-            log.error(re.getLocalizedMessage());
             log.warn("Unknown error while search");
+            log.error(re.getLocalizedMessage());
             bindingResult.rejectValue(null, null, "Unknown error");
             return "search/search";
         }

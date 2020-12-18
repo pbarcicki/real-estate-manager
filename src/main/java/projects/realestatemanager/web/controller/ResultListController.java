@@ -12,6 +12,7 @@ import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.service.ApartmentService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -24,10 +25,20 @@ public class ResultListController {
     private final ApartmentRepository apartmentRepository;
 
     //todo regex
-    @GetMapping("/{ids:\\d+}")
+    @GetMapping("/{ids:^[0-9].*[0-9]$}")
     public String getSearchPage(@PathVariable (value = "ids") String ids, Model model) {
-        List<Long> idList = new ArrayList();
         log.debug("Received ids in show controller: {}", ids);
+
+        List<Long> idList = new ArrayList<>();
+
+        String[] idsArray = ids.split("[+]");
+        for (int i = 0; i < idsArray.length; i++) {
+            idList.add(Long.parseLong(idsArray[i]));
+        }
+
+
+        log.debug("Received list of ids: {}", idList.size());
+
 
         //todo parse variable string into is list
 
