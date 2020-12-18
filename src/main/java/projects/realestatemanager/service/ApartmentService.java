@@ -96,4 +96,11 @@ public class ApartmentService {
         return true;
 
     }
+
+    public List<ApartmentSummary> showByIds(List<Long> idList) {
+        List <Apartment> apartmentEntities = apartmentRepository.findAllByIdIn(idList);
+        return apartmentEntities.stream()
+                .map(apartmentConverter::from)
+                .collect(Collectors.toList());
+    }
 }

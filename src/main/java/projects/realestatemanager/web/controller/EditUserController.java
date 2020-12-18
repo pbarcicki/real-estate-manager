@@ -54,6 +54,7 @@ public class EditUserController {
         }
         return ("redirect:/users/edit/" +id);
     }
+
     @PostMapping("/{id:[0-9]+}/delete")
     public String deleteUser(@PathVariable(value = "id") Long id) {
         log.debug("Id: {} user to delete", id);

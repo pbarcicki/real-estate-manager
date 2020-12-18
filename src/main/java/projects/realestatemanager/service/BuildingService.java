@@ -8,6 +8,7 @@ import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.model.Developer;
+import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.domain.repository.DeveloperRepository;
 import projects.realestatemanager.exception.BuildingAlreadyExistsException;
@@ -29,6 +30,7 @@ public class BuildingService {
 
     private final BuildingRepository buildingRepository;
     private final DeveloperRepository developerRepository;
+    private final ApartmentRepository apartmentRepository;
     private final BuildingConverter buildingConverter;
 
     public List<BuildingSummary> findAllBuildings(){
@@ -81,6 +83,7 @@ public class BuildingService {
     //todo
     public boolean editBuilding(EditBuildingCommand editBuildingCommand) {
         Long id = editBuildingCommand.getId();
+        log.debug("Connected developer idL {}", editBuildingCommand.getDeveloperId());
         Developer developerConnection = developerRepository.getOne(editBuildingCommand.getDeveloperId());
 
         if (!buildingRepository.existsById(id)) {
@@ -107,7 +110,10 @@ public class BuildingService {
             log.debug("Tried to delete non-existing building!");
             throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
         }
-//        if (buildingRepository.isConnectedWithApartment(id)>0) {
+        if (apartmentRepository.existsByBuildingId(id)) {
+            log.debug("Tried to delete building with connected apartments");
+            throw new EntityHasConnectionsException("Tried to delete building with connected apartments");
+        }
         if (false){
             log.debug("Tried to delete building which has apartments!");
             throw new EntityHasConnectionsException("Building has connected apartments!");

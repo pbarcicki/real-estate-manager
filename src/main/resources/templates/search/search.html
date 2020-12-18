@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    <section>
+        <h1>Enter needed fields for search:</h1>
+    </section>
+
+    <section>
+        <fieldset>
+            <form th:action="@{/search}"
+                  th:method="post"
+                  th:object="${searchApartmentCommand}">
+
+                <fieldset>
+                    <label> Developer:
+                        <select th:field="*{developerId}" name="developer">
+                            <option th:value="null" selected>Make your choice</option>
+                            <option th:each="developerOpt : ${availableDevelopers}"
+                                    th:value="${developerOpt.id}" th:text="${developerOpt.name}">
+                            </option>
+                        </select>
+                        <br>
+                        <div>
+                            <span th:each="err : ${#fields.errors('developerId')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <label> Street:
+                        <input type="text" th:field="*{street}"/>
+                        <datalist id="suggestions">
+                            <option value="Black">
+                            <option value="Red">
+                            <option value="Green">
+                            <option value="Blue">
+                            <option value="White">
+                        </datalist>
+                        <div>
+                            <span th:each="err : ${#fields.errors('street')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Floor:
+                    <br>
+                    <label> Min floor:
+                        <input type="number" th:field="*{minFloor}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('minFloor')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Max floor:
+                        <input type="number" th:field="*{maxFloor}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxFloor')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Area:
+                    <br>
+                    <label> Min area:
+                        <input type="number" th:field="*{minArea}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('minArea')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Max area:
+                       <input type="number" th:field="*{maxArea}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxArea')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Rooms number:
+                    <br>
+                    <label> Min rooms number:
+                        <input type="number" th:field="*{minRoomsNumber}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('minRoomsNumber')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Max rooms number:
+                        <input type="number" th:field="*{maxRoomsNumber}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxRoomsNumber')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+               <fieldset>
+                   <label>Type of kitchen:
+                       <select th:field="*{typeOfKitchen}">
+                           <option th:value="null" selected>Make your choice</option>
+                           <option th:each="kitchenOpt : ${T(projects.realestatemanager.enums.KitchenType).values()}"
+                                   th:value="${kitchenOpt.displayValue}" th:text="${kitchenOpt.displayValue}">
+                           </option>
+                       </select>
+                       <div>
+                           <span th:each="err : ${#fields.errors('typeOfKitchen')}" th:text="${err}"></span>
+                       </div>
+                   </label>
+               </fieldset>
+
+                <fieldset> Price (USD):
+                    <br>
+                    <label> Min price:
+                        <input type="number" th:field="*{minPrice}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('minPrice')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Max price:
+                        <input type="number" th:field="*{maxPrice}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxPrice')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Price per m2 (USD):
+                    <br>
+                    <label> Min price per m2:
+                        <input type="number" th:field="*{minPricePerSquareMeter}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('minPricePerSquareMeter')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Max price per m2:
+                        <input type="number" th:field="*{maxPricePerSquareMeter}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxPricePerSquareMeter')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <label> Type of market:
+                    <select th:field="*{marketType}">
+                        <option th:value="null" selected>Make your choice</option>
+                        <option th:each="marketOpt : ${T(projects.realestatemanager.enums.ApartmentTypeOfMarket).values()}"
+                                th:value="${marketOpt.displayValue}" th:text="${marketOpt.displayValue}">
+                        </option>
+                    </select>
+                    <div>
+                        <span th:each="err : ${#fields.errors('marketType')}" th:text="${err}"></span>
+                    </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Distance to kindergarten:
+                    <br>
+                    <label> Max:
+                        <input type="number" th:field="*{maxDistanceToKindergarten}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxDistanceToKindergarten')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Distance to school:
+                    <br>
+                    <label> Max:
+                        <input type="number" th:field="*{maxDistanceToSchool}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxDistanceToSchool')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Distance to shopping malls:
+                    <br>
+                    <label> Max:
+                        <input type="number" th:field="*{maxDistanceToShoppingCenters}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxDistanceToShoppingCenters')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset> Distance to park:
+                    <br>
+                    <label> Max:
+                        <input type="number" th:field="*{maxDistanceToPark}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxDistanceToPark')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset>Localization details:
+                    <br>
+
+                    <label>Windows direction:
+                        <select th:field="*{windowsDirection}">
+                            <option th:value="null" selected>Make your choice</option>
+                            <option th:each="windowsOpt : ${T(projects.realestatemanager.enums.WindRose).values()}"
+                                    th:value="${windowsOpt.displayValue}" th:text="${windowsOpt.displayValue}">
+                            </option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('windowsDirection')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label>View on:
+                        <input type="text" th:field="*{view}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('view')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <label>Apartment status:
+                        <select th:field="*{status}">
+                            <option th:value="null" selected>Make your choice</option>
+                            <option th:each="statusOpt : ${T(projects.realestatemanager.enums.ApartmentStatus).values()}"
+                                    th:value="${statusOpt.displayValue}" th:text="${statusOpt.displayValue}">
+                            </option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('status')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Exclusivity:
+                        <select th:field="*{exclusivity}">
+                            <option value=" " selected>Make your choice</option>
+                            <option th:value="true" th:text="|Exclusive|"></option>
+                            <option th:value="false" th:text="|Not exclusive|"></option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('exclusivity')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Storage room:
+                        <select th:field="*{storageRoom}">
+                            <option value=" " selected>Make your choice</option>
+                            <option th:value="true" th:text="|Available|"></option>
+                            <option th:value="false" th:text="|Unavailable|"></option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('storageRoom')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> Apartment placed on building corner:
+                        <select th:field="*{onCorner}">
+                            <option value=" " selected>Make your choice</option>
+                            <option th:value="true" th:text="|Corner|"></option>
+                            <option th:value="false" th:text="|Not corner|"></option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('onCorner')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+
+<!--                    BUILDING-->
+                    <label> Park lot availability:
+                        <select th:field="*{isParkingAvailable}">
+                            <option value=" " selected>Make your choice</option>
+                            <option th:value="true" th:text="|Park lot available|"></option>
+                            <option th:value="false" th:text="|Park lot unavailable|"></option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('isParkingAvailable')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+
+                    <label> Garage availability:
+                        <select th:field="*{isGarageAvailable}">
+                            <option value=" " selected>Make your choice</option>
+                            <option th:value="true" th:text="|Garage available|"></option>
+                            <option th:value="false" th:text="|Garage unavailable|"></option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('isGarageAvailable')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+
+                    <label> Elevator availability:
+                        <select th:field="*{isElevatorAvailable}">
+                            <option value=" " selected>Make your choice</option>
+                            <option th:value="true" th:text="|Elevator available|"></option>
+                            <option th:value="false" th:text="|Elevator unavailable|"></option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('isElevatorAvailable')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+
+                    <label> Connected to media:
+                        <select th:field="*{isConnectedToMedia}">
+                            <option value=" " selected>Make your choice</option>
+                            <option th:value="true" th:text="|Connected|"></option>
+                            <option th:value="false" th:text="|Not connected|"></option>
+                        </select>
+                        <div>
+                            <span th:each="err : ${#fields.errors('isConnectedToMedia')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+
+                <fieldset>Realization term:
+                    <br>
+                    <label> From::
+                        <input type="date" th:field="*{minBuildingRealizationTerm}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('minBuildingRealizationTerm')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                    <label> To:
+                        <input type="date" th:field="*{maxBuildingRealizationTerm}"/>
+                        <div>
+                            <span th:each="err : ${#fields.errors('maxBuildingRealizationTerm')}" th:text="${err}"></span>
+                        </div>
+                    </label>
+                </fieldset>
+                <div>
+                    <button type="submit">Search...</button>
+                </div>
+            </form>
+        </fieldset>
+    </section>
+
+</body>
+</html>

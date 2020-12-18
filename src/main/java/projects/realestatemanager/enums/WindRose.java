@@ -1,19 +1,18 @@
 package projects.realestatemanager.enums;
 
-public enum Region {
-    POM("Pomerian"),
-    SIL("Silesian"),
-    LOWERSIL("Lower Silesia"),
-    WESTPOM("West Pomerian");
+public enum WindRose {
+    WEST("West"),
+    EAST("East"),
+    NORTH("North"),
+    SOUTH("South");
 
     private final String displayValue;
 
-    Region(String displayValue) {
+    WindRose(String displayValue) {
         this.displayValue = displayValue;
     }
 
     public String getDisplayValue() {
         return displayValue;
     }
-
 }
