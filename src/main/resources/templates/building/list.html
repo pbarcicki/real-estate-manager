@@ -14,11 +14,11 @@
         <table>
             <tr>
                 <th>Id</th>
+                <th>Developer</th>
                 <th>City</th>
                 <th>Street</th>
                 <th>Building number</th>
                 <th>Building construction type</th>
-                <th>Developer</th>
                 <th>Primary market</th>
                 <th>Number of apartments</th>
                 <th>Section</th>
@@ -28,16 +28,15 @@
             </tr>
             <tr th:each="building : ${buildings}">
                 <td th:text="${building.id}"></td>
+                <td th:text="${building.developerName}"></td>
                 <td th:text="${building.city}"></td>
                 <td th:text="${building.street}"></td>
                 <td th:text="${building.buildingNumber}"></td>
                 <td th:text="${building.buildingConstructionType}"></td>
-                <td th:text="${building.developerName}"></td>
                 <td>
                     <input type="checkbox" disabled="true"
                            th:checked="${building.isPrimaryMarket}">
                 </td>
-<!--                todo numberOfApartments display-->
                 <td th:text="${building.numberOfApartments}"></td>
                 <td th:text="${building.buildingSection}"></td>
                 <td th:text="${building.buildingRealizationTerm}"></td>
@@ -46,7 +45,7 @@
                 <td> <button><a th:href="|edit/${building.id}|">Edit</a></button> </td>
 
 <!--                link to details-->
-                <td> <button><a th:href="|details/${building.id}|">Check details</a></button> </td>
+                <td> <button><a th:href="|list/details/${building.id}|">Check details</a></button> </td>
             </tr>
         </table>
 
