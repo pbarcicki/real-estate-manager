@@ -47,6 +47,11 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
     @Query("SELECT b FROM Building b WHERE b.buildingRealizationTerm<=?1")
     List<Building> findAllMaxRealizationTerm(LocalDate maxBuildingRealizationTerm);
 
+    @Query(
+            value = "SELECT * FROM buildings b INNER JOIN users_favourite_buildings f ON b.id = f.building_id WHERE f.user_id = ?1",
+            nativeQuery = true)
+    List<Building> getUsersFavouriteBuildings(Long userId);
+
 
 //    @Query("select count(a) from Building b join Apartment a where b.id = ?1")
 //    int isConnectedWithApartment(Long id);

@@ -25,6 +25,8 @@
                 <th>Realization</th>
                 <th>Photos/plan</th>
                 <th>Added to DB</th>
+                <th>Favourite</th>
+                <th></th>
             </tr>
             <tr th:each="building : ${buildings}">
                 <td th:text="${building.id}"></td>
@@ -42,10 +44,11 @@
                 <td th:text="${building.buildingRealizationTerm}"></td>
                 <td th:text="${building.photosUrl}"></td>
                 <td th:text="${building.creationDate}"></td>
+                <td><button><a th:href="@{list/fav(buildingId=${building.id})}">FAV</a></button></td>
                 <td> <button><a th:href="|edit/${building.id}|">Edit</a></button> </td>
 
 <!--                link to details-->
-                <td> <button><a th:href="|list/details/${building.id}|">Check details</a></button> </td>
+                <td><button><a th:href="|list/details/${building.id}|">Check details</a></button> </td>
             </tr>
         </table>
 

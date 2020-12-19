@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
@@ -24,6 +24,27 @@
     <a href="/developers/list">DEWELOPERZY</a>
     <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/add">DODAJ NOWEGO UŻYTKOWNIKA</a>
     <a href="/logout">WYLOGUJ!</a>
+</div>
+<div>
+    <h2>Lista ulubionych bydunków...</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>type</th>
+            <th>real_term</th>
+            <th>region</th>
+            <th>deleteeeee</th>
+        </tr>
+        <tr th:each="building : ${favouriteBuildings}">
+            <td th:text="${building.id}"></td>
+            <td th:text="${building.buildingConstructionType}"></td>
+            <td th:text="${building.buildingRealizationTerm}"></td>
+            <td th:text="${building.region}"></td>
+            <td>
+                <a th:href="@{del/fav/building(id=${building.id})}">DELETE</a>
+            </td>
+        </tr>
+    </table>
 </div>
 <hr>
 </body>

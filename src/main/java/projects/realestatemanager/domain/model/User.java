@@ -49,4 +49,23 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "user")
     @Column(nullable = false)
     private List<Client> client;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "users_favourite_buildings",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "building_id")
+
+    )
+    private Set<Building> buildings = new HashSet<>();
+
+    public void addBuilding(Building building) {
+        this.buildings.add(building);
+        building.getUsers().add(this);
+    }
+
+    public void removeBuilding(Building building) {
+        this.buildings.remove(building);
+        building.getUsers().remove(this);
+    }
 }

@@ -8,6 +8,7 @@ import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.building.BuildingSummary;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.model.Developer;
+import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.domain.repository.DeveloperRepository;
@@ -127,5 +128,9 @@ public class BuildingService {
             throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
         }
         return buildingRepository.getOne(id);
+    }
+
+    public List<Building> getUserFavouriteBuildings(User user) {
+        return buildingRepository.getUsersFavouriteBuildings(user.getId());
     }
 }

@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "building")
+@Table(name = "buildings")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @ToString (exclude = "apartments")
 @EqualsAndHashCode(of = {"street", "buildingNumber"})
@@ -112,5 +114,8 @@ public class Building {
 
     @OneToMany(mappedBy = "building")
     private List<Apartment> apartments;
+
+    @ManyToMany(mappedBy = "buildings")
+    private Set<User> users = new HashSet<>();
 
 }
