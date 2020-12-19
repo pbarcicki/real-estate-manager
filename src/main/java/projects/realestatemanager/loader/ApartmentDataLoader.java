@@ -58,7 +58,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .marketType("Secondary")
                 .onCorner(true)
                 .active(true)
-                .photosUrl("http://state.gov") 
+                .photosUrl("http://state.gov")
                 .creationDate(LocalDate.of(2020,12,3))
                 .comment("feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst")
                 .floor(7)

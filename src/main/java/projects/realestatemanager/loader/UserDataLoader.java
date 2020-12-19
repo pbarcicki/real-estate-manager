@@ -3,6 +3,7 @@ package projects.realestatemanager.loader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.domain.model.User;
@@ -15,7 +16,8 @@ import java.util.Set;
 @Slf4j @RequiredArgsConstructor
 public class UserDataLoader implements DataLoader{
     private final UserRepository userRepository;
-    private final ClientRepository clientRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     public int getOrder(){
         return Integer.MIN_VALUE;
@@ -26,13 +28,13 @@ public class UserDataLoader implements DataLoader{
       User user1= User.builder()
               .username("tom1")
               .userEmail("tom@gmail.com")
-              .userPassword("tom12345")
+              .userPassword(passwordEncoder.encode("tom123"))
               .isActive(true)
               .roles(Set.of("ROLE_USER"))
               .build();
       User user2= User.builder()
               .username("tina12")
-              .userPassword("tina234")
+              .userPassword(passwordEncoder.encode("tina1234"))
               .userEmail("tina1@linkedin.com")
               .isActive(true)
               .roles(Set.of("ROLE_ADMIN"))
