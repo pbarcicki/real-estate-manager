@@ -14,24 +14,11 @@
         <table>
             <tr>
                 <th>Id</th>
-                <th>Region</th>
-                <th>City</th>
-                <th>District</th>
-                <th>Street</th>
-                <th>Number</th>
-                <th>Distance to kindergarten</th>
-                <th>Distance to school</th>
-                <th>Distance to shopping centers</th>
-                <th>Distance to park</th>
-                <th>Distance to river</th>
-                <th>Time to city center (min)</th>
-                <th>Time to bus stop (min)</th>
-                <th>Park lot</th>
-                <th>Garage</th>
-                <th>Elevator</th>
-                <th>Connected to media</th>
-                <th>Building construction type</th>
                 <th>Developer</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>Building number</th>
+                <th>Building construction type</th>
                 <th>Primary market</th>
                 <th>Number of apartments</th>
                 <th>Section</th>
@@ -41,52 +28,24 @@
             </tr>
             <tr th:each="building : ${buildings}">
                 <td th:text="${building.id}"></td>
-                <td th:text="${building.region}"></td>
+                <td th:text="${building.developerName}"></td>
                 <td th:text="${building.city}"></td>
-                <td th:text="${building.district}"></td>
                 <td th:text="${building.street}"></td>
                 <td th:text="${building.buildingNumber}"></td>
-                <td th:text="${building.distanceToKindergarten}"></td>
-                <td th:text="${building.distanceToSchool}"></td>
-                <td th:text="${building.distanceToShoppingCenters}"></td>
-                <td th:text="${building.distanceToPark}"></td>
-                <td th:text="${building.distanceToRiver}"></td>
-                <td th:text="${building.timeToCityCenterMin}"></td>
-                <td th:text="${building.timeToBusStopMin}"></td>
-<!--                todo true/false display-->
-                <td>
-                    <input type="checkbox" disabled="true"
-                           th:checked="${building.isParkingAvailable}">
-                </td>
-
-                <td>
-                    <input type="checkbox" disabled="true"
-                           th:checked="${building.isGarageAvailable}">
-                </td>
-
-                <td>
-                    <input type="checkbox" disabled="true"
-                           th:checked="${building.isElevatorAvailable}">
-                </td>
-                <td>
-                    <input type="checkbox" disabled="true"
-                           th:checked="${building.isConnectedToMedia}">
-                </td>
-
                 <td th:text="${building.buildingConstructionType}"></td>
-                <td th:text="${building.developerName}"></td>
                 <td>
                     <input type="checkbox" disabled="true"
                            th:checked="${building.isPrimaryMarket}">
                 </td>
-<!--                todo numberOfApartments display-->
                 <td th:text="${building.numberOfApartments}"></td>
                 <td th:text="${building.buildingSection}"></td>
                 <td th:text="${building.buildingRealizationTerm}"></td>
                 <td th:text="${building.photosUrl}"></td>
                 <td th:text="${building.creationDate}"></td>
-                <td> <a th:href="|edit/${building.id}|">Edit</a> </td>
+                <td> <button><a th:href="|edit/${building.id}|">Edit</a></button> </td>
 
+<!--                link to details-->
+                <td> <button><a th:href="|list/details/${building.id}|">Check details</a></button> </td>
             </tr>
         </table>
 

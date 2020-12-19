@@ -24,6 +24,9 @@ public class EditBuildingCommand {
     @NotNull
     private Boolean isActive;
 
+    @NotNull
+    private Long developerId;
+
     @NotBlank
     @Size(min=3, max = 26)
     private String region;
@@ -95,9 +98,6 @@ public class EditBuildingCommand {
     @NotBlank
     @Size(min=3, max = 15)
     private String buildingConstructionType;
-
-    @NotNull
-    private Long developerId;
 
     @NotNull
     private Boolean primaryMarket;

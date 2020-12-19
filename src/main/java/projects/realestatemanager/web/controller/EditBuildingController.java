@@ -37,8 +37,6 @@ public class EditBuildingController {
     @GetMapping("/{id:[0-9]+}")
     public String getBuildingEditPage(Model model, @PathVariable Long id) {
 
-//        model.addAttribute("buildingDelete", buildingService.deleteById(id));
-
         if (buildingRepository.existsById(id)) {
             model.addAttribute(new EditBuildingCommand());
             model.addAttribute("buildingEdit", buildingService.showBuildingById(id));
@@ -53,6 +51,12 @@ public class EditBuildingController {
     public String processEditBuilding(@Valid EditBuildingCommand editBuildingCommand, BindingResult bindingResult) {
         Long id = editBuildingCommand.getId();
         log.debug("Developer to edit id: {}", id);
+
+        if (bindingResult.hasErrors()) {
+            log.debug("Wrong input: {}", bindingResult.getAllErrors());
+            bindingResult.rejectValue(null,null, "Wrong input!");
+        }
+
         try {
             buildingService.editBuilding(editBuildingCommand);
             log.debug("Building successfully edited");
@@ -77,10 +81,10 @@ public class EditBuildingController {
         } catch (EntityDoesNotExistException ddnee) {
             log.warn(ddnee.getLocalizedMessage());
             log.error("Building with id {} does nor exist", id);
-            return "redirect:/buildings/list";
+            return "errors/non-existing-entity";
         } catch (EntityHasConnectionsException ehce) {
             log.debug("Trying to edit not existing building");
-            return "redirect:/buildings/list";
+            return "errors/connected-entities";
         } catch (RuntimeException re) {
             log.warn(re.getLocalizedMessage());
             log.error("Unknown error while deleting building", re);

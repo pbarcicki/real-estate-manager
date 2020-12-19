@@ -1,19 +1,17 @@
 package projects.realestatemanager.enums;
 
-public enum Region {
-    POM("Pomerian"),
-    SIL("Silesian"),
-    LOWERSIL("Lower Silesia"),
-    WESTPOM("West Pomerian");
+public enum ApartmentStatus {
+    FREE("Free"),
+    RESERVED("Reserved"),
+    CHECK("Check with developer");
 
     private final String displayValue;
 
-    Region(String displayValue) {
+    ApartmentStatus(String displayValue) {
         this.displayValue = displayValue;
     }
 
     public String getDisplayValue() {
         return displayValue;
     }
-
 }

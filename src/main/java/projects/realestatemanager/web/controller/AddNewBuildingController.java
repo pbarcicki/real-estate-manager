@@ -29,7 +29,7 @@ public class AddNewBuildingController {
 
     @ModelAttribute("availableDevelopers")
     public List<DeveloperSummary> availableDevelopers() {
-        return developerService.showAllDevelopers(); //todo getAllDevelopers które wyciąga listę developerów z dalszą konwertacją na summary
+        return developerService.showAllDevelopers();
     }
 
     @GetMapping("/add")

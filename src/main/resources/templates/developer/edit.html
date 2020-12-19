@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>EDYCJA DEWELOPERA</title>
+    <title>Edit developer</title>
 </head>
 <body>
-<h1>EDYCJA DEWELOPERA</h1>
+<h1>Edit developer</h1>
 <h2 th:text="${developerEdit.name}"></h2>
 
 <div>
@@ -15,7 +15,7 @@
             th:object="${editDeveloperCommand}">
         <fieldset>
             <div>
-                <label>Nazwa Dewelopera:
+                <label>Developer name:
                     <input type="text"
                            th:value="${developerEdit.name}"
                            id="developerName"
@@ -27,7 +27,7 @@
                         th:text="${#fields.errors('developerName')}">
                 </div>
                 <div>
-                    <label>Osoba kontaktowa:
+                    <label>Contact person:
                         <input type="text"
                                th:value="${developerEdit.contactPerson}"
                                id="developerContactPerson"
@@ -40,7 +40,7 @@
                     </label>
                 </div>
                 <div>
-                    <label>Numer telefonu:
+                    <label>Mobile number:
                         <input type="text"
                                th:value="${developerEdit.contactNumber}"
                                id="developerContactNumber"
@@ -53,17 +53,17 @@
                     </label>
                 </div>
                 <div>
-                    <label>Status dewelopera:
+                    <label>Developer status:
                         <select id="isActive" name="isActive">
                             <option
                                     value="true"
                                     th:selected="${developerEdit.isActive() eq true}"
-                                    th:text="AKTYWNY">
+                                    th:text="Active">
                             </option>
                             <option
                                     value="false"
                                     th:selected="${developerEdit.isActive() eq false}"
-                                    th:text="NIEAKTYWNY">
+                                    th:text="|Not active|">
                             </option>
                         </select>
                     </label>
@@ -71,13 +71,13 @@
             </div>
         </fieldset>
         <fieldset>
-            <button type="submit"> >> Zmień DANE <<</button>
+            <button type="submit">Save changes</button>
         </fieldset>
     </form>
 </div>
 <fieldset>
     <form th:action="|${developerEdit.id}/delete|" th:method="post">
-        <button type="submit"> >>>USUN<<<</button>
+        <button type="submit">Delete</button>
     </form>
 </fieldset>
 </body>

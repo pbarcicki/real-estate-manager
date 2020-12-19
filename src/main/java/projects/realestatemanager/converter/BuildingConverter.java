@@ -17,8 +17,6 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class BuildingConverter {
 
-    private final DeveloperRepository developerRepository;
-
     public BuildingSummary from(Building building) {
         return BuildingSummary.builder()
                 .id(building.getId())

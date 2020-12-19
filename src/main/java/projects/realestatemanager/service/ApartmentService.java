@@ -96,4 +96,28 @@ public class ApartmentService {
         return true;
 
     }
+
+    public List<ApartmentSummary> showByIds(List<Long> idList) {
+        log.debug("Id list to look in db: {}", idList.toString());
+
+        try {
+            List <Apartment> apartmentEntities = apartmentRepository.findAllByIdIn(idList);
+            return apartmentEntities.stream()
+                    .map(apartmentConverter::from)
+                    .collect(Collectors.toList());
+        } catch (RuntimeException re) {
+            log.error(re.getLocalizedMessage());
+            return null;
+        }
+
+    }
+
+    public Apartment findApartmentById(Long id) {
+        log.debug("Apartment id to show: {}", id);
+        if (!apartmentRepository.existsById(id)) {
+            log.debug("Tried to delete non-existing apartment!");
+            throw new EntityDoesNotExistException(String.format("Apartment with id %s does not exist!", id));
+        }
+        return apartmentRepository.getOne(id);
+    }
 }
