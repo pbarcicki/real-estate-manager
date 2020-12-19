@@ -55,17 +55,6 @@
             <td sec:authorize="hasRole('ROLE_ADMIN')"><button><a th:href="|edit/${apartment.id}|">Edit</a></button></td>
             <td> <button><a th:href="|list/details/${apartment.id}|">Check details</a></button> </td>
         </tr>
-
-        <tr th:each="building : ${buildings}">
-            <td th:text="${building.isParkingAvailable}"></td>
-            <td><input type="checkbox" disabled="true" th:checked="${building.isGarageAvailable}"/></td>
-            <td><input type="checkbox" disabled="true" th:checked="building.isElevatorAvailable"/></td>
-            <td><input type="checkbox" disabled="true" th:checked="building.isConnectedToMedia"/></td>
-            <td th:text="${building.buildingConstructionType}"></td>
-            <td th:text="${building.developerName}"></td>
-        </tr>
-
-
     </table>
 
 </div>

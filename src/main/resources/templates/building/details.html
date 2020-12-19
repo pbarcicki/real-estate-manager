@@ -18,7 +18,7 @@
 
             <tr>
                 <th>Developer:</th>
-                <td> ***todo link*** </td>
+                <td th:text="${building.developerName}"></td>
             </tr>
 
             <tr>
@@ -47,6 +47,11 @@
             <tr>
                 <th>Photos URL:</th>
                 <td th:text="${building.photosUrl}"></td>
+            </tr>
+
+            <tr>
+                <th>Added to database:</th>
+                <td th:text="${building.creationDate}"></td>
             </tr>
 
         </table>

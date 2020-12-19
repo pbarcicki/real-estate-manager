@@ -24,8 +24,9 @@
             <td th:text="${client.clientContactNumber}"></td>
             <td th:text="${client.clientInterest}"></td>
             <td th:text="${client.clientRegistrationDate}"></td>
-            <td th:text="${client.isActive} ? 'active' : 'not active'"
-                th:style="${client.isActive} ? 'color: red' : 'color: grey'">
+            <td>
+                <input type="checkbox" disabled="true"
+                       th:checked="${client.isActive}">
             </td>
             <td><a th:href="|edit/${client.id}|">Edit</a></td>
         </tr>
