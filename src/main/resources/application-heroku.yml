@@ -5,9 +5,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-    dataspurce: jdbc:h2:mem:real
+  datasource:
+    url: jdbc:h2:mem:real
 
 logging:
   level:
+    sql: DEBUG
     root: WARN
     projects.realestatemanager: DEBUG
