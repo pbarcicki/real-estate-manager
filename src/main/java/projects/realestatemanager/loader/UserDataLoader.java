@@ -26,15 +26,15 @@ public class UserDataLoader implements DataLoader{
     @Transactional
     public void loadData(){
       User user1= User.builder()
-              .username("tom1")
+              .username("user")
               .userEmail("tom@gmail.com")
-              .userPassword(passwordEncoder.encode("tom123"))
+              .userPassword(passwordEncoder.encode("user"))
               .isActive(true)
               .roles(Set.of("ROLE_USER"))
               .build();
       User user2= User.builder()
-              .username("tina12")
-              .userPassword(passwordEncoder.encode("tina1234"))
+              .username("admin")
+              .userPassword(passwordEncoder.encode("admin"))
               .userEmail("tina1@linkedin.com")
               .isActive(true)
               .roles(Set.of("ROLE_ADMIN"))

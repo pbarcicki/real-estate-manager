@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.domain.model.Developer;
+import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.domain.repository.DeveloperRepository;
 
 @Component
@@ -15,6 +16,7 @@ import projects.realestatemanager.domain.repository.DeveloperRepository;
 public class DeveloperDataLoader implements DataLoader{
 
     private final DeveloperRepository developerRepository;
+    private final BuildingRepository buildingRepository;
 
     public int getOrder(){
         return Integer.MIN_VALUE + 1;
