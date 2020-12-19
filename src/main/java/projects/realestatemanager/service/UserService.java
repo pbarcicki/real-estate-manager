@@ -11,10 +11,7 @@ import projects.realestatemanager.domain.model.Client;
 import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.UserRepository;
-import projects.realestatemanager.exception.ClientAlreadyExistException;
-import projects.realestatemanager.exception.ClientDoesNotExistException;
-import projects.realestatemanager.exception.UserAlreadyExistException;
-import projects.realestatemanager.exception.UserDoesNotExistException;
+import projects.realestatemanager.exception.*;
 import projects.realestatemanager.web.command.CreateUserCommand;
 import projects.realestatemanager.web.command.EditUserCommand;
 
@@ -59,7 +56,7 @@ public class UserService {
         Long id = editUserCommand.getId();
         if(!userRepository.existsById(id)){
             log.debug("User with id: {} doesn't exist", id);
-            throw new UserDoesNotExistException(String.format(
+            throw new EntityDoesNotExistException(String.format(
                     "User with id: {} doesn't exist",id));
         }
         User user = userRepository.getOne(id);
@@ -75,7 +72,7 @@ public class UserService {
         User user = userRepository.getOne(id);
         if(!userRepository.existsById(id)){
             log.debug("User with id: {} doesn't exist", id);
-            throw new UserDoesNotExistException(
+            throw new EntityDoesNotExistException(
                     String.format("User with id: {} doesn't exist", id)
             );
         }
@@ -85,14 +82,14 @@ public class UserService {
         userToCreate.setIsActive(Boolean.TRUE);
     }
 
-    public boolean delete(EditUserCommand editUserCommand) {
-        Long id = editUserCommand.getId();
+    public boolean delete(Long id) {
+        log.debug("Searching user with id: {}", id);
+        User user = userRepository.getOne(id);
         if(!userRepository.existsById(id)){
             log.debug("Client with id: {} doesn't exist", id);
-            throw new ClientDoesNotExistException(String.format(
+            throw new EntityDoesNotExistException(String.format(
                     "Client with id: {} doesn't exist", id));
         }
-        User user = userRepository.getOne(id);
         log.debug("Client to delete: {}", user);
         userRepository.delete(user);
         return true;

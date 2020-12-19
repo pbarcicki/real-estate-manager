@@ -29,6 +29,7 @@ public class ClientConverter {
 
     public ClientSummary toClientSummary(Client client) {
         return ClientSummary.builder()
+                .id(client.getId())
                 .clientName(client.getClientName())
                 .clientContactEmail(client.getClientContactEmail())
                 .clientContactNumber(client.getClientContactNumber())

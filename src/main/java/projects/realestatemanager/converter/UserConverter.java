@@ -25,6 +25,7 @@ public class UserConverter {
 
     public UserSummary toUserSummary(User user) {
         return UserSummary.builder()
+                .id(user.getId())
                 .username(user.getUsername())
                 .userEmail(user.getUserEmail())
                 .isActive(user.getIsActive())

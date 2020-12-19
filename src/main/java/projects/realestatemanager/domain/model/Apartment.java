@@ -6,39 +6,37 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "apartments")
+@Table(name = "apartment")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
+@ToString(exclude = "building")
 @EqualsAndHashCode(of = "id") //todo ewentualnie do zmiany
 public class Apartment {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private int floor;
+    private Integer floor;
 
-    @Column(nullable = false, name = "on_corner")
-    private boolean onCorner;
+    @Column(name = "on_corner")
+    private Boolean onCorner;
 
     @Column(nullable = false)
-    private double area;
+    private Integer area;
 
     @Column(nullable = false, name = "rooms_number")
-    private int roomsNumber;
+    private Integer roomsNumber;
 
-    //rodzaj kuchni jako string
     @Column(nullable = false, name = "type_of_kitchen")
     private String typeOfKitchen;
 
-    //cena może być niepodana
     @Column(nullable = false)
-    private int price;
+    private Integer price;
 
-    @Column(nullable = false, name = "square_meter_price")
-    private double squareMeterPrice;
+    @Column(name = "price_per_square_meter")
+    private Integer pricePerSquareMeter;
 
     //stan deweloperski/po wykończeniu/stary remont (enum???)
     @Column(nullable = false, name = "market_type")
@@ -47,28 +45,27 @@ public class Apartment {
     @Column(nullable = false)
     private String status;
 
-    @Column(nullable = false)
-    // tutaj nie wiem dokładnie
-    private boolean exclusivity;
+    private Boolean exclusivity;
     //plan i zdjęcia TODO
 
-    @Column(name = "windows_direction")
+    @Column(nullable = false, name = "windows_direction")
     private String windowsDirection;
 
-    //todo enum?
     @Column(nullable = false)
     private String view;
 
-    @Column(nullable = false, name = "storage_room")
-    private boolean storageRoom;
+    @Column(name = "storage_room")
+    private Boolean storageRoom;
 
     private String comment;
 
-    @Column(nullable = false)
-    private boolean active;
+    private Boolean active;
 
     @Column(nullable = false)
     private LocalDate creationDate;
+
+    @Column(nullable = false, name = "photos_url")
+    private String photosUrl;
 
     @ManyToOne
     @JoinColumn(name = "building_id")

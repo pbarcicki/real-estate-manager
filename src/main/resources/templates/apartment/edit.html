@@ -1,10 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit apartment</title>
 </head>
 <body>
-
+<section>
+    <h1>Edit apartment</h1>
+</section>
+<section>
+    <fieldset>
+        <form th:action="${apartmentEdit.id}"
+              th:method="post"
+              th:object="${editApartmentCommand}">
+            <div>
+                <label>Active:
+                    <input type="checkbox"
+                           name="active"
+                           id="active"
+                           th:checked="${apartmentEdit.getActive()} ? 'true' : 'false'"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('active')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Floor:
+                    <input type="text" th:value="${apartmentEdit.floor}"
+                           id="floor"
+                           name="floor"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('floor')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Flat on corner:
+                    <input type="checkbox"
+                           name="onCorner"
+                           id="onCorner"
+                           th:checked="${apartmentEdit.getOnCorner()} ? 'true' : 'false'"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('onCorner')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Area:
+                    <input type="text" th:value="${apartmentEdit.area}"
+                           id="area"
+                           name="area"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('area')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Rooms number:
+                    <input type="text" th:value="${apartmentEdit.roomsNumber}"
+                           id="roomsNumber"
+                           name="roomsNumber"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('roomsNumber')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Type of kitchen:
+                    <input type="text" th:value="${apartmentEdit.typeOfKitchen}"
+                           id="typeOfKitchen"
+                           name="typeOfKitchen"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('typeOfKitchen')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Price (USD):
+                    <input type="text" th:value="${apartmentEdit.price}"
+                           id="price"
+                           name="price"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Price per square meter::
+                    <input type="text" th:value="${apartmentEdit.pricePerSquareMeter}"
+                           id="pricePerSquareMeter"
+                           name="pricePerSquareMeter"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Type of market:
+                    <input type="text" th:value="${apartmentEdit.marketType}"
+                           id="marketType"
+                           name="marketType"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('marketType')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Status:
+                    <input type="text" th:value="${apartmentEdit.status}"
+                           id="status"
+                           name="status"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('status')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Exclusivity:
+                    <input type="checkbox"
+                           name="exclusivity"
+                           id="exclusivity"
+                           th:checked="${apartmentEdit.getExclusivity()} ? 'true' : 'false'"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('exclusivity')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Direction of windows:
+                    <input type="text" th:value="${apartmentEdit.windowsDirection}"
+                           id="windowsDirection"
+                           name="windowsDirection"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('windowsDirection')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>View:
+                    <input type="text" th:value="${apartmentEdit.view}"
+                           id="view"
+                           name="view"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('view')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Storage room:
+                    <input type="checkbox"
+                           name="storageRoom"
+                           id="storageRoom"
+                           th:checked="${apartmentEdit.getStorageRoom()} ? 'true' : 'false'"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('storageRoom')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Photos/Plan:
+                    <input type="text" th:value="${apartmentEdit.photosUrl}"
+                           id="photosUrl"
+                           name="photosUrl"/>
+                    <div>
+                        <span th:each="err : ${#fields.errors('photosUrl')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <label>Comment:
+                    <textarea th:text="${apartmentEdit.comment}"
+                              id="comment"
+                              name="comment"></textarea>
+                    <div>
+                        <span th:each="err : ${#fields.errors('comment')}" th:text="${err}"></span>
+                    </div>
+                </label>
+                <div>
+                    <button type="submit">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset>
+        <form th:action="|${apartmentEdit.id}/delete|" th:method="post">
+            <div>
+                <button type="submit">Delete apartment</button>
+            </div>
+        </form>
+    </fieldset>
+</section>
 </body>
 </html>

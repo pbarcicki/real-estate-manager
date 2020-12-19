@@ -2,32 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Dodaj DEWELOPERA</title>
+    <title>Add developer</title>
 </head>
 <body>
-<h1>Dodaj Dewelopera miły Panie...</h1>
+<h1>Add developer</h1>
 <div>
-    <form th:action="@{/developers/add}" th:method="post" th:object="${createDeveloperCommand}">
+    <form
+            th:action="@{/developers/add}"
+            th:method="post"
+            th:object="${createDeveloperCommand}">
         <fieldset>
             <div>
-                <label>Nazwa Dewelopera:
-                    <input type="text" th:field="*{developerName}" name="developerName" required/>
+                <label>Developer name:
+                    <input type="text"
+                           th:field="*{developerName}"
+                           required/>
                 </label>
-                <div th:if="${#fields.hasErrors('developerName')}" th:text="${#fields.errors('developerName')}">
+                <div
+                        th:if="${#fields.hasErrors('developerName')}"
+                        th:text="${#fields.errors('developerName')}">
                 </div>
                 <div>
-                    <label>Osoba kontaktowa:
-                        <input  type="text" th:field="*{developerContactPerson}" name="developerContactPerson" required/>
-                        <!--obsługa błędów-->
+                    <label>Contact person:
+                        <input type="text"
+                               th:field="*{developerContactPerson}"
+                               required>
+                        <div
+                                th:if="${#fields.hasErrors('developerContactPerson')}"
+                                th:text="${#fields.errors('developerContactPerson')}">
+                        </div>
                     </label>
                 </div>
                 <div>
-                    <label>Numer telefonu:
-                        <input type="text" th:field="*{developerContactNumber}" name="developerContactNumber" required></label>
+                    <label>MObile number:
+                        <input type="text"
+                               th:field="*{developerContactNumber}"
+                               required></label>
+                    <div
+                            th:if="${#fields.hasErrors('developerContactNumber')}"
+                            th:text="${#fields.errors('developerContactNumber')}">
+                    </div>
                 </div>
-        </fieldset>
-        <fieldset>
-            <button type="submit">Dodaj deweloper milordzie...</button>
+                <button type="submit">Add...</button>
+            </div>
         </fieldset>
     </form>
 </div>

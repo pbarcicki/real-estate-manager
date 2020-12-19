@@ -1,10 +1,10 @@
 package projects.realestatemanager.enums;
 
 public enum Region {
-    WEST("West"),
-    EAST("East"),
-    NORTH("North"),
-    SOUTH("South");
+    POM("Pomerian"),
+    SIL("Silesian"),
+    LOWERSIL("Lower Silesia"),
+    WESTPOM("West Pomerian");
 
     private final String displayValue;
 

@@ -11,6 +11,8 @@ import java.time.LocalDate;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class BuildingSummary {
+    private Long id;
+
     private String region;
 
     private Boolean isActive;

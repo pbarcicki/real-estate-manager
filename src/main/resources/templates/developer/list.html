@@ -2,23 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>LISTA DEWELOPERÓW</title>
+    <title>Developers list</title>
 </head>
 <body>
-<h1>Lista Deweloperów</h1>
-<h2><a th:href="@{/developer/add}">Dodaj nowego DEWELOPERA...</a></h2>
+<h1>Developers list</h1>
+<h2><a th:href="@{/developers/add}">Add new developer...</a></h2>
 <div>
     <table>
         <tr>
-            <th>Nazwa</th>
-            <th>Osoba kontaktowa</th>
-            <th>Kontakt</th>
+            <th>Name</th>
+            <th>Contact person</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>status2</th>
         </tr>
         <tr th:each="developer : ${developersList}">
             <td th:text="${developer.name}"></td>
             <td th:text="${developer.contactPerson}"></td>
             <td th:text="${developer.contactNumber}"></td>
-            <td><a th:href="|edit/${developer.id}|">EDYTUJ</a></td>
+            <td
+                    th:text="${developer.isActive()} ? 'active' : 'not active'"
+                    th:style="${developer.isActive()} ? 'color: red' : 'color: grey'"
+            ></td>
+            <td><a th:href="|edit/${developer.id}|">Edit</a></td>
         </tr>
     </table>
 </div>

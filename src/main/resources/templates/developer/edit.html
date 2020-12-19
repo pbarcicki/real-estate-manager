@@ -2,15 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>EDYCJA DEWELOPERA</title>
+    <title>Edit developer</title>
 </head>
 <body>
-<h1 th:text="|Edycja DEWELOPERA ${developerEdit.name}|">Edycja Developera</h1>
+<h1>Edit developer</h1>
+<h2 th:text="${developerEdit.name}"></h2>
+
 <div>
-    <form th:action="${developerEdit.id}" th:method="post" th:object="${editDeveloperCommand}">
+    <form
+            th:action="${developerEdit.id}"
+            th:method="post"
+            th:object="${editDeveloperCommand}">
         <fieldset>
             <div>
-                <label>Nazwa Dewelopera:
+                <label>Developer name:
                     <input type="text"
                            th:value="${developerEdit.name}"
                            id="developerName"
@@ -22,30 +27,58 @@
                         th:text="${#fields.errors('developerName')}">
                 </div>
                 <div>
-                    <label>Osoba kontaktowa:
+                    <label>Contact person:
                         <input type="text"
                                th:value="${developerEdit.contactPerson}"
                                id="developerContactPerson"
                                name="developerContactPerson"
                                required/>
-                        <!--obsługa błędów-->
+                        <div
+                                th:if="${#fields.hasErrors('developerContactPerson')}"
+                                th:text="${#fields.errors('developerContactPerson')}">
+                        </div>
                     </label>
                 </div>
                 <div>
-                    <label>Numer telefonu:
+                    <label>Mobile number:
                         <input type="text"
                                th:value="${developerEdit.contactNumber}"
                                id="developerContactNumber"
                                name="developerContactNumber"
-                               required>
+                               required/>
+                        <div
+                                th:if="${#fields.hasErrors('developerContactNumber')}"
+                                th:text="${#fields.errors('developerContactNumber')}">
+                        </div>
                     </label>
                 </div>
+                <div>
+                    <label>Developer status:
+                        <select id="isActive" name="isActive">
+                            <option
+                                    value="true"
+                                    th:selected="${developerEdit.isActive() eq true}"
+                                    th:text="Active">
+                            </option>
+                            <option
+                                    value="false"
+                                    th:selected="${developerEdit.isActive() eq false}"
+                                    th:text="|Not active|">
+                            </option>
+                        </select>
+                    </label>
+                </div>
+            </div>
         </fieldset>
         <fieldset>
-            <button type="submit">Zmień dane</button>
+            <button type="submit">Save changes</button>
         </fieldset>
     </form>
 </div>
-
+<fieldset>
+    <form th:action="|${developerEdit.id}/delete|" th:method="post">
+        <button type="submit">Delete</button>
+    </form>
+</fieldset>
 </body>
 </html>

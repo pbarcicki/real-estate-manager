@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "client")
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 @EqualsAndHashCode(of = {"clientName", "clientRegistrationDate"})
-@ToString
+@ToString(exclude = "user")
 public class Client {
 
     @Id

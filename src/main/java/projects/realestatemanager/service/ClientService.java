@@ -12,6 +12,7 @@ import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ClientRepository;
 import projects.realestatemanager.exception.ClientAlreadyExistException;
 import projects.realestatemanager.exception.ClientDoesNotExistException;
+import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.web.command.CreateClientCommand;
 import projects.realestatemanager.web.command.EditClientCommand;
 
@@ -77,9 +78,8 @@ public class ClientService {
         Client client = clientRepository.getOne(id);
         if(!clientRepository.existsById(id)){
             log.debug("Client with id: {} doesn't exist", id);
-            throw new ClientDoesNotExistException(
-                    String.format("Client with id: {} doesn't exist", id)
-            );
+            throw new EntityDoesNotExistException(
+                    String.format("Client with id: {} doesn't exist", id));
         }
         return clientConverter.toClientSummary(client);
     }
@@ -87,16 +87,17 @@ public class ClientService {
         clientToCreate.setIsActive(Boolean.TRUE);
     }
 
-    public boolean delete(EditClientCommand editClientCommand) {
-        Long id = editClientCommand.getId();
+    public boolean delete(Long id) {
+        log.debug("Searching client with id: {}", id);
+        Client client = clientRepository.getOne(id);
         if(!clientRepository.existsById(id)){
             log.debug("Client with id: {} doesn't exist", id);
-            throw new ClientDoesNotExistException(String.format(
+            throw new EntityDoesNotExistException(String.format(
                     "Client with id: {} doesn't exist", id));
         }
-        Client client = clientRepository.getOne(id);
         log.debug("Client to delete: {}", client);
         clientRepository.delete(client);
+        log.debug("Deleted client: {}", client);
         return true;
     }
 }

@@ -6,9 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-import projects.realestatemanager.domain.model.Developer;
-
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -97,6 +94,10 @@ public class CreateBuildingCommand {
 
     @NotNull
     private Boolean primaryMarket;
+
+    @NotNull
+//    @Digits(fraction = 0, integer = 3)
+    private Integer numberOfApartments;
 
     @Digits(fraction = 0, integer = 20)
     private Integer buildingSection;

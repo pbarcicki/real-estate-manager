@@ -32,6 +32,8 @@ public class EditDeveloperCommand {
 
     private Long id;
 
+    private Boolean isActive;
+
 //    todo uzupełnić poniższe
 //    private boolean isActive;
 //    private List<Building> buildings;

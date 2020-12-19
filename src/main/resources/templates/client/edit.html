@@ -5,7 +5,8 @@
     <title>Client edit</title>
 </head>
 <body>
-<h1 th:text="|Edit client ${clientEdit.clientName}|">Edit client</h1>
+<h1>Edit client:</h1>
+<h2 th:text="${clientEdit.clientName}"></h2>
 <div>
     <form th:action="${clientEdit.id}" th:method="post" th:object="${editClientCommand}">
         <fieldset>
@@ -66,9 +67,11 @@
             <button type="submit">Submit changes</button>
         </fieldset>
     </form>
-    <form>
-        <div><a th:href="@{/clients/{id:[0-9]+}/delete}">Delete client</a></div>
-    </form>
+    <fieldset>
+        <form th:action="|${clientEdit.id}/delete|" th:method="post">
+            <button type="submit">Delete</button>
+        </form>
+    </fieldset>
 </div>
 </body>
 </html>

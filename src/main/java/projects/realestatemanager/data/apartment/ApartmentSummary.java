@@ -6,44 +6,49 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ApartmentSummary {
 
-    @NumberFormat
-    private int floor;
+    private Long id;
 
-    private boolean onCorner;
+    private Integer floor;
 
-    @NumberFormat
-    private double area;
+    private Boolean onCorner;
 
-    @NumberFormat
-    private  int roomsNumber;
+    private Integer area;
+
+    private Integer roomsNumber;
 
     private String typeOfKitchen;
 
-    @NumberFormat
-    private int price;
+    private Integer price;
 
-    @NumberFormat
-    private double squareMeterPrice;
+    private Integer pricePerSquareMeter;
 
     private String marketType;
 
     private String status;
 
-    private boolean exclusivity;
+    private Boolean exclusivity;
 
     private String windowsDirection;
 
     private String view;
 
-    private boolean storageRoom;
+    private Boolean storageRoom;
 
-    private  String comment;
+    private String comment;
+
+    private Boolean active;
+
+    private LocalDate creationDate;
+
+    private String photosUrl;
 
 
 }

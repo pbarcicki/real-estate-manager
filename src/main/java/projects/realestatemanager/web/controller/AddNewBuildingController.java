@@ -29,7 +29,7 @@ public class AddNewBuildingController {
 
     @ModelAttribute("availableDevelopers")
     public List<DeveloperSummary> availableDevelopers() {
-        return developerService.showAllDevelopers(); //todo getAllDevelopers które wyciąga listę developerów z dalszą konwertacją na summary
+        return developerService.showAllDevelopers();
     }
 
     @GetMapping("/add")
@@ -39,7 +39,8 @@ public class AddNewBuildingController {
     }
 
     @PostMapping("/add")
-    public String processAddBuilding(@Valid CreateBuildingCommand createBuildingCommand, BindingResult bindingResult) {
+    public String processAddBuilding(@Valid CreateBuildingCommand createBuildingCommand,
+                                     BindingResult bindingResult) {
         log.debug("Data to create building");
 
         if (bindingResult.hasErrors()) {
