@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Edit building</title>
 </head>
 <body>
-<section>
+<div>
     <h1>Edit building</h1>
-</section>
-<section>
+</div>
+<div  sec:authorize="hasRole('ROLE_ADMIN')">
     <fieldset>
         <form th:action="${buildingEdit.id}"
               th:method="post"
@@ -298,7 +298,7 @@
             </div>
         </form>
     </fieldset>
-</section>
+</div>
 
 </body>
 </html>

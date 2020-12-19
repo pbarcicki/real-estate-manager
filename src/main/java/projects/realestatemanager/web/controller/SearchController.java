@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.data.developer.DeveloperSummary;
 import projects.realestatemanager.exception.AllFieldsAreNullException;
+import projects.realestatemanager.service.ApartmentService;
+import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.service.DeveloperService;
 import projects.realestatemanager.service.SearchService;
 import projects.realestatemanager.web.command.SearchApartmentCommand;
@@ -46,6 +48,7 @@ public class SearchController {
             log.debug("Wrong input: {}", bindingResult.getAllErrors());
             return "search/search";
         }
+
 
         try {
             String ids = searchService.search(searchApartmentCommand);

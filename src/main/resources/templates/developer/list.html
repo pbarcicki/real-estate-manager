@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Developers list</title>
 </head>
 <body>
 <h1>Developers list</h1>
-<h2><a th:href="@{/developers/add}">Add new developer...</a></h2>
+<h2 sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/developers/add}">Add new developer...</a></h2>
 <div>
     <table>
         <tr>
@@ -24,7 +24,7 @@
                     th:text="${developer.isActive()} ? 'active' : 'not active'"
                     th:style="${developer.isActive()} ? 'color: red' : 'color: grey'"
             ></td>
-            <td><a th:href="|edit/${developer.id}|">Edit</a></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="|edit/${developer.id}|">Edit</a></td>
         </tr>
     </table>
 </div>

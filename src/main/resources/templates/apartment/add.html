@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Add new apartment</title>
@@ -8,7 +8,7 @@
 <section>
     <h1>Add new apartment</h1>
 </section>
-<section>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
     <form th:action="@{/apartments/add}" th:method="post" th:object="${createApartmentCommand}">
         <div>
             <label>Floor:
@@ -138,7 +138,7 @@
             </div>
         </div>
     </form>
-</section>
+</div>
 
 </body>
 </html>

@@ -13,6 +13,7 @@ import projects.realestatemanager.exception.EntityDoesNotExistException;
 import projects.realestatemanager.web.command.CreateDeveloperCommand;
 import projects.realestatemanager.web.command.EditDeveloperCommand;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ public class DeveloperService {
 
     private final DeveloperRepository developerRepository;
     private final DeveloperConverter developerConverter;
+    private final EntityManager entityManager;
 
     @Transactional
     public Long createDeveloper(CreateDeveloperCommand createDeveloperCommand) {

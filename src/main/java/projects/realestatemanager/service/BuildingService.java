@@ -17,6 +17,7 @@ import projects.realestatemanager.exception.EntityHasConnectionsException;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 import projects.realestatemanager.web.command.EditBuildingCommand;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +33,7 @@ public class BuildingService {
     private final DeveloperRepository developerRepository;
     private final ApartmentRepository apartmentRepository;
     private final BuildingConverter buildingConverter;
+    private final EntityManager entityManager;
 
     public List<BuildingSummary> findAllBuildings(){
         log.debug("Getting all buildings info");
