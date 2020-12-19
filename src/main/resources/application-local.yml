@@ -15,4 +15,4 @@ spring:
     password:
     data:
       classpath: data.sql
-      initialization-mode: always
+    initialization-mode: always
