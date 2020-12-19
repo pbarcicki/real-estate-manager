@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>User list</title>
 </head>
 <body>
 <div>
-    <h2>
+    <h2  sec:authorize="hasRole('ROLE_ADMIN')">
         <a th:href="@{/users/add}">Add new user</a>
     </h2>
     <table>

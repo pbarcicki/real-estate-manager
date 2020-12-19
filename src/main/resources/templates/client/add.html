@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Add client</title>
 </head>
 <body>
 <h1>Add client</h1>
-<div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
     <form th:action="@{/clients/add}" th:method="post" th:object="${createClientCommand}">
         <fieldset>
             <div>

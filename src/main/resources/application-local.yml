@@ -8,11 +8,11 @@ spring:
     name: real-estate-manager
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     url: jdbc:mysql://localhost:3306/final_project?useSSL=false&serverTimezone=UTC
     username: root
     password:
     data:
       classpath: data.sql
-    initialization-mode: always
+    #initialization-mode: always
