@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.ApartmentConverter;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
+import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.exception.*;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
@@ -119,5 +120,9 @@ public class ApartmentService {
             throw new EntityDoesNotExistException(String.format("Apartment with id %s does not exist!", id));
         }
         return apartmentRepository.getOne(id);
+    }
+
+    public List<Apartment> getUsersFavouriteApartments(User user) {
+        return apartmentRepository.getUsersFavouriteApartments(user.getId());
     }
 }

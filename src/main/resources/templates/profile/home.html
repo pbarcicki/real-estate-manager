@@ -20,8 +20,9 @@
 <div class="nav_menu">
     <a href="/apartments/list">APARTAMENTY</a>
     <a href="/buildings/list">BUDYNKI</a>
-    <a href="/users/list">KLIENCI</a>
+    <a href="/clients/list">KLIENCI</a>
     <a href="/developers/list">DEWELOPERZY</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/list">Users</a>
     <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/add">DODAJ NOWEGO UŻYTKOWNIKA</a>
     <a href="/logout">WYLOGUJ!</a>
 </div>
@@ -58,13 +59,45 @@
         </tr>
         <tr th:each="client : ${favouriteClients}">
             <td th:text="${client.id}"></td>
-            <td th:text="${client.getClientName()}"></td>
-            <td th:text="${client.getClientRegistrationDate()}"></td>
+            <td th:text="${client.clientName}"></td>
+            <td th:text="${client.clientRegistrationDate}"></td>
             <td>
                 <a th:href="@{del/fav/client(id=${client.id})}">DELETE</a>
             </td>
         </tr>
     </table>
+</div>
+
+<div>
+    <h2>Lista ulubionych mieszkań...</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Floor</th>
+            <th>Area</th>
+            <th>Rooms number</th>
+            <th>Type of kitchen</th>
+            <th>Price (USD)</th>
+            <th>Square meter price (USD)</th>
+            <th>Type of market</th>
+        <tr>
+        <tr th:each="apartment : ${favouriteApartments}">
+            <td th:text="${apartment.id}"></td>
+            <td th:text="${apartment.floor}"></td>
+
+            <td th:text="${apartment.area}"></td>
+            <td th:text="${apartment.roomsNumber}"></td>
+            <td th:text="${apartment.typeOfKitchen}"></td>
+            <td th:text="${apartment.price}"></td>
+            <td th:text="${apartment.pricePerSquareMeter}"></td>
+            <td th:text="${apartment.marketType}"></td>
+        <td>
+            <a th:href="@{del/fav/apartment(id=${apartment.id})}">DELETE</a>
+        </td>
+
+        </tr>
+    </table>
+
 </div>
 
 <hr>

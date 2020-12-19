@@ -14,7 +14,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     boolean existsByClientContactEmail(String clientName);
 
     @Query(
-            value = "SELECT * FROM clients c INNER JOIN clients_users cu ON c.id = cu.clients_id WHERE cu.users_id = ?1",
+            value = "SELECT * FROM clients c INNER JOIN clients_users uc ON c.id = uc.clients_id WHERE uc.users_id = ?1",
             nativeQuery = true)
     List<Client> getUsersFavouriteClients(Long userId);
 }

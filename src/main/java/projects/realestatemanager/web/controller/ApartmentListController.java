@@ -2,15 +2,19 @@ package projects.realestatemanager.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.service.ApartmentService;
 import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.service.DeveloperService;
+import projects.realestatemanager.service.UserService;
 
 @Controller
 @RequestMapping("/apartments/list")
@@ -21,6 +25,7 @@ public class ApartmentListController {
     private final ApartmentService apartmentService;
     private final BuildingService buildingService;
     private final DeveloperService developerService;
+    private final UserService userService;
 
     @GetMapping()
     public String getApartmentListPage(Model model){
@@ -34,5 +39,17 @@ public class ApartmentListController {
     public String getBuildingDetailsPage(Model model, @PathVariable Long id) {
         model.addAttribute("apartment", apartmentService.findApartmentById(id));
         return ("apartment/details");
+    }
+
+    @GetMapping("/fav")
+    public String addApartmentToFavourites(@RequestParam(name = "apartmentId") Long apartmentId) {
+
+        Apartment apartment = apartmentService.findApartmentById(apartmentId);
+
+        String loggedUser = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        userService.addApartment(loggedUser, apartment);
+        return "redirect:/apartments/list";
+
     }
 }

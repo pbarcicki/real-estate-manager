@@ -54,6 +54,7 @@
             <td><input type="checkbox" disabled="true" th:checked="${apartment.onCorner}"/></td>
             <td><button><a th:href="|edit/${apartment.id}|">Edit</a></button></td>
             <td> <button><a th:href="|list/details/${apartment.id}|">Check details</a></button> </td>
+            <td><button><a th:href="@{list/fav(apartmentId=${apartment.id})}">FAV</a></button></td>
         </tr>
 
         <tr th:each="building : ${buildings}">

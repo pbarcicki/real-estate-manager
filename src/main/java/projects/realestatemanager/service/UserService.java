@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.UserConverter;
 import projects.realestatemanager.data.user.UserSummary;
+import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.model.Client;
 import projects.realestatemanager.domain.model.User;
@@ -129,4 +130,13 @@ public class UserService {
     public void removeClient(String username, Client client) {
         userRepository.getAuthenticatedUser(username).removeClient(client);
     }
+
+    public void addApartment(String username, Apartment apartment) {
+        userRepository.getAuthenticatedUser(username).addApartment(apartment);
+    }
+
+    public void removeApartment(String username, Apartment apartment) {
+        userRepository.getAuthenticatedUser(username).removeApartment(apartment);
+    }
+
 }

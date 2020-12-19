@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "username")
-@ToString(exclude = {"client", "userPassword"})
+@ToString(exclude = {"userPassword", "clients", "buildings", "apartments"})
 public class User implements Serializable {
 
     @Id
@@ -77,5 +77,26 @@ public class User implements Serializable {
     public void removeBuilding(Building building) {
         this.buildings.remove(building);
         building.getUsers().remove(this);
+    }
+
+//    @ManyToMany(mappedBy = "users")
+//    private Set<Apartment> apartments = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_favourite_apartments",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "apartment_id")
+    )
+    private Set<Apartment> apartments = new HashSet<>();
+
+    public void addApartment(Apartment apartment) {
+        this.apartments.add(apartment);
+        apartment.getUsers().add(this);
+    }
+
+    public void removeApartment(Apartment apartment) {
+        this.apartments.remove(apartment);
+        apartment.getUsers().remove(this);
     }
 }

@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.model.Client;
+import projects.realestatemanager.service.ApartmentService;
 import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.service.ClientService;
 import projects.realestatemanager.service.UserService;
@@ -23,6 +25,7 @@ public class HomePageController {
     private final BuildingService buildingService;
     private final UserService userService;
     private final ClientService clientService;
+    private final ApartmentService apartmentService;
 
     @GetMapping
     public String homePage(Model model) {
@@ -31,6 +34,7 @@ public class HomePageController {
 
         model.addAttribute("favouriteBuildings", buildingService.getUserFavouriteBuildings(userService.findUserByName(loggedUser)));
         model.addAttribute("favouriteClients", clientService.getUserFavouriteClients(userService.findUserByName(loggedUser)));
+        model.addAttribute("favouriteApartments", apartmentService.getUsersFavouriteApartments(userService.findUserByName(loggedUser)));
 
         return "/profile/home";
     }
@@ -53,6 +57,17 @@ public class HomePageController {
 
         Client client = clientService.findClientById(clientId);
         userService.removeClient(loggedUser, client);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("del/fav/apartment")
+    public String removeApartmentFromFavourites(@RequestParam(name = "id") Long apartmentId) {
+        String loggedUser = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.debug("Użytkownik o nazwie={}", loggedUser);
+
+        Apartment apartment = apartmentService.findApartmentById(apartmentId);
+        userService.removeApartment(loggedUser, apartment);
 
         return "redirect:/";
     }
