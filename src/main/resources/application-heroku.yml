@@ -10,5 +10,6 @@ spring:
 
 logging:
   level:
+    sql: DEBUG
     root: WARN
     projects.realestatemanager: DEBUG

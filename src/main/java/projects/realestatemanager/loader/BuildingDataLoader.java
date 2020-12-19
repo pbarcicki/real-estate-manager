@@ -50,6 +50,7 @@ public class BuildingDataLoader implements DataLoader{
                 .photosUrl("http://eventbrite.com")
                 .region("Pomerian")
                 .street("Podwale")
+                .editDate(LocalDate.of(2020,10,1))
                 .timeToBusStopMin(12)
                 .timeToCityCenterMin(10)
                 .developerName("Paul")
@@ -82,6 +83,7 @@ public class BuildingDataLoader implements DataLoader{
                 .timeToBusStopMin(5)
                 .timeToCityCenterMin(25)
                 .buildingConstructionType("Dom")
+                .editDate(LocalDate.of(10,5,6))
                 .developerName("Frank")
                 .build();
         buildingRepository.save(building1);

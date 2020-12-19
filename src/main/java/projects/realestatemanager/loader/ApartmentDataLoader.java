@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
+import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.enums.ApartmentStatus;
 import projects.realestatemanager.enums.ApartmentTypeOfMarket;
 import projects.realestatemanager.enums.KitchenType;
@@ -19,7 +20,8 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class ApartmentDataLoader implements DataLoader{
 
-    private ApartmentRepository apartmentRepository;
+    private final ApartmentRepository apartmentRepository;
+    private final BuildingRepository buildingRepository;
 
     public int getOrder(){
         return Integer.MIN_VALUE + 2;
@@ -45,16 +47,18 @@ public class ApartmentDataLoader implements DataLoader{
                 .storageRoom(true)
                 .typeOfKitchen("Annex")
                 .windowsDirection("South")
+                .building(buildingRepository.getOne(2L))
                 .build();
         Apartment apartment2 = Apartment.builder()
                 .pricePerSquareMeter(1500)
+                .building(buildingRepository.getOne(1L))
                 .view("Sea")
                 .area(121)
                 .exclusivity(true)
                 .marketType("Secondary")
                 .onCorner(true)
                 .active(true)
-                .photosUrl("http://state.gov")
+                .photosUrl("http://state.gov") 
                 .creationDate(LocalDate.of(2020,12,3))
                 .comment("feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst")
                 .floor(7)
