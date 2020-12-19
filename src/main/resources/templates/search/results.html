@@ -52,6 +52,7 @@
             <td th:text="${apartment.onCorner}"></td>
             <td> <a th:href="|edit/${apartment.id}|">Edit</a> </td>
 
+            <td> <button><a th:href="|/apartments/list/details/${apartment.id}|">Check details</a></button> </td>
 <!--        <tr th:each="building : ${buildings}">-->
 <!--            <td th:text="${building.isParkingAvailable}"></td>-->
 <!--            <td><input type="checkbox" disabled="true" th:checked="building.getIsGarageAvailable"/></td>-->

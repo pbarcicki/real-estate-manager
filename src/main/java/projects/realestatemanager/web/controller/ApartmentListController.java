@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.service.ApartmentService;
@@ -27,5 +28,11 @@ public class ApartmentListController {
         model.addAttribute("buildings", buildingService.findAllBuildings());
         model.addAttribute("developers", developerService.showAllDevelopers());
         return "apartment/list";
+    }
+
+    @GetMapping("/details/{id:[0-9]+}")
+    public String getBuildingDetailsPage(Model model, @PathVariable Long id) {
+        model.addAttribute("apartment", apartmentService.findApartmentById(id));
+        return ("apartment/details");
     }
 }

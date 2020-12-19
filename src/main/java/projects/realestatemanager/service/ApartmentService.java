@@ -111,4 +111,13 @@ public class ApartmentService {
         }
 
     }
+
+    public Apartment findApartmentById(Long id) {
+        log.debug("Apartment id to show: {}", id);
+        if (!apartmentRepository.existsById(id)) {
+            log.debug("Tried to delete non-existing apartment!");
+            throw new EntityDoesNotExistException(String.format("Apartment with id %s does not exist!", id));
+        }
+        return apartmentRepository.getOne(id);
+    }
 }
