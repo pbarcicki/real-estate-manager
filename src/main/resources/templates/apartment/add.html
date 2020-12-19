@@ -8,7 +8,7 @@
 <section>
     <h1>Add new apartment</h1>
 </section>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
+<div sec:authorize="hasRole('ADMIN')">
     <form th:action="@{/apartments/add}" th:method="post" th:object="${createApartmentCommand}">
         <div>
             <label>Floor:

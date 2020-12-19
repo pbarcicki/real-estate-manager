@@ -7,7 +7,7 @@
 <body>
 <div>
     <h1>Apartments list</h1>
-    <h3 sec:authorize="hasRole('ROLE_ADMIN')">
+    <h3 sec:authorize="hasRole('ADMIN')">
         <a th:href="@{/apartments/add}">Add new apartment</a>
     </h3>
 
