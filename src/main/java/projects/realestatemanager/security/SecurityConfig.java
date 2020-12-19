@@ -32,13 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 //    //todo usunąć w wersji gotowej, to tworzy tymczasowego użytkownika
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("adam")
-                .password(passwordEncoder().encode("adam"))
-                .roles("ADMIN");
-    }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("adam")
+//                .password(passwordEncoder().encode("adam"))
+//                .roles("ADMIN");
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
