@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Dodaj DEWELOPERA</title>
+    <title>Add developer</title>
 </head>
 <body>
-<h1>Dodaj Dewelopera</h1>
+<h1>Add developer</h1>
 <div>
     <form
             th:action="@{/developers/add}"
@@ -13,7 +13,7 @@
             th:object="${createDeveloperCommand}">
         <fieldset>
             <div>
-                <label>Nazwa Dewelopera:
+                <label>Developer name:
                     <input type="text"
                            th:field="*{developerName}"
                            required/>
@@ -23,7 +23,7 @@
                         th:text="${#fields.errors('developerName')}">
                 </div>
                 <div>
-                    <label>Osoba kontaktowa:
+                    <label>Contact person:
                         <input type="text"
                                th:field="*{developerContactPerson}"
                                required>
@@ -34,7 +34,7 @@
                     </label>
                 </div>
                 <div>
-                    <label>Numer telefonu:
+                    <label>MObile number:
                         <input type="text"
                                th:field="*{developerContactNumber}"
                                required></label>
@@ -43,7 +43,7 @@
                             th:text="${#fields.errors('developerContactNumber')}">
                     </div>
                 </div>
-                <button type="submit">Dodaj deweloper milordzie...</button>
+                <button type="submit">Add...</button>
             </div>
         </fieldset>
     </form>
