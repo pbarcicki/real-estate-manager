@@ -67,8 +67,8 @@ public class Apartment {
     @Column(nullable = false, name = "photos_url")
     private String photosUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "building_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "building_id")
     private Building building;
 
 }

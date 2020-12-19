@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.UserConverter;
 import projects.realestatemanager.data.user.UserSummary;
 import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.model.Client;
 import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.UserRepository;
 import projects.realestatemanager.exception.EntityDoesNotExistException;
@@ -119,5 +120,13 @@ public class UserService {
 
     public void removeBuilding(String username, Building building){
         userRepository.getAuthenticatedUser(username).removeBuilding(building);
+    }
+
+    public void addClient(String username, Client client) {
+        userRepository.getAuthenticatedUser(username).addClient(client);
+    }
+
+    public void removeClient(String username, Client client) {
+        userRepository.getAuthenticatedUser(username).removeClient(client);
     }
 }

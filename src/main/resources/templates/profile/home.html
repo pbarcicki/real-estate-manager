@@ -46,6 +46,27 @@
         </tr>
     </table>
 </div>
+
+<div>
+    <h2>Lista ulubionych klientów...</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>registration date</th>
+            <th>deleteeeee</th>
+        </tr>
+        <tr th:each="client : ${favouriteClients}">
+            <td th:text="${client.id}"></td>
+            <td th:text="${client.getClientName()}"></td>
+            <td th:text="${client.getClientRegistrationDate()}"></td>
+            <td>
+                <a th:href="@{del/fav/client(id=${client.id})}">DELETE</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
 <hr>
 </body>
 </html>

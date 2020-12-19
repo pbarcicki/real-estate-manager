@@ -17,6 +17,7 @@
             <th>Interest</th>
             <th>Registration date</th>
             <th>Status</th>
+            <th>Favourite</th>
         </tr>
         <tr th:each="client : ${clientsList}">
             <td th:text="${client.clientName}"></td>
@@ -27,6 +28,7 @@
             <td th:text="${client.isActive} ? 'active' : 'not active'"
                 th:style="${client.isActive} ? 'color: red' : 'color: grey'">
             </td>
+            <td><button><a th:href="@{list/fav(clientId=${client.id})}">FAV</a></button></td>
             <td><a th:href="|edit/${client.id}|">Edit</a></td>
         </tr>
     </table>

@@ -46,9 +46,19 @@ public class User implements Serializable {
     @Column(nullable = false, name = "active")
     private Boolean isActive;
 
-    @ManyToMany(mappedBy = "user")
+    @ManyToMany(mappedBy = "users")
     @Column(nullable = false)
-    private List<Client> client;
+    private List<Client> clients;
+
+    public void addClient(Client client) {
+        this.clients.add(client);
+        client.getUsers().add(this);
+    }
+
+    public void removeClient(Client client) {
+        this.clients.remove(client);
+        client.getUsers().remove(this);
+    }
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(

@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.model.Client;
 import projects.realestatemanager.service.BuildingService;
+import projects.realestatemanager.service.ClientService;
 import projects.realestatemanager.service.UserService;
 
 @Controller
 @RequestMapping("/")
-@Slf4j @RequiredArgsConstructor
+@Slf4j
+@RequiredArgsConstructor
 public class HomePageController {
 
     private final BuildingService buildingService;
     private final UserService userService;
+    private final ClientService clientService;
 
     @GetMapping
     public String homePage(Model model) {
@@ -26,6 +30,7 @@ public class HomePageController {
         log.debug("Użytkownik o nazwie={}", loggedUser);
 
         model.addAttribute("favouriteBuildings", buildingService.getUserFavouriteBuildings(userService.findUserByName(loggedUser)));
+        model.addAttribute("favouriteClients", clientService.getUserFavouriteClients(userService.findUserByName(loggedUser)));
 
         return "/profile/home";
     }
@@ -37,6 +42,17 @@ public class HomePageController {
 
         Building building = buildingService.findBuildingById(buildingId);
         userService.removeBuilding(loggedUser, building);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("del/fav/client")
+    public String removeClientFromFavourites(@RequestParam(name = "id") Long clientId) {
+        String loggedUser = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.debug("Użytkownik o nazwie={}", loggedUser);
+
+        Client client = clientService.findClientById(clientId);
+        userService.removeClient(loggedUser, client);
 
         return "redirect:/";
     }

@@ -113,7 +113,7 @@ public class Building {
     private LocalDate editDate;
 
     @OneToMany(mappedBy = "building")
-    private List<Apartment> apartments;
+    private Set<Apartment> apartments = new HashSet<>();
 
     @ManyToMany(mappedBy = "buildings")
     private Set<User> users = new HashSet<>();
