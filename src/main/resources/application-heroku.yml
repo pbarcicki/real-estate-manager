@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: real-estate-manager
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    dataspurce: jdbc:h2:mem:real
+
+logging:
+  level:
+    root: WARN
+    projects.realestatemanager: DEBUG
