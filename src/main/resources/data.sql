@@ -1,3 +1,5 @@
+
+
 -- developers
 
 insert into developer (id, developer_contact_number, developer_contact_person, developer_name, is_active) values (1, '58025060860', 'Le Blanc', 'November', true);
@@ -339,26 +341,48 @@ insert into client (client_contact_email, client_contact_number, client_interest
 
 -- user
 
-insert into user (id, is_active, user_email, user_password, username) values (1, true, 'fkneeland0@narod.ru', '6bkGCULkm', 'hwilstead0');
-insert into user (id, is_active, user_email, user_password, username) values (2, true, 'fcolumbine1@linkedin.com', 'D2nLLZNYGv', 'tvidgen1');
-insert into user (id, is_active, user_email, user_password, username) values (3, true, 'rclucas2@free.fr', 'LFkheed', 'mlunam2');
-insert into user (id, is_active, user_email, user_password, username) values (4, true, 'lmee3@sina.com.cn', '3tz9pt', 'cwarhurst3');
-insert into user (id, is_active, user_email, user_password, username) values (5, true, 'rpeel4@guardian.co.uk', 'ASlZST6zGjB', 'lfoxworthy4');
-insert into user (id, is_active, user_email, user_password, username) values (6, true, 'ctuohy5@foxnews.com', '1Ymp6L7ehDK', 'uproud5');
-insert into user (id, is_active, user_email, user_password, username) values (7, false, 'bklampt6@cnn.com', 'rRJkOw3yk', 'sfeetham6');
-insert into user (id, is_active, user_email, user_password, username) values (8, true, 'wmicco7@kickstarter.com', 'Nbww59SQY3O', 'dhimsworth7');
-insert into user (id, is_active, user_email, user_password, username) values (9, false, 'nwigin8@psu.edu', '0qZQHmil', 'ishotter8');
-insert into user (id, is_active, user_email, user_password, username) values (10, false, 'gpittet9@ycombinator.com', 'Qpx33edDJo', 'lducaen9');
-insert into user (id, is_active, user_email, user_password, username) values (11, true, 'eraisea@oaic.gov.au', 'cMQSb1', 'mmcvitya');
-insert into user (id, is_active, user_email, user_password, username) values (12, false, 'soffillb@ox.ac.uk', 'rUC21M04nIqs', 'efrenschb');
-insert into user (id, is_active, user_email, user_password, username) values (13, true, 'dchezierc@printfriendly.com', 'fSj03lG3W', 'abrennonc');
-insert into user (id, is_active, user_email, user_password, username) values (14, false, 'wizsakd@apple.com', 'n92Ejw', 'fyakushkind');
-insert into user (id, is_active, user_email, user_password, username) values (15, false, 'ggentzsche@umn.edu', '0TyP70s2Mx', 'vpashane');
-insert into user (id, is_active, user_email, user_password, username) values (16, true, 'mhuttenf@mozilla.com', 'O0r3S9', 'blibbef');
-insert into user (id, is_active, user_email, user_password, username) values (17, false, 'lbeamentg@webs.com', '2EHfjbA', 'amcgreilg');
-insert into user (id, is_active, user_email, user_password, username) values (18, false, 'cphiferh@scientificamerican.com', 'QbGNQpNPWkT', 'nkiwitzh');
-insert into user (id, is_active, user_email, user_password, username) values (19, true, 'tfidilisi@huffingtonpost.com', 'zGb2nTi', 'ilyngstedi');
-insert into user (id, is_active, user_email, user_password, username) values (20, true, 'tpudsallj@mail.ru', 'RIgj1Xx5jRxX', 'cfilshinj');
+insert into users (id, active, user_email, password, username) values (1, true, 'fkneeland0@narod.ru', '6bkGCULkm', 'hwilstead0');
+insert into users (id, active, user_email, password, username) values (2, true, 'fcolumbine1@linkedin.com', 'D2nLLZNYGv', 'tvidgen1');
+insert into users (id, active, user_email, password, username) values (3, true, 'admin@admin', '{bcrypt}$2a$10$swd27Vnka0B7f6zHldXoN.A7qucDR15uKTNGMG1CQefa/Rur604HS', 'admin');
+insert into users (id, active, user_email, password, username) values (4, true, 'u@u', '{bcrypt}$2a$10$P3h6UJgEIRR9mJn5BY3fB.xhEuVlglgSjseCENPpb7wsSXxNA4l2.', 'user');
+
+-- insert into user (id, active, user_email, password, username) values (5, true, 'rpeel4@guardian.co.uk', 'ASlZST6zGjB', 'lfoxworthy4');
+-- insert into user (id, active, user_email, password, username) values (6, true, 'ctuohy5@foxnews.com', '1Ymp6L7ehDK', 'uproud5');
+-- insert into user (id, active, user_email, password, username) values (7, false, 'bklampt6@cnn.com', 'rRJkOw3yk', 'sfeetham6');
+-- insert into user (id, active, user_email, password, username) values (8, true, 'wmicco7@kickstarter.com', 'Nbww59SQY3O', 'dhimsworth7');
+-- insert into user (id, active, user_email, password, username) values (9, false, 'nwigin8@psu.edu', '0qZQHmil', 'ishotter8');
+-- insert into user (id, active, user_email, password, username) values (10, false, 'gpittet9@ycombinator.com', 'Qpx33edDJo', 'lducaen9');
+-- insert into user (id, active, user_email, password, username) values (11, true, 'eraisea@oaic.gov.au', 'cMQSb1', 'mmcvitya');
+-- insert into user (id, active, user_email, password, username) values (12, false, 'soffillb@ox.ac.uk', 'rUC21M04nIqs', 'efrenschb');
+-- insert into user (id, active, user_email, password, username) values (13, true, 'dchezierc@printfriendly.com', 'fSj03lG3W', 'abrennonc');
+-- insert into user (id, active, user_email, password, username) values (14, false, 'wizsakd@apple.com', 'n92Ejw', 'fyakushkind');
+-- insert into user (id, active, user_email, password, username) values (15, false, 'ggentzsche@umn.edu', '0TyP70s2Mx', 'vpashane');
+-- insert into user (id, active, user_email, password, username) values (16, true, 'mhuttenf@mozilla.com', 'O0r3S9', 'blibbef');
+-- insert into user (id, active, user_email, password, username) values (17, false, 'lbeamentg@webs.com', '2EHfjbA', 'amcgreilg');
+-- insert into user (id, active, user_email, password, username) values (18, false, 'cphiferh@scientificamerican.com', 'QbGNQpNPWkT', 'nkiwitzh');
+-- insert into user (id, active, user_email, password, username) values (19, true, 'tfidilisi@huffingtonpost.com', 'zGb2nTi', 'ilyngstedi');
+-- insert into user (id, active, user_email, password, username) values (20, true, 'pb@pb', 'pb', '{20}$2y$12$28XSYTixWW.YKyY.Uk.pNerztrk0byPH4HxqqzcogNyQDgXTW9mNi');
+
+-- insert into user (id, is_active, user_email, user_password, username) values (1, true, 'fkneeland0@narod.ru', '6bkGCULkm', 'hwilstead0');
+-- insert into user (id, is_active, user_email, user_password, username) values (2, true, 'fcolumbine1@linkedin.com', 'D2nLLZNYGv', 'tvidgen1');
+-- insert into user (id, is_active, user_email, user_password, username) values (3, true, 'rclucas2@free.fr', 'LFkheed', 'mlunam2');
+-- insert into user (id, is_active, user_email, user_password, username) values (4, true, 'lmee3@sina.com.cn', '3tz9pt', 'cwarhurst3');
+-- insert into user (id, is_active, user_email, user_password, username) values (5, true, 'rpeel4@guardian.co.uk', 'ASlZST6zGjB', 'lfoxworthy4');
+-- insert into user (id, is_active, user_email, user_password, username) values (6, true, 'ctuohy5@foxnews.com', '1Ymp6L7ehDK', 'uproud5');
+-- insert into user (id, is_active, user_email, user_password, username) values (7, false, 'bklampt6@cnn.com', 'rRJkOw3yk', 'sfeetham6');
+-- insert into user (id, is_active, user_email, user_password, username) values (8, true, 'wmicco7@kickstarter.com', 'Nbww59SQY3O', 'dhimsworth7');
+-- insert into user (id, is_active, user_email, user_password, username) values (9, false, 'nwigin8@psu.edu', '0qZQHmil', 'ishotter8');
+-- insert into user (id, is_active, user_email, user_password, username) values (10, false, 'gpittet9@ycombinator.com', 'Qpx33edDJo', 'lducaen9');
+-- insert into user (id, is_active, user_email, user_password, username) values (11, true, 'eraisea@oaic.gov.au', 'cMQSb1', 'mmcvitya');
+-- insert into user (id, is_active, user_email, user_password, username) values (12, false, 'soffillb@ox.ac.uk', 'rUC21M04nIqs', 'efrenschb');
+-- insert into user (id, is_active, user_email, user_password, username) values (13, true, 'dchezierc@printfriendly.com', 'fSj03lG3W', 'abrennonc');
+-- insert into user (id, is_active, user_email, user_password, username) values (14, false, 'wizsakd@apple.com', 'n92Ejw', 'fyakushkind');
+-- insert into user (id, is_active, user_email, user_password, username) values (15, false, 'ggentzsche@umn.edu', '0TyP70s2Mx', 'vpashane');
+-- insert into user (id, is_active, user_email, user_password, username) values (16, true, 'mhuttenf@mozilla.com', 'O0r3S9', 'blibbef');
+-- insert into user (id, is_active, user_email, user_password, username) values (17, false, 'lbeamentg@webs.com', '2EHfjbA', 'amcgreilg');
+-- insert into user (id, is_active, user_email, user_password, username) values (18, false, 'cphiferh@scientificamerican.com', 'QbGNQpNPWkT', 'nkiwitzh');
+-- insert into user (id, is_active, user_email, user_password, username) values (19, true, 'tfidilisi@huffingtonpost.com', 'zGb2nTi', 'ilyngstedi');
+-- insert into user (id, is_active, user_email, user_password, username) values (20, true, 'tpudsallj@mail.ru', 'RIgj1Xx5jRxX', 'cfilshinj');
 
 -- client_user
 
@@ -445,24 +469,5 @@ insert into client_user (client_id, user_id) values (1, 11);
 
 -- user_roles
 
-insert into user_roles (role, user_id) values ('admin', 1);
-insert into user_roles (role, user_id) values ('admin', 2);
-insert into user_roles (role, user_id) values ('admin', 3);
-insert into user_roles (role, user_id) values ('admin', 4);
-insert into user_roles (role, user_id) values ('user', 5);
-insert into user_roles (role, user_id) values ('user', 6);
-insert into user_roles (role, user_id) values ('user', 7);
-insert into user_roles (role, user_id) values ('user', 8);
-insert into user_roles (role, user_id) values ('user', 9);
-insert into user_roles (role, user_id) values ('user', 10);
-insert into user_roles (role, user_id) values ('user', 11);
-insert into user_roles (role, user_id) values ('user', 12);
-insert into user_roles (role, user_id) values ('user', 13);
-insert into user_roles (role, user_id) values ('user', 14);
-insert into user_roles (role, user_id) values ('user', 15);
-insert into user_roles (role, user_id) values ('user', 16);
-insert into user_roles (role, user_id) values ('user', 17);
-insert into user_roles (role, user_id) values ('user', 18);
-insert into user_roles (role, user_id) values ('user', 19);
-insert into user_roles (role, user_id) values ('user', 20);
-
+insert into users_roles values ('admin','ROLE_ADMIN');
+insert into users_roles values ('user','ROLE_USER');

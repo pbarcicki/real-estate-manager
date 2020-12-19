@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        .header {
+            background-color: tomato;
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1 style="color: white">(╯°□°)╯︵ ┻━┻</h1>
+</div>
+<h2>Zalogowany użytkownik:<span sec:authentication="name"></span></h2>
+<hr>
+<div class="nav_menu">
+    <a href="/apartments/list">APARTAMENTY</a>
+    <a href="/buildings/list">BUDYNKI</a>
+    <a href="/users/list">KLIENCI</a>
+    <a href="/developers/list">DEWELOPERZY</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/add">DODAJ NOWEGO UŻYTKOWNIKA</a>
+    <a href="/logout">WYLOGUJ!</a>
+</div>
+<hr>
+</body>
+</html>
