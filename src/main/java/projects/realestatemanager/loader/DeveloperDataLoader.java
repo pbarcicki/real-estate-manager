@@ -26,15 +26,15 @@ public class DeveloperDataLoader implements DataLoader{
     public void loadData() {
         Developer developer1 = Developer.builder()
                 .developerContactNumber("234765234")
-                .developerContactPerson("Guashe")
-                .developerName("Ben")
+                .developerContactPerson("Daniel Jonas")
+                .developerName("Tom Shapiro")
                 .isActive(true)
                 .build();
         developerRepository.save(developer1);
         Developer developer2 = Developer.builder()
                 .developerContactNumber("234000534")
-                .developerContactPerson("Ughelli")
-                .developerName("Manganitu")
+                .developerContactPerson("Frank Redmayne")
+                .developerName("Bob Felton")
                 .isActive(true)
                 .build();
         developerRepository.save(developer2);

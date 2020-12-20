@@ -25,18 +25,18 @@ public class ClientDataLoader implements DataLoader{
                 .clientName("Germana Bremmell")
                 .clientContactEmail("gbremmell1x@twitter.com")
                 .clientContactNumber("29187300065")
-                .clientInterest("Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.")
-                .clientRegistrationDate(LocalDate.now())
+                .clientInterest("Next to the living room, I want open kitchen.")
+                .clientRegistrationDate(LocalDate.of(2020,11,6))
                 .isActive(true)
                 .build();
         clientRepository.save(client1);
         Client client2 = Client.builder()
-                .clientName("Gare Chattington")
-                .clientContactEmail("gchattington27@dion.ne.jp")
+                .clientName("Emma Corrin")
+                .clientContactEmail("emma@cor.com")
                 .clientContactNumber("83970740215")
-                .clientRegistrationDate(LocalDate.ofYearDay(2020,14))
+                .clientRegistrationDate(LocalDate.of(2019,4,16))
                 .isActive(true)
-                .clientInterest("Donec posuere metus vitae ipsum.")
+                .clientInterest("Next to the bedroom I want little, light bathroom with a toilet and a bath.")
                 .build();
         clientRepository.save(client2);
         log.debug("Saved clients: {} and {}", client1, client2);
