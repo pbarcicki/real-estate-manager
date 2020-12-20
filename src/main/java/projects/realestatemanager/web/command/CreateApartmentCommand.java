@@ -19,6 +19,9 @@ import java.time.LocalDate;
 public class CreateApartmentCommand {
 
     @NotNull
+    private Long buildingId;
+
+    @NotNull
     //@Digits(fraction = 0, integer = 2)
     private Integer floor;
 

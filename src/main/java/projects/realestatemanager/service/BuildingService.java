@@ -154,4 +154,13 @@ public class BuildingService {
     public List<Building> getUserFavouriteBuildings(User user) {
         return buildingRepository.getUsersFavouriteBuildings(user.getId());
     }
+
+    public List<BuildingSummary> showAllBuildings() {
+        log.debug("Getting all buildings summaries");
+
+        return buildingRepository.findAll().stream()
+                .map(buildingConverter::from)
+                .collect(Collectors.toList());
+
+    }
 }
