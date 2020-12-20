@@ -1,38 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Client list</title>
 </head>
-<body>
-<div>
-    <h2 sec:authorize="hasRole('ROLE_ADMIN')">
-        <a th:href="@{/clients/add}">Add new client</a>
-    </h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>Number</th>
-            <th>Interest</th>
-            <th>Registration date</th>
-            <th>Status</th>
-            <th>Favourite</th>
-        </tr>
-        <tr th:each="client : ${clientsList}">
-            <td th:text="${client.clientName}"></td>
-            <td th:text="${client.clientContactEmail}"></td>
-            <td th:text="${client.clientContactNumber}"></td>
-            <td th:text="${client.clientInterest}"></td>
-            <td th:text="${client.clientRegistrationDate}"></td>
-            <td>
-                <input type="checkbox" disabled="true"
-                       th:checked="${client.isActive}">
-            </td>
-            <td><button><a th:href="@{list/fav(clientId=${client.id})}">FAV</a></button></td>
-            <td><a th:href="|edit/${client.id}|">Edit</a></td>
-        </tr>
-    </table>
+<style>
+    .content-table {
+        font-family: "Californian FB", sans-serif;
+        border-collapse: collapse;
+        margin: 2px;
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .content-table tr {
+        background-color: rgba(250, 250, 210, 0.5);
+        color: black;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+    .content-table tr:nth-child(even) {
+        background-color: rgba(224, 255, 255, 0.5);
+
+    }
+
+    .content-table tbody {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .content-button-add {
+        height: 40px;
+        width: 160px;
+        box-shadow: black;
+        font-style: italic;
+        font-family: "Californian FB";
+        font-size: 16px;
+        color: black;
+        background-color: rgba(211, 211, 211, 0.5);
+    }
+
+    .content-button {
+        height: 40px;
+        width: 60px;
+        box-shadow: black;
+        font-style: italic;
+        font-family: "Californian FB";
+        font-size: 16px;
+        color: black;
+        background-color: rgba(211, 211, 211, 0.5);
+
+    }
+</style>
+
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
+<div class="container">
+    <h1>Clients List</h1>
+
+    <div>
+        <button class="content-button-add">
+            <h2 sec:authorize="hasRole('ROLE_ADMIN')"></h2>
+            <a th:href="@{/clients/add}">Add new client</a>
+        </button>
+        <table class="content-table">
+            <tr>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>Number</th>
+                <th>Interest</th>
+                <th>Registration date</th>
+                <th>Status</th>
+                <th>Favourite</th>
+            </tr>
+            <tr th:each="client : ${clientsList}">
+                <td th:text="${client.clientName}"></td>
+                <td th:text="${client.clientContactEmail}"></td>
+                <td th:text="${client.clientContactNumber}"></td>
+                <td th:text="${client.clientInterest}"></td>
+                <td th:text="${client.clientRegistrationDate}"></td>
+                <td th:text="${client.isActive} ? 'active' : 'not active'"
+                    th:style="${client.isActive} ? 'color: red' : 'color: grey'">
+                </td>
+                <td><a th:href="|edit/${client.id}|">Edit</a></td>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>

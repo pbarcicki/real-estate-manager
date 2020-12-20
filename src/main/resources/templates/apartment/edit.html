@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Edit apartment</title>
 </head>
-<body>
-<div>
+<style>
+    .content-fieldset{
+        width: 300px;
+        background-color: rgba(211, 211, 211, 0.5);
+        font-family: "Californian FB", sans-serif;
+    }
+</style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+<section>
     <h1>Edit apartment</h1>
-</div>
+</section>
+
 <div sec:authorize="hasRole('ROLE_ADMIN')">
-    <fieldset>
+    <fieldset class="content-fieldset">
         <form th:action="${apartmentEdit.id}"
               th:method="post"
               th:object="${editApartmentCommand}">
@@ -152,13 +162,15 @@
             </div>
         </form>
     </fieldset>
-    <fieldset>
+    <fieldset class="content-fieldset">
         <form th:action="|${apartmentEdit.id}/delete|" th:method="post">
             <div>
                 <button type="submit">Delete apartment</button>
             </div>
         </form>
     </fieldset>
+</section>
+<footer th:include="elements/footer.html"></footer>
 </div>
 </body>
 </html>

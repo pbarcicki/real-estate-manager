@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
-    <title>Add client</title>
+
 </head>
-<body>
+<title>Add client</title>
+<style>
+    .content-fieldset{
+        font-family: "Californian FB", sans-serif;
+    }
+    .div{
+        width: 300px;
+        border: darkred;
+        padding: 8px;
+        border-radius: 45px;
+    }
+</style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
 <h1>Add client</h1>
+<div class="div">
 <div sec:authorize="hasRole('ROLE_ADMIN')">
     <form th:action="@{/clients/add}" th:method="post" th:object="${createClientCommand}">
-        <fieldset>
+        <fieldset class="content-fieldset">
             <div>
                 <label>Name:
                     <input type="text" th:field="*{clientName}" name="clientName" required/>
@@ -43,11 +58,12 @@
             </div>
 
         </fieldset>
-        <fieldset>
+        <fieldset class="content-fieldset">
             <button type="submit">Add client</button>
         </fieldset>
     </form>
 </div>
-
+<footer th:include="elements/footer.html"></footer>
+</div>
 </body>
 </html>

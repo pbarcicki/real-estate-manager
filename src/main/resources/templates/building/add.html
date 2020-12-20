@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Add new building</title>
 </head>
-<body>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
 <section>
     <h1>Add new building</h1>
 </section>
@@ -218,6 +220,6 @@
         </div>
     </form>
 </div>
-
+<footer th:include="elements/footer.html"></footer>
 </body>
 </html>

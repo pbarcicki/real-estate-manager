@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Client edit</title>
 </head>
-<body>
+<style>
+    .content-fieldset{
+        width: 300px;
+        background-color: rgba(211, 211, 211, 0.5);
+        font-family: "Californian FB", sans-serif;
+    }
+</style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
 <div sec:authorize="hasRole('ROLE_ADMIN')">
 <h1>Edit client:</h1>
 <h2 th:text="${clientEdit.clientName}"></h2>
 <div>
     <form th:action="${clientEdit.id}" th:method="post" th:object="${editClientCommand}">
-        <fieldset>
+        <fieldset class="content-fieldset">
             <div>
                 <label>Client name:
                     <input type="text" th:value="${clientEdit.clientName}"
@@ -64,16 +74,17 @@
                 </label>
             </div>
         </fieldset>
-        <fieldset>
+        <fieldset class="content-fieldset">
             <button type="submit">Submit changes</button>
         </fieldset>
     </form>
-    <fieldset>
+    <fieldset class="content-fieldset">
         <form th:action="|${clientEdit.id}/delete|" th:method="post">
             <button type="submit">Delete</button>
         </form>
     </fieldset>
 </div>
 </div>
+<footer th:include="elements/footer.html"></footer>
 </body>
 </html>

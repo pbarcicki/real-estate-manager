@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>No results</title>
 </head>
-<body>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
     <h1>No results for given criteria</h1>
+
+
     <div>
         <a href="/search">Back</a>
     </div>
+    <footer th:include="elements/footer.html"></footer>
 </body>
 </html>

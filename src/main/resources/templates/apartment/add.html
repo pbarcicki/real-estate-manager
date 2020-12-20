@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Add new apartment</title>
 </head>
-<body>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
 <section>
     <h1>Add new apartment</h1>
 </section>
@@ -62,12 +64,12 @@
                     <span th:each="err : ${#fields.errors('price')}" th:text="${err}"></span>
                 </div>
             </label>
-<!--            <label>Price per square meter:-->
-<!--                <input type="text" th:field="*{pricePerSquareMeter}"/>-->
-<!--                <div>-->
-<!--                    <span th:each="err : ${#fields.errors('pricePerSquareMeter')}" th:text="${err}"></span>-->
-<!--                </div>-->
-<!--            </label>-->
+            <!--            <label>Price per square meter:-->
+            <!--                <input type="text" th:field="*{pricePerSquareMeter}"/>-->
+            <!--                <div>-->
+            <!--                    <span th:each="err : ${#fields.errors('pricePerSquareMeter')}" th:text="${err}"></span>-->
+            <!--                </div>-->
+            <!--            </label>-->
             <label> Type of market:
                 <select th:field="*{marketType}">
                     <option th:value="null" selected>Make your choice</option>

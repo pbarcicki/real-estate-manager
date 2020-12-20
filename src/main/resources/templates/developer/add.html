@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+<head th:include="elements/header">
+
+<meta charset="UTF-8">
     <title>Add developer</title>
 </head>
-<body>
+<nav th:include="elements/navigation.html"></nav>
+    <style>
+    .content-fieldset{
+        font-family: "Californian FB", sans-serif;
+        width: 300px;
+        border: darkred;
+        padding: 8px;
+        border-radius: 45px;
+    }
+    </style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
 <h1>Add developer</h1>
 <div sec:authorize="hasRole('ROLE_ADMIN')">
     <form
             th:action="@{/developers/add}"
             th:method="post"
             th:object="${createDeveloperCommand}">
-        <fieldset>
+        <fieldset class="content-fieldset">
             <div>
                 <label>Developer name:
                     <input type="text"
@@ -34,7 +46,7 @@
                     </label>
                 </div>
                 <div>
-                    <label>MObile number:
+                    <label>Phone number:
                         <input type="text"
                                th:field="*{developerContactNumber}"
                                required></label>
@@ -48,5 +60,6 @@
         </fieldset>
     </form>
 </div>
+<footer th:include="elements/footer.html"></footer>
 </body>
 </html>

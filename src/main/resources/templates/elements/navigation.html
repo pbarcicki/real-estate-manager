@@ -1,0 +1,20 @@
+<nav xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:fragment="navi">
+    <style>
+        .content-button{
+            font-family: "Californian FB", sans-serif;
+            width: 60px;
+            border: darkred;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: rgba(211, 211, 211, 0.5);
+        }
+    </style>
+    <button class="content-button" href=@{/apartments/list}>Apartments</button>
+    <button class="content-button" href="/buildings/list">Buildings</button>
+    <button class="content-button" href="/developers/list">Developers</button>
+    <button class="content-button" href="/clients/list">Clients</button>
+    <button class="content-button" sec:authorize="hasRole('ROLE_ADMIN')" href="/users/list">Users</button>
+    <button class="content-button" sec:authorize="hasRole('ROLE_ADMIN')" href="/users/add">Add new user</button>
+    <button class="content-button" href="/search">Search</button>
+    <button class="content-button" href="/logout">Log out!</button>
+</nav>

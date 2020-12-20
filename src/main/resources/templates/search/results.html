@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
+
     <meta charset="UTF-8">
     <title>Search results</title>
 </head>
@@ -68,5 +69,6 @@
     </table>
 
 </div>
+<footer th:include="elements/footer.html"></footer>
 </body>
 </html>

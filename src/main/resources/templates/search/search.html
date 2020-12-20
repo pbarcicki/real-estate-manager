@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Search</title>
 </head>
-<body>
+<style>
+    .content-fieldset{
+        background-color: rgba(211, 211, 211, 0.5);
+        font-family: "Californian FB", sans-serif;
+        width: 300px;
+        border: darkred;
+        padding: 8px;
+        border-radius: 10px;
+    }
+</style>
+
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
     <section>
         <h1>Enter needed fields for search:</h1>
     </section>
 
     <section>
-        <fieldset>
             <form th:action="@{/search}"
                   th:method="post"
                   th:object="${searchApartmentCommand}">
 
-                <fieldset>
+                <fieldset class="content-fieldset">
                     <label> Developer:
                         <select th:field="*{developerId}" name="developer">
                             <option th:value="null" selected>Make your choice</option>
@@ -30,7 +41,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="content-fieldset">
                     <label> Street:
                         <input type="text" th:field="*{street}"/>
                         <datalist id="suggestions">
@@ -46,7 +57,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Floor:
+                <fieldset class="content-fieldset" > Floor:
                     <br>
                     <label> Min floor:
                         <input type="number" th:field="*{minFloor}"/>
@@ -62,7 +73,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Area:
+                <fieldset class="content-fieldset"> Area:
                     <br>
                     <label> Min area:
                         <input type="number" th:field="*{minArea}"/>
@@ -78,7 +89,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Rooms number:
+                <fieldset class="content-fieldset"> Rooms number:
                     <br>
                     <label> Min rooms number:
                         <input type="number" th:field="*{minRoomsNumber}"/>
@@ -94,7 +105,7 @@
                     </label>
                 </fieldset>
 
-               <fieldset>
+               <fieldset class="content-fieldset">
                    <label>Type of kitchen:
                        <select th:field="*{typeOfKitchen}">
                            <option th:value="null" selected>Make your choice</option>
@@ -108,7 +119,7 @@
                    </label>
                </fieldset>
 
-                <fieldset> Price (USD):
+                <fieldset class="content-fieldset"> Price (USD):
                     <br>
                     <label> Min price:
                         <input type="number" th:field="*{minPrice}"/>
@@ -124,7 +135,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Price per m2 (USD):
+                <fieldset class="content-fieldset"> Price per m2 (USD):
                     <br>
                     <label> Min price per m2:
                         <input type="number" th:field="*{minPricePerSquareMeter}"/>
@@ -140,7 +151,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="content-fieldset">
                     <label> Type of market:
                     <select th:field="*{marketType}">
                         <option th:value="null" selected>Make your choice</option>
@@ -154,7 +165,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Distance to kindergarten:
+                <fieldset class="content-fieldset"> Distance to kindergarten:
                     <br>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToKindergarten}"/>
@@ -164,7 +175,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Distance to school:
+                <fieldset class="content-fieldset"> Distance to school:
                     <br>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToSchool}"/>
@@ -174,7 +185,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Distance to shopping malls:
+                <fieldset class="content-fieldset"> Distance to shopping malls:
                     <br>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToShoppingCenters}"/>
@@ -184,7 +195,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset> Distance to park:
+                <fieldset class="content-fieldset"> Distance to park:
                     <br>
                     <label> Max:
                         <input type="number" th:field="*{maxDistanceToPark}"/>
@@ -194,7 +205,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset>Localization details:
+                <fieldset class="content-fieldset">Localization details:
                     <br>
 
                     <label>Windows direction:
@@ -217,7 +228,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="content-fieldset">
                     <label>Apartment status:
                         <select th:field="*{status}">
                             <option th:value="null" selected>Make your choice</option>
@@ -306,7 +317,7 @@
                     </label>
                 </fieldset>
 
-                <fieldset>Realization term:
+                <fieldset class="content-fieldset">Realization term:
                     <br>
                     <label> From:
                         <input type="date" th:field="*{minBuildingRealizationTerm}"/>
@@ -327,6 +338,6 @@
             </form>
         </fieldset>
     </section>
-
+    <footer th:include="elements/footer.html"></footer>
 </body>
 </html>

@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Building details</title>
 </head>
-<body>
+<style>
+    .content-table{
+        font-family: "Californian FB", sans-serif;
+        border-collapse: collapse;
+        margin: 2px;
+        width: 60%;
+        border-radius: 5px 5px 0 0;
+    }
+    .content-table tr{
+        background-color: rgba(250, 250, 210, 0.5);
+        color: black;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+
+    .content-table tr:nth-child(even){
+        background-color: rgba(224, 255, 255, 0.5);
+    }
+    .content-table tbody{
+        border-bottom: 1px solid #dddddd;
+    }
+</style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
     <div>
         <h1>Building details</h1>
     </div>
 
     <div>
-        <table>
+        <table class="content-table">
             <tr>
                 <th>Id:</th>
                 <td th:text="${building.id}"></td>
@@ -59,8 +86,8 @@
 
         </table>
 
-        <h4>Address details</h4>
-        <table>
+        <h2>Address details</h2>
+        <table class="content-table">
             <tr>
                 <th>Region:</th>
                 <td th:text="${building.region}"></td>
@@ -87,8 +114,8 @@
             </tr>
         </table>
 
-        <h4>Localization details</h4>
-        <table>
+        <h3>Localization details</h3>
+        <table class="content-table">
             <tr>
                 <th>Distance to kindergarten (m):</th>
                 <td th:text="${building.distanceToKindergarten}"></td>
@@ -130,8 +157,8 @@
             </tr>
         </table>
 
-        <h4>Building details</h4>
-        <table>
+        <h6>Building details</h6>
+        <table class="content-table">
             <tr>
                 <th>Park lot:</th>
                 <td>
@@ -175,7 +202,6 @@
             </tr>
         </table>
     </div>
-
-
+    <footer th:include="elements/footer.html"></footer>
 </body>
 </html>

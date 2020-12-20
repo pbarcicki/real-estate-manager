@@ -77,4 +77,5 @@ public class ApartmentConverter {
 
         return apartment;
     }
+
 }

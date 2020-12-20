@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Edit developer</title>
 </head>
-<body>
+<style>
+    .content-fieldset{
+        width: 300px;
+        background-color: rgba(211, 211, 211, 0.5);
+        font-family: "Californian FB", sans-serif;
+    }
+</style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
 <div sec:authorize="hasRole('ROLE_ADMIN')">
 <h1>Edit developer</h1>
 <h2 th:text="${developerEdit.name}"></h2>
@@ -14,7 +22,7 @@
             th:action="${developerEdit.id}"
             th:method="post"
             th:object="${editDeveloperCommand}">
-        <fieldset>
+        <fieldset class="content-fieldset">
             <div>
                 <label>Developer name:
                     <input type="text"
@@ -71,16 +79,17 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset>
+        <fieldset class="content-fieldset">
             <button type="submit">Save changes</button>
         </fieldset>
     </form>
 </div>
-<fieldset>
+<fieldset class="content-fieldset">
     <form th:action="|${developerEdit.id}/delete|" th:method="post">
         <button type="submit">Delete</button>
     </form>
 </fieldset>
+<footer th:include="elements/footer.html"></footer>
 </div>
 </body>
 </html>

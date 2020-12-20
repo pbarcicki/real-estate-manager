@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Edit building</title>
 </head>
-<body>
+<style>
+    .content-fieldset{
+        width: 300px;
+        background-color: rgba(211, 211, 211, 0.5);
+        font-family: "Californian FB", sans-serif;
+    }
+</style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+
 <div>
     <h1>Edit building</h1>
 </div>
 <div  sec:authorize="hasRole('ROLE_ADMIN')">
-    <fieldset>
+    <fieldset class="content-fieldset">
         <form th:action="${buildingEdit.id}"
               th:method="post"
               th:object="${editBuildingCommand}">
@@ -291,7 +301,7 @@
     </fieldset>
 
 
-    <fieldset>
+    <fieldset class="content-fieldset">
         <form th:action="|${buildingEdit.id}/delete|" th:method="post">
             <div>
                 <button type="submit">Delete building</button>
@@ -299,6 +309,6 @@
         </form>
     </fieldset>
 </div>
-
+<footer th:include="elements/footer.html"></footer>
 </body>
 </html>

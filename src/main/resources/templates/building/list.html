@@ -1,17 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
+    <nav th:include="elements/navigation.html"></nav>
+
     <meta charset="UTF-8">
     <title>Buildings list</title>
-</head>
-<body>
-    <div>
-        <h1>Building list</h1>
-        <h3 sec:authorize="hasRole('ROLE_ADMIN')">
-            <a th:href="@{/buildings/add}">Add new building</a>
-        </h3>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <table>
+</head>
+<style>
+    .content-table{
+        font-family: "Californian FB", sans-serif;
+        border-collapse: collapse;
+        margin: 2px;
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+    .content-table tr{
+        background-color: rgba(250, 250, 210, 0.5);
+        color: black;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+    .content-table tr:nth-child(even){
+        background-color: rgba(224, 255, 255, 0.5);
+
+    }
+    .content-table tbody{
+        border-bottom: 1px solid #dddddd;
+    }
+    .content-button-add{
+        height: 40px;
+        width: 160px;
+        box-shadow: black;
+        font-style: italic;
+        font-family: "Californian FB";
+        font-size: 16px;
+        color: black;
+        background-color: rgba(211, 211, 211, 0.5);
+    }
+    .content-button{
+        height: 40px;
+        width: 60px;
+        box-shadow: black;
+        font-style: italic;
+        font-family: "Californian FB";
+        font-size: 16px;
+        color: black;
+        background-color: rgba(211, 211, 211, 0.5);
+
+    }
+</style>
+<body style="background-image: url('https://previews.123rf.com/images/bialasiewicz/bialasiewicz1607/bialasiewicz160700278/59289839-shot-of-a-cozy-living-room-with-a-big-armchair-and-a-sofa.jpg')">
+    <div class="container">
+        <h1>Building list</h1>
+        <button class="content-button-add">
+        <h3 sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/buildings/add}">Add new building</a></h3>
+        </button>
+
+        <table class="content-table">
             <tr>
                 <th>Id</th>
                 <th>Developer</th>
@@ -42,15 +92,19 @@
                 <td th:text="${building.buildingRealizationTerm}"></td>
                 <td th:text="${building.photosUrl}"></td>
                 <td th:text="${building.creationDate}"></td>
-                <td sec:authorize="hasRole('ROLE_ADMIN')"> <button><a th:href="|edit/${building.id}|">Edit</a></button> </td>
-                <td><button><a th:href="@{list/fav(buildingId=${building.id})}">FAV</a></button></td>
 
+                <td sec:authorize="hasRole('ROLE_ADMIN')"> <button class="content-button"><a th:href="|edit/${building.id}|">Edit</a></button> </td>
+                <td><button class="content-button"><a th:href="@{list/fav(buildingId=${building.id})}">FAV</a></button></td>
+
+<!--                link to details-->
+                <td> <button class="content-button"><a th:href="|list/details/${building.id}|">Check details</a></button> </td>
                 <!--                link to details-->
-                <td> <button><a th:href="|list/details/${building.id}|">Check details</a></button> </td>
-                <td> <button><a th:href="|/apartments/list/b${building.id}|">Show all related apartments</a></button> </td>
+
+                <td> <button class="content-button"><a th:href="|/apartments/list/b${building.id}|">Show apartments</a></button> </td>
             </tr>
         </table>
 
     </div>
+    <footer th:include="elements/footer.html"></footer>
 </body>
 </html>
