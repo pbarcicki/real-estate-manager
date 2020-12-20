@@ -16,4 +16,6 @@ public interface ApartmentRepository extends JpaRepository <Apartment, Long> {
     List<Apartment> findAllByIdIn(List<Long> idList);
 
     boolean existsByBuildingId(Long id);
+
+    List<Apartment> findAllByBuildingId(Long id);
 }

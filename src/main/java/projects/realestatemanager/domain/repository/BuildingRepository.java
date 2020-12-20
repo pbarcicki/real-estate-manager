@@ -18,4 +18,5 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
     List<Building> findAllByDeveloperIdAndIsActive(Long developerId, boolean b);
 
 
+    List<Building> findAllByDeveloperId(Long id);
 }

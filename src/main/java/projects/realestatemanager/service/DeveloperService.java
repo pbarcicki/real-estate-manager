@@ -102,4 +102,12 @@ public class DeveloperService {
         return true;
     }
 
+    public Developer findDeveloperById(Long id) {
+        log.debug("Developer id to show: {}", id);
+        if (!developerRepository.existsById(id)) {
+            log.debug("Tried to delete non-existing developer!");
+            throw new EntityDoesNotExistException(String.format("Developer with id %s does not exist!", id));
+        }
+        return developerRepository.getOne(id);
+    }
 }

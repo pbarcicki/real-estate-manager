@@ -5,11 +5,11 @@
     <title>Building details</title>
 </head>
 <body>
-    <section>
+    <div>
         <h1>Building details</h1>
-    </section>
+    </div>
 
-    <section>
+    <div>
         <table>
             <tr>
                 <th>Id:</th>
@@ -18,7 +18,7 @@
 
             <tr>
                 <th>Developer:</th>
-                <td th:text="${building.developerName}"></td>
+                <td><a th:text="${building.developerName}" th:href="|/developers/list/details/${building.developer.id}|"></a></td>
             </tr>
 
             <tr>
@@ -171,7 +171,7 @@
                 <td th:text="${building.buildingDetails}"></td>
             </tr>
         </table>
-    </section>
+    </div>
 
 
 </body>
