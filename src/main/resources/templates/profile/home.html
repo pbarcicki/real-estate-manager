@@ -1,35 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <style>
-        .header {
-            background-color: tomato;
-            padding: 15px;
-            text-align: center;
-        }
-        .nav_menu a {
-            padding-right: 20px;
-        }
-    </style>
 </head>
 <body>
-<div class="header">
-    <h1 style="color: white">(╯°□°)╯︵ ┻━┻</h1>
-</div>
-<h2>Logged user: <span sec:authentication="name"></span></h2>
+<!--<h2>Logged user: <span sec:authentication="name"></span></h2>-->
 <hr>
-<div class="nav_menu">
-    <a href="/apartments/list">Apartments</a>
-    <a href="/buildings/list">Buildings</a>
-    <a href="/developers/list">Developers</a>
-    <a href="/clients/list">Clients</a>
-    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/list">Users</a>
-    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/add">Add new user</a>
-    <a href="/search">Search</a>
-    <a href="/logout">Log out!</a>
-</div>
 <div  th:if="${!favouriteBuildings.isEmpty()}">
     <h2>Favourite buildings list...</h2>
     <table>
