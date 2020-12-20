@@ -10,10 +10,10 @@ public interface DeveloperRepository extends JpaRepository<Developer, Long> {
 
     Developer getById(Long developerId);
 
-    @Query(
-            value = "SELECT count() FROM developer d join building b on d.id=b.developer_id where b.developer_id=?1",
-            nativeQuery = true)
-    Long developerBuildingAmount(Long id);
+//    @Query(
+//            value = "SELECT count() FROM developer d join buildings b on d.id=b.developer_id where b.developer_id=?1",
+//            nativeQuery = true)
+//    Long developerBuildingAmount(Long id);
 
 //    select count(*) from developer d join building b on d.id = b.developer_id where b.developer_id=1;
 

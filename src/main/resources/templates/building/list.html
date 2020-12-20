@@ -43,8 +43,9 @@
                 <td th:text="${building.photosUrl}"></td>
                 <td th:text="${building.creationDate}"></td>
                 <td sec:authorize="hasRole('ROLE_ADMIN')"> <button><a th:href="|edit/${building.id}|">Edit</a></button> </td>
+                <td><button><a th:href="@{list/fav(buildingId=${building.id})}">FAV</a></button></td>
 
-<!--                link to details-->
+                <!--                link to details-->
                 <td> <button><a th:href="|list/details/${building.id}|">Check details</a></button> </td>
                 <td> <button><a th:href="|/apartments/list/b${building.id}|">Show all related apartments</a></button> </td>
             </tr>

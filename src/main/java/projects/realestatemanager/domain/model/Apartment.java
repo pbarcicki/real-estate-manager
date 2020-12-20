@@ -4,9 +4,11 @@ package projects.realestatemanager.domain.model;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "apartment")
+@Table(name = "apartments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -67,9 +69,12 @@ public class Apartment {
     @Column(nullable = false, name = "photos_url")
     private String photosUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "building_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "building_id")
     private Building building;
+
+    @ManyToMany(mappedBy = "apartments")
+    private Set<User> users = new HashSet<>();
 
 }
 

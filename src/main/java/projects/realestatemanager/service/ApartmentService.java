@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.ApartmentConverter;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
+import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.*;
@@ -102,7 +103,6 @@ public class ApartmentService {
     public List<ApartmentSummary> showByIds(List<Long> idList) {
         log.debug("Id list to look in db: {}", idList.toString());
 
-
         try {
             List <Apartment> apartmentEntities = apartmentRepository.findAllByIdIn(idList);
             return apartmentEntities.stream()
@@ -141,5 +141,10 @@ public class ApartmentService {
             log.error(re.getLocalizedMessage());
             return null;
         }
+    }
+
+    //todo apartmentsummary?
+    public List<Apartment> getUsersFavouriteApartments(User user) {
+        return apartmentRepository.getUsersFavouriteApartments(user.getId());
     }
 }

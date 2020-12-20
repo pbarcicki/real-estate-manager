@@ -54,7 +54,10 @@
             <td><input type="checkbox" disabled="true" th:checked="${apartment.onCorner}"/></td>
             <td sec:authorize="hasRole('ROLE_ADMIN')"><button><a th:href="|edit/${apartment.id}|">Edit</a></button></td>
             <td> <button><a th:href="|http://localhost:8080/apartments/list/details/${apartment.id}|">Check details</a></button> </td>
+            <td><button><a th:href="@{list/fav(apartmentId=${apartment.id})}">FAV</a></button></td>
         </tr>
+
+
     </table>
 
 </div>

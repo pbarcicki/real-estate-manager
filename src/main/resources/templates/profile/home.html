@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
     <style>
         .header {
-            background-color: #ff6347;
+            background-color: tomato;
             padding: 15px;
             text-align: center;
         }
@@ -18,17 +18,91 @@
 <div class="header">
     <h1 style="color: white">(╯°□°)╯︵ ┻━┻</h1>
 </div>
-<h2>Logged user: <span sec:authentication="name"></span></h2>
+<h2>Zalogowany użytkownik:<span sec:authentication="name"></span></h2>
 <hr>
 <div class="nav_menu">
     <a href="/apartments/list">Apartments</a>
     <a href="/buildings/list">Buildings</a>
     <a href="/developers/list">Developers</a>
-    <a href="/users/list">Users</a>
     <a href="/clients/list">Clients</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/list">Users</a>
     <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/add">Add new user</a>
     <a href="/logout">Log out!</a>
 </div>
+<div>
+    <h2>Lista ulubionych bydunków...</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>type</th>
+            <th>real_term</th>
+            <th>region</th>
+            <th>deleteeeee</th>
+        </tr>
+        <tr th:each="building : ${favouriteBuildings}">
+            <td th:text="${building.id}"></td>
+            <td th:text="${building.buildingConstructionType}"></td>
+            <td th:text="${building.buildingRealizationTerm}"></td>
+            <td th:text="${building.region}"></td>
+            <td>
+                <a th:href="@{del/fav/building(id=${building.id})}">DELETE</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h2>Lista ulubionych klientów...</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>registration date</th>
+            <th>deleteeeee</th>
+        </tr>
+        <tr th:each="client : ${favouriteClients}">
+            <td th:text="${client.id}"></td>
+            <td th:text="${client.clientName}"></td>
+            <td th:text="${client.clientRegistrationDate}"></td>
+            <td>
+                <a th:href="@{del/fav/client(id=${client.id})}">DELETE</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h2>Lista ulubionych mieszkań...</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Floor</th>
+            <th>Area</th>
+            <th>Rooms number</th>
+            <th>Type of kitchen</th>
+            <th>Price (USD)</th>
+            <th>Square meter price (USD)</th>
+            <th>Type of market</th>
+        <tr>
+        <tr th:each="apartment : ${favouriteApartments}">
+            <td th:text="${apartment.id}"></td>
+            <td th:text="${apartment.floor}"></td>
+
+            <td th:text="${apartment.area}"></td>
+            <td th:text="${apartment.roomsNumber}"></td>
+            <td th:text="${apartment.typeOfKitchen}"></td>
+            <td th:text="${apartment.price}"></td>
+            <td th:text="${apartment.pricePerSquareMeter}"></td>
+            <td th:text="${apartment.marketType}"></td>
+        <td>
+            <a th:href="@{del/fav/apartment(id=${apartment.id})}">DELETE</a>
+        </td>
+
+        </tr>
+    </table>
+
+</div>
+
 <hr>
 </body>
 </html>

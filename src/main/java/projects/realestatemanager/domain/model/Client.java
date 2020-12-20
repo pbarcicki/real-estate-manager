@@ -8,10 +8,12 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "client")
+@Table(name = "clients")
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 @EqualsAndHashCode(of = {"clientName", "clientRegistrationDate"})
 @ToString(exclude = "user")
@@ -42,5 +44,5 @@ public class Client {
 
     @ManyToMany
     @JoinColumn(name = "user_id")
-    private List<User> user;
+    private Set<User> users = new HashSet<>();
 }
