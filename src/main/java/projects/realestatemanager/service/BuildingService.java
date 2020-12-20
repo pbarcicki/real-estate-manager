@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.BuildingConverter;
 import projects.realestatemanager.data.building.BuildingSummary;
+import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
@@ -17,6 +18,7 @@ import projects.realestatemanager.exception.EntityHasConnectionsException;
 import projects.realestatemanager.web.command.CreateBuildingCommand;
 import projects.realestatemanager.web.command.EditBuildingCommand;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +34,7 @@ public class BuildingService {
     private final DeveloperRepository developerRepository;
     private final ApartmentRepository apartmentRepository;
     private final BuildingConverter buildingConverter;
+    private final EntityManager entityManager;
 
     public List<BuildingSummary> findAllBuildings(){
         log.debug("Getting all buildings info");
@@ -127,5 +130,23 @@ public class BuildingService {
             throw new EntityDoesNotExistException(String.format("Building with id %s does not exist!", id));
         }
         return buildingRepository.getOne(id);
+    }
+
+    public List<BuildingSummary> findBuildingDeveloperId(Long id) {
+        log.debug("Looking for buildings related to developer id: {}", id);
+        if (!developerRepository.existsById(id)) {
+            log.debug("Tried to find non-existing developer!");
+            throw new EntityDoesNotExistException(String.format("Developer with id {} does not exist!", id));
+        }
+
+        try {
+            List <Building> apartmentEntities = buildingRepository.findAllByDeveloperId(id);
+            return apartmentEntities.stream()
+                    .map(buildingConverter::from)
+                    .collect(Collectors.toList());
+        } catch (RuntimeException re) {
+            log.error(re.getLocalizedMessage());
+            return null;
+        }
     }
 }

@@ -31,8 +31,18 @@ public class ApartmentListController {
     }
 
     @GetMapping("/details/{id:[0-9]+}")
-    public String getBuildingDetailsPage(Model model, @PathVariable Long id) {
+    public String getApartmentDetailsPage(Model model, @PathVariable Long id) {
         model.addAttribute("apartment", apartmentService.findApartmentById(id));
         return ("apartment/details");
+    }
+
+    @GetMapping("/{idString:^[b][0-9].*$}")
+    public String getBuildingRelatedApartmentsPage(Model model, @PathVariable String idString) {
+        log.debug("received building id: {}", idString);
+        Long id = Long.parseLong(idString.substring(1));
+        log.debug("Parsed building id: {}", id);
+
+        model.addAttribute("apartments", apartmentService.findApartmentByBuildingId(id));
+        return ("apartment/list");
     }
 }

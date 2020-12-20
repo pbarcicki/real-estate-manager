@@ -8,6 +8,7 @@ import projects.realestatemanager.converter.ApartmentConverter;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
+import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.*;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
 import projects.realestatemanager.web.command.EditApartmentCommand;
@@ -26,6 +27,7 @@ public class ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
     private final ApartmentConverter apartmentConverter;
+    private final BuildingRepository buildingRepository;
 
     public List<ApartmentSummary> findAllApartments() {
         log.debug("Getting all apartments info");
@@ -100,6 +102,7 @@ public class ApartmentService {
     public List<ApartmentSummary> showByIds(List<Long> idList) {
         log.debug("Id list to look in db: {}", idList.toString());
 
+
         try {
             List <Apartment> apartmentEntities = apartmentRepository.findAllByIdIn(idList);
             return apartmentEntities.stream()
@@ -112,6 +115,7 @@ public class ApartmentService {
 
     }
 
+    //todo apartmentsummary?
     public Apartment findApartmentById(Long id) {
         log.debug("Apartment id to show: {}", id);
         if (!apartmentRepository.existsById(id)) {
@@ -119,5 +123,23 @@ public class ApartmentService {
             throw new EntityDoesNotExistException(String.format("Apartment with id %s does not exist!", id));
         }
         return apartmentRepository.getOne(id);
+    }
+
+    public List<ApartmentSummary> findApartmentByBuildingId(Long id) {
+        log.debug("Looking for apartments related to building id: {}", id);
+        if (!buildingRepository.existsById(id)) {
+            log.debug("Tried to find non-existing building!");
+            throw new EntityDoesNotExistException(String.format("Building with id {} does not exist!", id));
+        }
+
+        try {
+            List <Apartment> apartmentEntities = apartmentRepository.findAllByBuildingId(id);
+            return apartmentEntities.stream()
+                    .map(apartmentConverter::from)
+                    .collect(Collectors.toList());
+        } catch (RuntimeException re) {
+            log.error(re.getLocalizedMessage());
+            return null;
+        }
     }
 }

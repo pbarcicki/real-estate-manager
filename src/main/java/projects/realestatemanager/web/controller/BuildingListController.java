@@ -29,5 +29,15 @@ public class BuildingListController {
         return ("building/details");
     }
 
+    @GetMapping("/{idString:^[d][0-9].*$}")
+    public String getDeveloperRelatedBuildingsPage(Model model, @PathVariable String idString) {
+        log.debug("received developer id: {}", idString);
+        Long id = Long.parseLong(idString.substring(1));
+        log.debug("Parsed developer id: {}", id);
+
+        model.addAttribute("buildings", buildingService.findBuildingDeveloperId(id));
+        return ("building/list");
+    }
+
 
 }

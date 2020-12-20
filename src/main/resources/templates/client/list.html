@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Client list</title>
 </head>
 <body>
 <div>
-    <h2>
+    <h2 sec:authorize="hasRole('ROLE_ADMIN')">
         <a th:href="@{/clients/add}">Add new client</a>
     </h2>
     <table>
@@ -24,8 +24,9 @@
             <td th:text="${client.clientContactNumber}"></td>
             <td th:text="${client.clientInterest}"></td>
             <td th:text="${client.clientRegistrationDate}"></td>
-            <td th:text="${client.isActive} ? 'active' : 'not active'"
-                th:style="${client.isActive} ? 'color: red' : 'color: grey'">
+            <td>
+                <input type="checkbox" disabled="true"
+                       th:checked="${client.isActive}">
             </td>
             <td><a th:href="|edit/${client.id}|">Edit</a></td>
         </tr>
