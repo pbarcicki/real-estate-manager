@@ -19,7 +19,7 @@ public class DeveloperDataLoader implements DataLoader{
     private final BuildingRepository buildingRepository;
 
     public int getOrder(){
-        return Integer.MIN_VALUE + 1;
+        return Integer.MIN_VALUE;
     }
 
     @Transactional

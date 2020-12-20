@@ -18,9 +18,10 @@ import java.time.LocalDate;
 public class BuildingDataLoader implements DataLoader{
 
     private final BuildingRepository buildingRepository;
+    private final DeveloperRepository developerRepository;
 
     public int getOrder(){
-        return Integer.MIN_VALUE;
+        return Integer.MIN_VALUE+1;
     }
 
     @Transactional
@@ -53,7 +54,8 @@ public class BuildingDataLoader implements DataLoader{
                 .editDate(LocalDate.of(2020,10,1))
                 .timeToBusStopMin(12)
                 .timeToCityCenterMin(10)
-                .developerName("Paul")
+                .developerName(developerRepository.getOne(1L).getDeveloperName())
+                .developer(developerRepository.getOne(1L))
                 .build();
 
         Building building2 = Building.builder()
@@ -84,7 +86,8 @@ public class BuildingDataLoader implements DataLoader{
                 .timeToCityCenterMin(25)
                 .buildingConstructionType("Brick")
                 .editDate(LocalDate.of(2010,5,6))
-                .developerName("Frank")
+                .developer(developerRepository.getOne(2L))
+                .developerName(developerRepository.getOne(2L).getDeveloperName())
                 .build();
         Building building3 = Building.builder()
                 .buildingDetails("data")
@@ -113,7 +116,8 @@ public class BuildingDataLoader implements DataLoader{
                 .timeToBusStopMin(15)
                 .timeToCityCenterMin(5)
                 .buildingConstructionType("Other")
-                .developerName("Frank")
+                .developerName(developerRepository.getOne(1L).getDeveloperName())
+                .developer(developerRepository.getOne(1L))
                 .build();
         Building building4 = Building.builder()
                 .buildingDetails("now building")
@@ -142,7 +146,8 @@ public class BuildingDataLoader implements DataLoader{
                 .timeToBusStopMin(10)
                 .timeToCityCenterMin(50)
                 .buildingConstructionType("Concrete")
-                .developerName("Denis")
+                .developerName(developerRepository.getOne(2L).getDeveloperName())
+                .developer(developerRepository.getOne(2L))
                 .build();
         buildingRepository.save(building1);
         buildingRepository.save(building2);
