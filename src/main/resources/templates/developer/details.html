@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="elements/header">
+    <meta charset="UTF-8">
+    <title>Developer details</title>
+</head>
+<body>
+    <section>
+        <h1>Developer details</h1>
+    </section>
+
+    <div>
+        <table>
+            <tr>
+                <th>Id:</th>
+                <td th:text="${developer.id}"></td>
+            </tr>
+
+            <tr>
+                <th>Active:</th>
+                <td th:text="${developer.isActive}"></td>
+            </tr>
+
+            <tr>
+                <th>Name:</th>
+                <td th:text="${developer.developerName}"></td>
+            </tr>
+
+            <tr>
+                <th>Contact person:</th>
+                <td th:text="${developer.developerContactPerson}"></td>
+            </tr>
+            
+
+        </table>
+
+    </div>
+
+
+</body>
+</html>

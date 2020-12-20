@@ -5,13 +5,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.domain.model.Apartment;
-import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.domain.repository.DeveloperRepository;
 import projects.realestatemanager.exception.AllFieldsAreNullException;
 import projects.realestatemanager.web.command.SearchApartmentCommand;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,10 +30,10 @@ public class SearchService {
     private final BuildingRepository buildingRepository;
     private final DeveloperRepository developerRepository;
     private final ApartmentRepository apartmentRepository;
+    private final EntityManager entityManager;
 
     public String search(SearchApartmentCommand searchApartmentCommand) {
         log.debug("Developer filter from : {}", searchApartmentCommand);
-        List<Long> apartmentsId = new ArrayList<>();
 
         //todo check if all fields are null or empty
         if (false) {
@@ -36,203 +41,153 @@ public class SearchService {
             throw new AllFieldsAreNullException("All fields are null!");
         }
 
-        if (searchApartmentCommand.getDeveloperId() != null) {
-            Long developerId = searchApartmentCommand.getDeveloperId();
-            log.debug("Developer id: {}", developerId);
-            if (developerRepository.existsById(developerId)) {
-                List<Building> buildings = buildingRepository.findAllByDeveloperIdAndIsActive(developerId, true);
-                apartmentsId = getApartmentsIdsFromBuildings(buildings);
-                log.debug("buildings by developer: {}", apartmentsId.size());
-            }
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Apartment> aptCriteria = cb.createQuery(Apartment.class);
+        Root<Apartment> root = aptCriteria.from(Apartment.class);
+        aptCriteria.select(root);
+
+        List<Predicate> searchPredicates = new ArrayList<>();
+        searchPredicates.add(cb.equal(root.get("active"), true));
+
+        if (searchApartmentCommand.getDeveloperId() !=null ) {
+            root.join("building").join("developer");
+            searchPredicates.add(cb.equal(root.get("building").get("developer").get("id"), searchApartmentCommand.getDeveloperId()));
         }
 
         if (searchApartmentCommand.getStreet() != null && searchApartmentCommand.getStreet() != "") {
-            List<Building> buildings = buildingRepository.findAllByStreet(searchApartmentCommand.getStreet());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by street: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getMaxDistanceToKindergarten() != null) {
-            List<Building> buildings = buildingRepository.findAllByMaxDistanceToKindergarten(searchApartmentCommand.getMaxDistanceToKindergarten());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min kindergarten: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getMaxDistanceToSchool() != null) {
-            List<Building> buildings = buildingRepository.findAllByMaxDistanceToSchool(searchApartmentCommand.getMaxDistanceToSchool());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min school: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getMaxDistanceToShoppingCenters() != null) {
-            List<Building> buildings = buildingRepository.findAllByMaxDistanceToShoppingCenters(searchApartmentCommand.getMaxDistanceToShoppingCenters());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min shopping malls: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getMaxDistanceToPark() != null) {
-            List<Building> buildings = buildingRepository.findAllByMaxDistanceToPark(searchApartmentCommand.getMaxDistanceToPark());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min park: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getIsParkingAvailable() != null) {
-            List<Building> buildings = buildingRepository.findAllByParking(searchApartmentCommand.getIsParkingAvailable());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by parking: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getIsGarageAvailable() != null) {
-            List<Building> buildings = buildingRepository.findAllByGarage(searchApartmentCommand.getIsGarageAvailable());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by garage: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getIsElevatorAvailable() != null) {
-            List<Building> buildings = buildingRepository.findAllByElevator(searchApartmentCommand.getIsElevatorAvailable());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by elevator: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getIsConnectedToMedia() != null) {
-            List<Building> buildings = buildingRepository.findAllByConnectedToMedia(searchApartmentCommand.getIsConnectedToMedia());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by media: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getMinBuildingRealizationTerm() != null) {
-            List<Building> buildings = buildingRepository.findAllMinRealizationTerm(searchApartmentCommand.getMinBuildingRealizationTerm());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min realization term: {}", apartmentsId.size());
-        }
-
-        if (searchApartmentCommand.getMaxBuildingRealizationTerm() != null) {
-            List<Building> buildings = buildingRepository.findAllMaxRealizationTerm(searchApartmentCommand.getMaxBuildingRealizationTerm());
-            List<Long> newIds = getApartmentsIdsFromBuildings(buildings);
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max realization term: {}", apartmentsId.size());
+            root.join("building");
+            searchPredicates.add(cb.equal(root.get("building").get("street"), searchApartmentCommand.getStreet()));
         }
 
         if (searchApartmentCommand.getMinFloor() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMinFloor(searchApartmentCommand.getMinFloor());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min floor: {}", apartmentsId.size());
+            searchPredicates.add(cb.gt(root.get("floor"), searchApartmentCommand.getMinFloor()));
         }
 
         if (searchApartmentCommand.getMaxFloor() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMaxFloor(searchApartmentCommand.getMaxFloor());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max floor: {}", apartmentsId.size());
+            searchPredicates.add(cb.lt(root.get("floor"), searchApartmentCommand.getMaxFloor()));
         }
 
         if (searchApartmentCommand.getMinArea() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMinArea(searchApartmentCommand.getMinArea());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max floor: {}", apartmentsId.size());
+            searchPredicates.add(cb.gt(root.get("area"), searchApartmentCommand.getMinArea()));
         }
 
         if (searchApartmentCommand.getMaxArea() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMaxArea(searchApartmentCommand.getMaxArea());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max floor: {}", apartmentsId.size());
+            searchPredicates.add(cb.lt(root.get("area"), searchApartmentCommand.getMaxArea()));
         }
 
         if (searchApartmentCommand.getMinRoomsNumber() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMinRooms(searchApartmentCommand.getMinRoomsNumber());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min rooms: {}", apartmentsId.size());
+            searchPredicates.add(cb.gt(root.get("roomsNumber"), searchApartmentCommand.getMinRoomsNumber()));
         }
 
         if (searchApartmentCommand.getMaxRoomsNumber() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMaxRooms(searchApartmentCommand.getMaxRoomsNumber());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max rooms: {}", apartmentsId.size());
+            searchPredicates.add(cb.lt(root.get("roomsNumber"), searchApartmentCommand.getMaxRoomsNumber()));
         }
 
         if (searchApartmentCommand.getTypeOfKitchen() != null && searchApartmentCommand.getTypeOfKitchen() != "") {
-            List<Long> newIds = apartmentRepository.findAllByTypeOfKitchen(searchApartmentCommand.getTypeOfKitchen());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max kitchen: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("typeOfKitchen"), searchApartmentCommand.getTypeOfKitchen()));
         }
 
         if (searchApartmentCommand.getMinPrice() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMinPrice(searchApartmentCommand.getMinPrice());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min price: {}", apartmentsId.size());
+            searchPredicates.add(cb.gt(root.get("price"), searchApartmentCommand.getMinPrice()));
         }
 
         if (searchApartmentCommand.getMaxPrice() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMaxPrice(searchApartmentCommand.getMaxPrice());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max price: {}", apartmentsId.size());
+            searchPredicates.add(cb.lt(root.get("price"), searchApartmentCommand.getMaxPrice()));
         }
 
         if (searchApartmentCommand.getMinPricePerSquareMeter() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMinPricePerM(searchApartmentCommand.getMinPricePerSquareMeter());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by min price per m2: {}", apartmentsId.size());
+            searchPredicates.add(cb.gt(root.get("pricePerSquareMeter"), searchApartmentCommand.getMinPricePerSquareMeter()));
         }
 
         if (searchApartmentCommand.getMaxPricePerSquareMeter() != null) {
-            List<Long> newIds = apartmentRepository.findAllByMinPricePerM(searchApartmentCommand.getMaxPricePerSquareMeter());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by max price per m2: {}", apartmentsId.size());
+            searchPredicates.add(cb.lt(root.get("pricePerSquareMeter"), searchApartmentCommand.getMaxPricePerSquareMeter()));
         }
 
         if (searchApartmentCommand.getMarketType() != null && searchApartmentCommand.getMarketType() != "") {
-            List<Long> newIds = apartmentRepository.findAllByMarketType(searchApartmentCommand.getMarketType());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by market type: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("marketType"), searchApartmentCommand.getMarketType()));
+        }
+
+        if (searchApartmentCommand.getMaxDistanceToKindergarten() != null) {
+            root.join("building");
+            searchPredicates.add(cb.lt(root.get("building").get("distanceToKindergarten"), searchApartmentCommand.getMaxDistanceToKindergarten()));
+        }
+
+        if (searchApartmentCommand.getMaxDistanceToSchool() != null) {
+            root.join("building");
+            searchPredicates.add(cb.lt(root.get("building").get("distanceToSchool"), searchApartmentCommand.getMaxDistanceToSchool()));
+        }
+
+        if (searchApartmentCommand.getMaxDistanceToShoppingCenters() != null) {
+            root.join("building");
+            searchPredicates.add(cb.lt(root.get("building").get("distanceToShoppingCenters"), searchApartmentCommand.getMaxDistanceToShoppingCenters()));
+        }
+
+        if (searchApartmentCommand.getMaxDistanceToPark() != null) {
+            root.join("building");
+            searchPredicates.add(cb.lt(root.get("building").get("distanceToPark"), searchApartmentCommand.getMaxDistanceToPark()));
         }
 
         if (searchApartmentCommand.getWindowsDirection() != null && searchApartmentCommand.getWindowsDirection() != "") {
-            List<Long> newIds = apartmentRepository.findAllByWindowsDirection(searchApartmentCommand.getWindowsDirection());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by windows direction: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("windowsDirection"), searchApartmentCommand.getWindowsDirection()));
         }
 
         if (searchApartmentCommand.getView() != null && searchApartmentCommand.getView() != "") {
-            List<Long> newIds = apartmentRepository.findAllByView(searchApartmentCommand.getView());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by view: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("view"), searchApartmentCommand.getView()));
         }
 
         if (searchApartmentCommand.getStatus() != null && searchApartmentCommand.getStatus() != "") {
-            List<Long> newIds = apartmentRepository.findAllByStatus(searchApartmentCommand.getStatus());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by apt status: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("status"), searchApartmentCommand.getStatus()));
         }
 
         if (searchApartmentCommand.getExclusivity() != null) {
-            List<Long> newIds = apartmentRepository.findAllByExclusivity(searchApartmentCommand.getExclusivity());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by exclusivity: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("exclusivity"), searchApartmentCommand.getExclusivity()));
         }
 
         if (searchApartmentCommand.getStorageRoom() != null) {
-            List<Long> newIds = apartmentRepository.findAllByStorageRoom(searchApartmentCommand.getStorageRoom());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by storage room: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("storageRoom"), searchApartmentCommand.getStorageRoom()));
         }
 
         if (searchApartmentCommand.getOnCorner() != null) {
-            List<Long> newIds = apartmentRepository.findAllByStorageRoom(searchApartmentCommand.getOnCorner());
-            apartmentsId = getFilteredResult(apartmentsId, newIds);
-            log.debug("apartments by corner: {}", apartmentsId.size());
+            searchPredicates.add(cb.equal(root.get("onCorner"), searchApartmentCommand.getOnCorner()));
         }
 
-        //filtering apartments - removing not active from the list
-        List<Long> finalResults = apartmentRepository.findAllByActive(apartmentsId);
+        if (searchApartmentCommand.getIsParkingAvailable() != null) {
+            root.join("building");
+            searchPredicates.add(cb.equal(root.get("building").get("isParkingAvailable"), searchApartmentCommand.getIsParkingAvailable()));
+        }
+
+        if (searchApartmentCommand.getIsGarageAvailable() != null) {
+            root.join("building");
+            searchPredicates.add(cb.equal(root.get("building").get("isGarageAvailable"), searchApartmentCommand.getIsGarageAvailable()));
+        }
+
+        if (searchApartmentCommand.getIsElevatorAvailable() != null) {
+            root.join("building");
+            searchPredicates.add(cb.equal(root.get("building").get("isElevatorAvailable"), searchApartmentCommand.getIsElevatorAvailable()));
+        }
+
+        if (searchApartmentCommand.getIsConnectedToMedia() != null) {
+            root.join("building");
+            searchPredicates.add(cb.equal(root.get("building").get("isConnectedToMedia"), searchApartmentCommand.getIsConnectedToMedia()));
+        }
+
+        if (searchApartmentCommand.getMinBuildingRealizationTerm() != null) {
+            root.join("building");
+            searchPredicates.add(cb.greaterThan(root.get("building").get("buildingRealizationTerm"), searchApartmentCommand.getMinBuildingRealizationTerm()));
+        }
+
+        if (searchApartmentCommand.getMaxBuildingRealizationTerm() != null) {
+            root.join("building");
+            searchPredicates.add(cb.lessThan(root.get("building").get("buildingRealizationTerm"), searchApartmentCommand.getMaxBuildingRealizationTerm()));
+        }
+
+        aptCriteria.select(root).where(cb.and(searchPredicates.toArray(new Predicate[]{})));
+        TypedQuery<Apartment> query = entityManager.createQuery(aptCriteria);
+
+        List<Apartment> apts = query.getResultList();
+        log.debug("Received {} apartments", apts.size());
+
+        List<Long> finalResults = query.getResultList().stream().map(apt -> apt.getId()).collect(Collectors.toList());
         log.debug("Final result sum: {}", finalResults.size());
 
         String ids = "";
@@ -245,29 +200,5 @@ public class SearchService {
         log.debug("ids: {}", ids);
 
         return ids;
-    }
-
-    private List<Long> getApartmentsIdsFromBuildings(List<Building> buildings) {
-        List<Apartment> apartments = new ArrayList<>();
-        buildings.forEach(b -> {
-            apartments.addAll(apartmentRepository.findAllByBuildingId(b.getId()));
-        });
-
-        List<Long> apartmentsIds = apartments.stream().map(Apartment::getId).collect(Collectors.toList());
-        return apartmentsIds;
-    }
-
-    private List<Long> getFilteredResult(List<Long> input, List<Long> newIds) {
-        List<Long> result = new ArrayList<>();
-        if (input.isEmpty()) {
-            return newIds;
-        } else {
-            for (Long id : input) {
-                if (newIds.contains(id)) {
-                    result.add(id);
-                }
-            }
-            return result;
-        }
     }
 }

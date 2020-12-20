@@ -19,22 +19,22 @@ public class DeveloperDataLoader implements DataLoader{
     private final BuildingRepository buildingRepository;
 
     public int getOrder(){
-        return Integer.MIN_VALUE + 1;
+        return Integer.MIN_VALUE;
     }
 
     @Transactional
     public void loadData() {
         Developer developer1 = Developer.builder()
                 .developerContactNumber("234765234")
-                .developerContactPerson("Guashe")
-                .developerName("Ben")
+                .developerContactPerson("Daniel Jonas")
+                .developerName("Tom Shapiro")
                 .isActive(true)
                 .build();
         developerRepository.save(developer1);
         Developer developer2 = Developer.builder()
                 .developerContactNumber("234000534")
-                .developerContactPerson("Ughelli")
-                .developerName("Manganitu")
+                .developerContactPerson("Frank Redmayne")
+                .developerName("Bob Felton")
                 .isActive(true)
                 .build();
         developerRepository.save(developer2);

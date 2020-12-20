@@ -18,17 +18,18 @@ import java.time.LocalDate;
 public class BuildingDataLoader implements DataLoader{
 
     private final BuildingRepository buildingRepository;
+    private final DeveloperRepository developerRepository;
 
     public int getOrder(){
-        return Integer.MIN_VALUE;
+        return Integer.MIN_VALUE+1;
     }
 
     @Transactional
     public void loadData() {
         Building building1 = Building.builder()
-                .buildingConstructionType("Panel")
-                .buildingDetails("vestibulum sagittis sapien cum sociis natoque penatibus et magnis")
-                .buildingLocationDetails("interdum mauris non ligula pellentesque ultrices")
+                .buildingConstructionType("Concrete")
+                .buildingDetails("From the outside the house looks very extravagant.")
+                .buildingLocationDetails("There is also a big garden")
                 .buildingNumber("20")
                 .buildingRealizationTerm(LocalDate.of(2020,5,5))
                 .buildingSection(2)
@@ -39,7 +40,7 @@ public class BuildingDataLoader implements DataLoader{
                 .distanceToRiver(5)
                 .distanceToSchool(20)
                 .distanceToShoppingCenters(10)
-                .district("tempor turpis")
+                .district("Downtown")
                 .isActive(true)
                 .isConnectedToMedia(true)
                 .isElevatorAvailable(true)
@@ -53,12 +54,13 @@ public class BuildingDataLoader implements DataLoader{
                 .editDate(LocalDate.of(2020,10,1))
                 .timeToBusStopMin(12)
                 .timeToCityCenterMin(10)
-                .developerName("Paul")
+                .developerName(developerRepository.getOne(1L).getDeveloperName())
+                .developer(developerRepository.getOne(1L))
                 .build();
 
         Building building2 = Building.builder()
-                .buildingDetails("Panel")
-                .buildingLocationDetails("non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis")
+                .buildingDetails("It is built from white bricks.")
+                .buildingLocationDetails("House is located near Mariacka street.")
                 .buildingNumber("23")
                 .buildingRealizationTerm(LocalDate.of(2022, 12,2))
                 .buildingSection(3)
@@ -69,7 +71,7 @@ public class BuildingDataLoader implements DataLoader{
                 .distanceToRiver(20)
                 .distanceToSchool(25)
                 .distanceToShoppingCenters(30)
-                .district("primis")
+                .district("Downtown")
                 .isActive(true)
                 .isConnectedToMedia(true)
                 .isElevatorAvailable(true)
@@ -84,11 +86,12 @@ public class BuildingDataLoader implements DataLoader{
                 .timeToCityCenterMin(25)
                 .buildingConstructionType("Brick")
                 .editDate(LocalDate.of(2010,5,6))
-                .developerName("Frank")
+                .developer(developerRepository.getOne(2L))
+                .developerName(developerRepository.getOne(2L).getDeveloperName())
                 .build();
         Building building3 = Building.builder()
-                .buildingDetails("data")
-                .buildingLocationDetails("non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis")
+                .buildingDetails("Wide windows brighten up the house.")
+                .buildingLocationDetails("Building is located near main street.")
                 .buildingNumber("10")
                 .buildingRealizationTerm(LocalDate.of(2021, 2,12))
                 .buildingSection(4)
@@ -99,7 +102,7 @@ public class BuildingDataLoader implements DataLoader{
                 .distanceToRiver(500)
                 .distanceToSchool(25)
                 .distanceToShoppingCenters(30)
-                .district("second")
+                .district("Edging")
                 .isActive(true)
                 .isConnectedToMedia(false)
                 .isElevatorAvailable(false)
@@ -113,11 +116,12 @@ public class BuildingDataLoader implements DataLoader{
                 .timeToBusStopMin(15)
                 .timeToCityCenterMin(5)
                 .buildingConstructionType("Other")
-                .developerName("Frank")
+                .developerName(developerRepository.getOne(1L).getDeveloperName())
+                .developer(developerRepository.getOne(1L))
                 .build();
         Building building4 = Building.builder()
-                .buildingDetails("now building")
-                .buildingLocationDetails("")
+                .buildingDetails("Our house is very cosy and tidy.")
+                .buildingLocationDetails("Building is located near city center.")
                 .buildingNumber("12")
                 .buildingRealizationTerm(LocalDate.of(2019, 12,2))
                 .buildingSection(7)
@@ -128,7 +132,7 @@ public class BuildingDataLoader implements DataLoader{
                 .distanceToRiver(540)
                 .distanceToSchool(125)
                 .distanceToShoppingCenters(130)
-                .district("first")
+                .district("Gaj")
                 .isActive(true)
                 .isConnectedToMedia(true)
                 .isElevatorAvailable(false)
@@ -142,7 +146,8 @@ public class BuildingDataLoader implements DataLoader{
                 .timeToBusStopMin(10)
                 .timeToCityCenterMin(50)
                 .buildingConstructionType("Concrete")
-                .developerName("Denis")
+                .developerName(developerRepository.getOne(2L).getDeveloperName())
+                .developer(developerRepository.getOne(2L))
                 .build();
         buildingRepository.save(building1);
         buildingRepository.save(building2);

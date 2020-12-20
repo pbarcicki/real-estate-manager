@@ -1,172 +1,234 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Building details</title>
 </head>
 <body>
-    <section>
+    <div>
         <h1>Apartment details</h1>
-    </section>
+    </div>
 
-<!--    <section>-->
-<!--        <table>-->
-<!--            <tr>-->
-<!--                <th>Id:</th>-->
-<!--                <td th:text="${building.id}"></td>-->
-<!--            </tr>-->
+    <div>
+        <h4>Key data:</h4>
+        <table>
+            <tr>
+                <th>Id:</th>
+                <td th:text="${apartment.id}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Developer:</th>-->
-<!--                <td> ***todo link*** </td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Building:</th>
+                <td><a th:text="${apartment.building.getId()}" th:href="|/buildings/list/details/${apartment.building.id}|"></a></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Primary market:</th>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" disabled="true"-->
-<!--                           th:checked="${building.isPrimaryMarket}">-->
-<!--                </td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Developer:</th>
+                <td><a th:text="${apartment.building.developerName}" th:href="|/developers/list/details/${apartment.building.developer.getId()}|"></a> </td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Number of apartments:</th>-->
-<!--                <td th:text="|${building.numberOfApartments} ***todo link to all coonected apartments***|"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Price:</th>
+                <td th:text="${apartment.price}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Building section:</th>-->
-<!--                <td th:text="${building.buildingSection}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Price per m2:</th>
+                <td th:text="${apartment.pricePerSquareMeter}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Building realization term:</th>-->
-<!--                <td th:text="${building.buildingRealizationTerm}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Market type:</th>
+                <td th:text="${apartment.marketType}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Photos URL:</th>-->
-<!--                <td th:text="${building.photosUrl}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Status:</th>
+                <td th:text="${apartment.status}"></td>
+            </tr>
 
-<!--        </table>-->
+            <tr>
+                <th>Exclusivity:</th>
+                <td th:text="${apartment.exclusivity}"></td>
+            </tr>
+        </table>
 
-<!--        <h4>Address details</h4>-->
-<!--        <table>-->
-<!--            <tr>-->
-<!--                <th>Region:</th>-->
-<!--                <td th:text="${building.region}"></td>-->
-<!--            </tr>-->
+        <h4>Address details</h4>
+        <table>
+            <tr>
+                <th>Region:</th>
+                <td th:text="${apartment.building.region}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>City:</th>-->
-<!--                <td th:text="${building.city}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>City:</th>
+                <td th:text="${apartment.building.city}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>District:</th>-->
-<!--                <td th:text="${building.district}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>District:</th>
+                <td th:text="${apartment.building.district}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Street:</th>-->
-<!--                <td th:text="${building.street}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Street:</th>
+                <td th:text="${apartment.building.street}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Building number:</th>-->
-<!--                <td th:text="${building.buildingNumber}"></td>-->
-<!--            </tr>-->
-<!--        </table>-->
+            <tr>
+                <th>Building number:</th>
+                <td th:text="${apartment.building.buildingNumber}"></td>
+            </tr>
+        </table>
 
-<!--        <h4>Localization details</h4>-->
-<!--        <table>-->
-<!--            <tr>-->
-<!--                <th>Distance to kindergarten (m):</th>-->
-<!--                <td th:text="${building.distanceToKindergarten}"></td>-->
-<!--            </tr>-->
+        <h4>Specs:</h4>
+        <table>
+            <tr>
+                <th>Floor:</th>
+                <td th:text="${apartment.floor}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Distance to school (m):</th>-->
-<!--                <td th:text="${building.distanceToSchool}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Area:</th>
+                <td th:text="${apartment.area}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Distance to shopping malls (m):</th>-->
-<!--                <td th:text="${building.distanceToShoppingCenters}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Rooms number:</th>
+                <td th:text="${apartment.roomsNumber}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Distance to park (m):</th>-->
-<!--                <td th:text="${building.distanceToPark}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Kitchen type:</th>
+                <td th:text="${apartment.typeOfKitchen}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Distance to river (m):</th>-->
-<!--                <td th:text="${building.distanceToRiver}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Windows direction:</th>
+                <td th:text="${apartment.windowsDirection}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Time to city center (min):</th>-->
-<!--                <td th:text="${building.timeToCityCenterMin}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>View:</th>
+                <td th:text="${apartment.view}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Time to bus stop (min):</th>-->
-<!--                <td th:text="${building.timeToBusStopMin}"></td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Storage room:</th>
+                <td th:text="${apartment.storageRoom}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Building localization details:</th>-->
-<!--                <td th:text="${building.buildingLocationDetails}"></td>-->
-<!--            </tr>-->
-<!--        </table>-->
+            <tr>
+                <th>Apartment situated on corner:</th>
+                <td th:text="${apartment.onCorner}"></td>
+            </tr>
 
-<!--        <h4>Building details</h4>-->
-<!--        <table>-->
-<!--            <tr>-->
-<!--                <th>Park lot:</th>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" disabled="true"-->
-<!--                           th:checked="${building.isParkingAvailable}">-->
-<!--                </td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Additional comment:</th>
+                <td th:text="${apartment.comment}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Garage:</th>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" disabled="true"-->
-<!--                           th:checked="${building.isGarageAvailable}">-->
-<!--                </td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Photos URL:</th>
+                <td th:text="${apartment.photosUrl}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Elevator:</th>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" disabled="true"-->
-<!--                           th:checked="${building.isElevatorAvailable}">-->
-<!--                </td>-->
-<!--            </tr>-->
+            <tr>
+                <th>Added to database:</th>
+                <td th:text="${apartment.creationDate}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Media:</th>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" disabled="true"-->
-<!--                           th:checked="${building.isConnectedToMedia}">-->
-<!--                </td>-->
-<!--            </tr>-->
+        </table>
 
-<!--            <tr>-->
-<!--                <th>Building construction type:</th>-->
-<!--                <td th:text="${building.buildingConstructionType}"></td>-->
-<!--            </tr>-->
+        <h4>Localization details</h4>
+        <table>
+            <tr>
+                <th>Distance to kindergarten (m):</th>
+                <td th:text="${apartment.building.distanceToKindergarten}"></td>
+            </tr>
 
-<!--            <tr>-->
-<!--                <th>Additional building details:</th>-->
-<!--                <td th:text="${building.buildingDetails}"></td>-->
-<!--            </tr>-->
-<!--        </table>-->
-<!--    </section>-->
+            <tr>
+                <th>Distance to school (m):</th>
+                <td th:text="${apartment.building.distanceToSchool}"></td>
+            </tr>
+
+            <tr>
+                <th>Distance to shopping malls (m):</th>
+                <td th:text="${apartment.building.distanceToShoppingCenters}"></td>
+            </tr>
+
+            <tr>
+                <th>Distance to park (m):</th>
+                <td th:text="${apartment.building.distanceToPark}"></td>
+            </tr>
+
+            <tr>
+                <th>Distance to river (m):</th>
+                <td th:text="${apartment.building.distanceToRiver}"></td>
+            </tr>
+
+            <tr>
+                <th>Time to city center (min):</th>
+                <td th:text="${apartment.building.timeToCityCenterMin}"></td>
+            </tr>
+
+            <tr>
+                <th>Time to bus stop (min):</th>
+                <td th:text="${apartment.building.timeToBusStopMin}"></td>
+            </tr>
+
+            <tr>
+                <th>Building localization details:</th>
+                <td th:text="${apartment.building.buildingLocationDetails}"></td>
+            </tr>
+        </table>
+
+        <h4>Building details</h4>
+        <table>
+            <tr>
+                <th>Park lot:</th>
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${apartment.building.isParkingAvailable}">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Garage:</th>
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${apartment.building.isGarageAvailable}">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Elevator:</th>
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${apartment.building.isElevatorAvailable}">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Media:</th>
+                <td>
+                    <input type="checkbox" disabled="true"
+                           th:checked="${apartment.building.isConnectedToMedia}">
+                </td>
+            </tr>
+
+            <tr>
+                <th>Building construction type:</th>
+                <td th:text="${apartment.building.buildingConstructionType}"></td>
+            </tr>
+
+            <tr>
+                <th>Additional building details:</th>
+                <td th:text="${apartment.building.buildingDetails}"></td>
+            </tr>
+        </table>
+
+    </div>
 
 
 </body>

@@ -7,7 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.ApartmentConverter;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
+import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
+import projects.realestatemanager.domain.repository.BuildingRepository;
 import projects.realestatemanager.exception.*;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
 import projects.realestatemanager.web.command.EditApartmentCommand;
@@ -26,6 +29,7 @@ public class ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
     private final ApartmentConverter apartmentConverter;
+    private final BuildingRepository buildingRepository;
 
     public List<ApartmentSummary> findAllApartments() {
         log.debug("Getting all apartments info");
@@ -38,8 +42,9 @@ public class ApartmentService {
 
     public void add(CreateApartmentCommand createApartmentCommand) {
         log.debug("Apartment data to be saved: {}", createApartmentCommand);
+        Building building = buildingRepository.getOne(createApartmentCommand.getBuildingId());
 
-        Apartment apartmentToAdd = apartmentConverter.from(createApartmentCommand);
+        Apartment apartmentToAdd = apartmentConverter.from(createApartmentCommand, building);
 
         if (apartmentRepository.existsByFloorAndAreaAndBuildingAndWindowsDirection(apartmentToAdd.getFloor(), apartmentToAdd.getArea(), apartmentToAdd.getBuilding(), apartmentToAdd.getWindowsDirection())) {
             log.debug("Trying to add existing apartment");
@@ -112,6 +117,7 @@ public class ApartmentService {
 
     }
 
+    //todo apartmentsummary?
     public Apartment findApartmentById(Long id) {
         log.debug("Apartment id to show: {}", id);
         if (!apartmentRepository.existsById(id)) {
@@ -119,5 +125,28 @@ public class ApartmentService {
             throw new EntityDoesNotExistException(String.format("Apartment with id %s does not exist!", id));
         }
         return apartmentRepository.getOne(id);
+    }
+
+    public List<ApartmentSummary> findApartmentByBuildingId(Long id) {
+        log.debug("Looking for apartments related to building id: {}", id);
+        if (!buildingRepository.existsById(id)) {
+            log.debug("Tried to find non-existing building!");
+            throw new EntityDoesNotExistException(String.format("Building with id {} does not exist!", id));
+        }
+
+        try {
+            List <Apartment> apartmentEntities = apartmentRepository.findAllByBuildingId(id);
+            return apartmentEntities.stream()
+                    .map(apartmentConverter::from)
+                    .collect(Collectors.toList());
+        } catch (RuntimeException re) {
+            log.error(re.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    //todo apartmentsummary?
+    public List<Apartment> getUsersFavouriteApartments(User user) {
+        return apartmentRepository.getUsersFavouriteApartments(user.getId());
     }
 }

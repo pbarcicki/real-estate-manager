@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Building details</title>
 </head>
 <body>
-    <section>
+    <div>
         <h1>Building details</h1>
-    </section>
+    </div>
 
-    <section>
+    <div>
         <table>
             <tr>
                 <th>Id:</th>
@@ -18,7 +18,7 @@
 
             <tr>
                 <th>Developer:</th>
-                <td> ***todo link*** </td>
+                <td><a th:text="${building.developerName}" th:href="|/developers/list/details/${building.developer.id}|"></a></td>
             </tr>
 
             <tr>
@@ -31,7 +31,10 @@
 
             <tr>
                 <th>Number of apartments:</th>
-                <td th:text="|${building.numberOfApartments} ***todo link to all coonected apartments***|"></td>
+                <td>
+                    <a th:text="|${building.numberOfApartments}|"
+                       th:href="|/apartments/list/b${building.id}|"></a>
+                </td>
             </tr>
 
             <tr>
@@ -47,6 +50,11 @@
             <tr>
                 <th>Photos URL:</th>
                 <td th:text="${building.photosUrl}"></td>
+            </tr>
+
+            <tr>
+                <th>Added to database:</th>
+                <td th:text="${building.creationDate}"></td>
             </tr>
 
         </table>
@@ -166,7 +174,7 @@
                 <td th:text="${building.buildingDetails}"></td>
             </tr>
         </table>
-    </section>
+    </div>
 
 
 </body>

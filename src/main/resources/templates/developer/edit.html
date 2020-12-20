@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Edit developer</title>
 </head>
 <body>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
 <h1>Edit developer</h1>
 <h2 th:text="${developerEdit.name}"></h2>
 
@@ -80,5 +81,6 @@
         <button type="submit">Delete</button>
     </form>
 </fieldset>
+</div>
 </body>
 </html>

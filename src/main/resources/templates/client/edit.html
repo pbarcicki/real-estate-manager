@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Client edit</title>
 </head>
 <body>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
 <h1>Edit client:</h1>
 <h2 th:text="${clientEdit.clientName}"></h2>
 <div>
@@ -72,6 +73,7 @@
             <button type="submit">Delete</button>
         </form>
     </fieldset>
+</div>
 </div>
 </body>
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Apartments list</title>
 </head>
 <body>
 <div>
     <h1>Apartments list</h1>
-    <h3>
+    <h3 sec:authorize="hasRole('ADMIN')">
         <a th:href="@{/apartments/add}">Add new apartment</a>
     </h3>
 
@@ -52,17 +52,9 @@
             <td th:text="${apartment.comment}"></td>
             <td th:text="${apartment.photosUrl}"></td>
             <td><input type="checkbox" disabled="true" th:checked="${apartment.onCorner}"/></td>
-            <td><button><a th:href="|edit/${apartment.id}|">Edit</a></button></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><button><a th:href="|edit/${apartment.id}|">Edit</a></button></td>
             <td> <button><a th:href="|list/details/${apartment.id}|">Check details</a></button> </td>
-        </tr>
-
-        <tr th:each="building : ${buildings}">
-            <td th:text="${building.isParkingAvailable}"></td>
-            <td><input type="checkbox" disabled="true" th:checked="${building.isGarageAvailable}"/></td>
-            <td><input type="checkbox" disabled="true" th:checked="building.isElevatorAvailable"/></td>
-            <td><input type="checkbox" disabled="true" th:checked="building.isConnectedToMedia"/></td>
-            <td th:text="${building.buildingConstructionType}"></td>
-            <td th:text="${building.developerName}"></td>
+            <td><button><a th:href="@{list/fav(apartmentId=${apartment.id})}">FAV</a></button></td>
         </tr>
 
 

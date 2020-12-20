@@ -4,9 +4,13 @@ package projects.realestatemanager.domain.model;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import static projects.realestatemanager.domain.model.Apartment.APARTMENT_TABLE;
 
 @Entity
-@Table(name = "apartment")
+@Table(name = APARTMENT_TABLE)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,6 +18,10 @@ import java.time.LocalDate;
 @ToString(exclude = "building")
 @EqualsAndHashCode(of = "id") //todo ewentualnie do zmiany
 public class Apartment {
+
+
+    public static final String APARTMENT_TABLE = "apartments";
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -68,8 +76,11 @@ public class Apartment {
     private String photosUrl;
 
     @ManyToOne
-    @JoinColumn(name = "building_id")
+//    @JoinColumn(name = "building_id")
     private Building building;
+
+    @ManyToMany(mappedBy = "apartments")
+    private Set<User> users = new HashSet<>();
 
 }
 

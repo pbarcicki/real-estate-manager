@@ -22,11 +22,9 @@ import java.util.List;
 public class ResultListController {
 
     private final ApartmentService apartmentService;
-    private final ApartmentRepository apartmentRepository;
 
-    //todo regex
     @GetMapping("/{ids:^[0-9].*[0-9]$}")
-    public String getSearchPage(@PathVariable (value = "ids") String ids, Model model) {
+    public String getSearchPage(@PathVariable(value = "ids") String ids, Model model) {
         log.debug("Received ids in show controller: {}", ids);
 
         List<Long> idList = new ArrayList<>();
@@ -40,5 +38,11 @@ public class ResultListController {
 
         model.addAttribute("apartmentsToShow", apartmentService.showByIds(idList));
         return "search/results";
+    }
+
+    @GetMapping("/")
+    public String getEmptySearchPage(Model model) {
+
+        return "errors/no-results";
     }
 }

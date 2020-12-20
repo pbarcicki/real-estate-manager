@@ -6,12 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import projects.realestatemanager.data.building.BuildingSummary;
+import projects.realestatemanager.data.developer.DeveloperSummary;
 import projects.realestatemanager.exception.ApartmentAlreadyExistExeption;
 import projects.realestatemanager.service.ApartmentService;
+import projects.realestatemanager.service.BuildingService;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/apartments/add")
@@ -20,6 +25,7 @@ import javax.validation.Valid;
 public class AddNewApartmentController {
 
     private final ApartmentService apartmentService;
+    private final BuildingService buildingService;
 //    private final DeveloperService developerService;
 //
 //    @ModelAttribute("availableDeveloper")
@@ -27,9 +33,15 @@ public class AddNewApartmentController {
 //        return developerService.showAllDevelopers();
 //    }
 
+    @ModelAttribute("availableBuildings")
+    public List<BuildingSummary> availableBuildings() {
+        return buildingService.showAllBuildings();
+    }
+
     @GetMapping
     public String getAddApartmentPage(Model model) {
         model.addAttribute(new CreateApartmentCommand());
+
         return "apartment/add";
     }
 

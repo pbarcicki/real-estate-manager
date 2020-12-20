@@ -113,6 +113,7 @@ public class BuildingConverter {
                 building.setPhotosUrl(editBuildingCommand.getPhotosUrl());
             return building;
     }
+
 }
 
 

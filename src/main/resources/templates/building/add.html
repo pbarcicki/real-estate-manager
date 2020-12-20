@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Add new building</title>
 </head>
@@ -8,7 +8,7 @@
 <section>
     <h1>Add new building</h1>
 </section>
-<section>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
     <form th:action="@{add}" th:method="post" th:object="${createBuildingCommand}">
         <div>
             <label> Region:
@@ -155,11 +155,11 @@
                         th:value="${developerOpt.id}" th:text="${developerOpt.name}">
                 </option>
                 </select>
-                <br>
                 <div>
                     <span th:each="err : ${#fields.errors('developerId')}" th:text="${err}"></span>
                 </div>
             </label>
+            <br>
 
             <label> Elevator availability:
                 <input type="checkbox" th:field="${createBuildingCommand.elevatorAvailable}"/>
@@ -217,7 +217,7 @@
             </div>
         </div>
     </form>
-</section>
+</div>
 
 </body>
 </html>

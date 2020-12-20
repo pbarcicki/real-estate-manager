@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Add developer</title>
 </head>
 <body>
 <h1>Add developer</h1>
-<div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
     <form
             th:action="@{/developers/add}"
             th:method="post"

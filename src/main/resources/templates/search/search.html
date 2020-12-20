@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Search</title>
 </head>
@@ -208,6 +208,7 @@
                             <span th:each="err : ${#fields.errors('windowsDirection')}" th:text="${err}"></span>
                         </div>
                     </label>
+
                     <label>View on:
                         <input type="text" th:field="*{view}"/>
                         <div>
