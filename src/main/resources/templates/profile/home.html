@@ -1,30 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <style>
-        .header {
-            background-color: tomato;
-            padding: 15px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-<div class="header">
-    <h1 style="color: white">(╯°□°)╯︵ ┻━┻</h1>
-</div>
-<h2>Zalogowany użytkownik:<span sec:authentication="name"></span></h2>
+<!--<h2>Logged user: <span sec:authentication="name"></span></h2>-->
 <hr>
-<div class="nav_menu">
-    <a href="/apartments/list">APARTAMENTY</a>
-    <a href="/buildings/list">BUDYNKI</a>
-    <a href="/users/list">KLIENCI</a>
-    <a href="/developers/list">DEWELOPERZY</a>
-    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/users/add">DODAJ NOWEGO UŻYTKOWNIKA</a>
-    <a href="/logout">WYLOGUJ!</a>
+<div  th:if="${!favouriteBuildings.isEmpty()}">
+    <h2>Favourite buildings list...</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>type</th>
+            <th>real_term</th>
+            <th>region</th>
+        </tr>
+        <tr th:each="building : ${favouriteBuildings}">
+            <td th:text="${building.id}"></td>
+            <td th:text="${building.buildingConstructionType}"></td>
+            <td th:text="${building.buildingRealizationTerm}"></td>
+            <td th:text="${building.region}"></td>
+            <td>
+                <button><a th:href="|/buildings/list/details/${building.id}|">Check details</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{del/fav/building(id=${building.id})}">Delete</a></button>
+            </td>
+        </tr>
+    </table>
 </div>
+
+<div th:if="${!favouriteClients.isEmpty()}">
+    <h2>Favourite clients list...</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Registration date</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="client : ${favouriteClients}">
+            <td th:text="${client.id}"></td>
+            <td th:text="${client.clientName}"></td>
+            <td th:text="${client.clientRegistrationDate}"></td>
+            <td>
+            <td>
+                <button><a th:href="@{del/fav/client(id=${client.id})}">Delete</a></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div th:if="${!favouriteApartments.isEmpty()}">
+    <h2>Favourite clients apartments...</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Floor</th>
+            <th>Area</th>
+            <th>Rooms number</th>
+            <th>Type of kitchen</th>
+            <th>Price (USD)</th>
+            <th>Square meter price (USD)</th>
+            <th>Type of market</th>
+        <tr>
+        <tr th:each="apartment : ${favouriteApartments}">
+            <td th:text="${apartment.id}"></td>
+            <td th:text="${apartment.floor}"></td>
+
+            <td th:text="${apartment.area}"></td>
+            <td th:text="${apartment.roomsNumber}"></td>
+            <td th:text="${apartment.typeOfKitchen}"></td>
+            <td th:text="${apartment.price}"></td>
+            <td th:text="${apartment.pricePerSquareMeter}"></td>
+            <td th:text="${apartment.marketType}"></td>
+        <td>
+            <button><a th:href="|/apartments/list/details/${apartment.id}|">Check details</a></button>
+        </td>
+        <td>
+            <button><a th:href="@{del/fav/apartment(id=${apartment.id})}">Delete</a></button>
+        </td>
+        </tr>
+    </table>
+
+</div>
+
 <hr>
 </body>
 </html>

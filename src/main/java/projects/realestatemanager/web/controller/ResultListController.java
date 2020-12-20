@@ -27,7 +27,6 @@ public class ResultListController {
     public String getSearchPage(@PathVariable(value = "ids") String ids, Model model) {
         log.debug("Received ids in show controller: {}", ids);
 
-
         List<Long> idList = new ArrayList<>();
 
         String[] idsArray = ids.split("[+]");
@@ -39,5 +38,11 @@ public class ResultListController {
 
         model.addAttribute("apartmentsToShow", apartmentService.showByIds(idList));
         return "search/results";
+    }
+
+    @GetMapping("/")
+    public String getEmptySearchPage(Model model) {
+
+        return "errors/no-results";
     }
 }

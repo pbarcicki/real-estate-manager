@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Developers list</title>
 </head>
@@ -25,6 +25,7 @@
                     th:style="${developer.isActive()} ? 'color: red' : 'color: grey'"
             ></td>
             <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="|edit/${developer.id}|">Edit</a></td>
+            <td><button><a th:href="|/buildings/list/d${developer.id}|">Show all related buildings</a></button> </a></td>
         </tr>
     </table>
 </div>

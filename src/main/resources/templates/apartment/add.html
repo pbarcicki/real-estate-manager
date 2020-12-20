@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<head th:include="elements/header">
     <meta charset="UTF-8">
     <title>Add new apartment</title>
 </head>
@@ -11,6 +11,19 @@
 <div sec:authorize="hasRole('ADMIN')">
     <form th:action="@{/apartments/add}" th:method="post" th:object="${createApartmentCommand}">
         <div>
+
+            <label>Building id:
+                <select th:field="*{buildingId}" name="developer">
+                    <option th:value="null" selected>Make your choice</option>
+                    <option th:each="buildingOpt : ${availableBuildings}"
+                            th:value="${buildingOpt.id}" th:text="${buildingOpt.id}">
+                    </option>
+                </select>
+                <div>
+                    <span th:each="err : ${#fields.errors('buildingId')}" th:text="${err}"></span>
+                </div>
+            </label>
+
             <label>Floor:
                 <input type="number" th:field="*{floor}"/>
                 <div>

@@ -1,13 +1,21 @@
 spring:
   application:
     name: real-estate-manager
-
   jpa:
     hibernate:
-      ddl-auto: create
-    dataspurce: jdbc:h2:mem:real
-
+      ddl-auto: create-drop
+  #      ddl-auto: update
+  datasource:
+    url: jdbc:h2:mem:real
+    password:
+    username: sa
+    driver-class-name: org.h2.Driver
+    platform: h2
+  h2:
+    console:
+      enabled: true
 logging:
   level:
+    sql: DEBUG
     root: WARN
     projects.realestatemanager: DEBUG
