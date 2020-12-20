@@ -7,8 +7,10 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import static projects.realestatemanager.domain.model.Apartment.APARTMENT_TABLE;
+
 @Entity
-@Table(name = "apartments")
+@Table(name = APARTMENT_TABLE)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +18,10 @@ import java.util.Set;
 @ToString(exclude = "building")
 @EqualsAndHashCode(of = "id") //todo ewentualnie do zmiany
 public class Apartment {
+
+
+    public static final String APARTMENT_TABLE = "apartments";
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

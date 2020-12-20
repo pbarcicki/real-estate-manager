@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import projects.realestatemanager.converter.ApartmentConverter;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
+import projects.realestatemanager.domain.model.Building;
 import projects.realestatemanager.domain.model.User;
 import projects.realestatemanager.domain.repository.ApartmentRepository;
 import projects.realestatemanager.domain.repository.BuildingRepository;
@@ -41,8 +42,9 @@ public class ApartmentService {
 
     public void add(CreateApartmentCommand createApartmentCommand) {
         log.debug("Apartment data to be saved: {}", createApartmentCommand);
+        Building building = buildingRepository.getOne(createApartmentCommand.getBuildingId());
 
-        Apartment apartmentToAdd = apartmentConverter.from(createApartmentCommand);
+        Apartment apartmentToAdd = apartmentConverter.from(createApartmentCommand, building);
 
         if (apartmentRepository.existsByFloorAndAreaAndBuildingAndWindowsDirection(apartmentToAdd.getFloor(), apartmentToAdd.getArea(), apartmentToAdd.getBuilding(), apartmentToAdd.getWindowsDirection())) {
             log.debug("Trying to add existing apartment");
