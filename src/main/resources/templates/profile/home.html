@@ -18,7 +18,7 @@
 <div class="header">
     <h1 style="color: white">(╯°□°)╯︵ ┻━┻</h1>
 </div>
-<h2>Zalogowany użytkownik:<span sec:authentication="name"></span></h2>
+<h2>Logged user: <span sec:authentication="name"></span></h2>
 <hr>
 <div class="nav_menu">
     <a href="/apartments/list">Apartments</a>
@@ -31,14 +31,13 @@
     <a href="/logout">Log out!</a>
 </div>
 <div>
-    <h2>Lista ulubionych bydunków...</h2>
+    <h2>Favourite buildings list...</h2>
     <table>
         <tr>
             <th>ID</th>
             <th>type</th>
             <th>real_term</th>
             <th>region</th>
-            <th>deleteeeee</th>
         </tr>
         <tr th:each="building : ${favouriteBuildings}">
             <td th:text="${building.id}"></td>
@@ -46,34 +45,37 @@
             <td th:text="${building.buildingRealizationTerm}"></td>
             <td th:text="${building.region}"></td>
             <td>
-                <a th:href="@{del/fav/building(id=${building.id})}">DELETE</a>
+                <button><a th:href="|/buildings/list/details/${building.id}|">Check details</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{del/fav/building(id=${building.id})}">Delete</a></button>
             </td>
         </tr>
     </table>
 </div>
 
 <div>
-    <h2>Lista ulubionych klientów...</h2>
+    <h2>Favourite clients list...</h2>
     <table>
         <tr>
             <th>ID</th>
-            <th>name</th>
-            <th>registration date</th>
-            <th>deleteeeee</th>
+            <th>Name</th>
+            <th>Registration date</th>
+            <th>Delete</th>
         </tr>
         <tr th:each="client : ${favouriteClients}">
             <td th:text="${client.id}"></td>
             <td th:text="${client.clientName}"></td>
             <td th:text="${client.clientRegistrationDate}"></td>
             <td>
-                <a th:href="@{del/fav/client(id=${client.id})}">DELETE</a>
+                <a th:href="@{}">Check details</a>
             </td>
         </tr>
     </table>
 </div>
 
 <div>
-    <h2>Lista ulubionych mieszkań...</h2>
+    <h2>Favourite clients apartments...</h2>
     <table>
         <tr>
             <th>Id</th>
@@ -96,9 +98,11 @@
             <td th:text="${apartment.pricePerSquareMeter}"></td>
             <td th:text="${apartment.marketType}"></td>
         <td>
-            <a th:href="@{del/fav/apartment(id=${apartment.id})}">DELETE</a>
+            <button><a th:href="|/apartments/list/details/${apartment.id}|">Check details</a></button>
         </td>
-
+        <td>
+            <button><a th:href="@{del/fav/apartment(id=${apartment.id})}">Delete</a></button>
+        </td>
         </tr>
     </table>
 
