@@ -148,8 +148,7 @@ public class SearchService {
         }
 
         if (searchApartmentCommand.getOnCorner() != null) {
-            root.join("building");
-            searchPredicates.add(cb.equal(root.get("building").get("onCorner"), searchApartmentCommand.getOnCorner()));
+            searchPredicates.add(cb.equal(root.get("onCorner"), searchApartmentCommand.getOnCorner()));
         }
 
         if (searchApartmentCommand.getIsParkingAvailable() != null) {
