@@ -39,7 +39,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .active(true)
                 .photosUrl("https://abc.net.au")
                 .creationDate(LocalDate.of(2020,3,23))
-                .comment("Three bedrooms, a living room, two bathrooms and a annex kitchen.")
+                .comment("Three bedrooms, a living room, two bathrooms and a open kitchen.")
                 .floor(2)
                 .price(350000)
                 .roomsNumber(6)
