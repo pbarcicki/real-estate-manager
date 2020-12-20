@@ -3,6 +3,8 @@ package projects.realestatemanager.converter;
 import org.springframework.stereotype.Component;
 import projects.realestatemanager.data.apartment.ApartmentSummary;
 import projects.realestatemanager.domain.model.Apartment;
+import projects.realestatemanager.domain.model.Building;
+import projects.realestatemanager.domain.model.Developer;
 import projects.realestatemanager.web.command.CreateApartmentCommand;
 import projects.realestatemanager.web.command.EditApartmentCommand;
 
@@ -10,8 +12,9 @@ import projects.realestatemanager.web.command.EditApartmentCommand;
 @Component
 public class ApartmentConverter {
 
-    public Apartment from(CreateApartmentCommand createApartmentCommand){
+    public Apartment from(CreateApartmentCommand createApartmentCommand, Building building){
         return Apartment.builder()
+                .building(building)
                 .floor(createApartmentCommand.getFloor())
                 .onCorner(createApartmentCommand.getOnCorner())
                 .area(createApartmentCommand.getArea())
