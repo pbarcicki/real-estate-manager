@@ -30,7 +30,6 @@ public class ApartmentDataLoader implements DataLoader{
     @Transactional
     public void loadData(){
         Apartment apartment1 = Apartment.builder()
-                .pricePerSquareMeter(1000)
                 .view("Park")
                 .area(61)
                 .exclusivity(false)
@@ -42,6 +41,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("Three bedrooms, a living room, two bathrooms and a open kitchen.")
                 .floor(2)
                 .price(350000)
+                .pricePerSquareMeter((int)350000/61)
                 .roomsNumber(6)
                 .status("Free")
                 .storageRoom(true)
@@ -50,7 +50,6 @@ public class ApartmentDataLoader implements DataLoader{
                 .building(buildingRepository.getOne(2L))
                 .build();
         Apartment apartment2 = Apartment.builder()
-                .pricePerSquareMeter(1500)
                 .building(buildingRepository.getOne(1L))
                 .view("Sea")
                 .area(35)
@@ -63,6 +62,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("Small flat. It features two rooms, a kitchen, and a bathroom. It is located in a sunny and quiet neighbourhood in Wroclaw.")
                 .floor(7)
                 .price(550000)
+                .pricePerSquareMeter((int)550000/35)
                 .roomsNumber(4)
                 .status("Reserved")
                 .storageRoom(false)
@@ -70,7 +70,6 @@ public class ApartmentDataLoader implements DataLoader{
                 .windowsDirection("West")
                 .build();
         Apartment apartment3 = Apartment.builder()
-                .pricePerSquareMeter(2000)
                 .building(buildingRepository.getOne(3L))
                 .view("Park")
                 .area(100)
@@ -83,6 +82,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("Flat is on the second floor. It is quite small because there are only two rooms.")
                 .floor(2)
                 .price(100000)
+                .pricePerSquareMeter((int)100000/100)
                 .roomsNumber(2)
                 .status("Check with developer")
                 .storageRoom(false)
@@ -90,7 +90,6 @@ public class ApartmentDataLoader implements DataLoader{
                 .windowsDirection("North")
                 .build();
         Apartment apartment4 = Apartment.builder()
-                .pricePerSquareMeter(2300)
                 .building(buildingRepository.getOne(4L))
                 .view("Main street")
                 .area(100)
@@ -103,6 +102,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("The living room is fortunately quite big.")
                 .floor(3)
                 .price(1000000)
+                .pricePerSquareMeter((int)1000000/100)
                 .roomsNumber(4)
                 .status("Free")
                 .storageRoom(true)
@@ -110,7 +110,6 @@ public class ApartmentDataLoader implements DataLoader{
                 .windowsDirection("South")
                 .build();
         Apartment apartment5 = Apartment.builder()
-                .pricePerSquareMeter(1800)
                 .building(buildingRepository.getOne(1L))
                 .view("City center")
                 .area(100)
@@ -123,6 +122,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("Our flat is situated in the city centre, which is a big asset. It is close to most schools, the post office and the main railway station. There is also a huge park and a supermarket in our neighbourhood. ")
                 .floor(3)
                 .price(1000000)
+                .pricePerSquareMeter((int)1000000/100)
                 .roomsNumber(4)
                 .status("Reserved")
                 .storageRoom(true)
@@ -130,7 +130,6 @@ public class ApartmentDataLoader implements DataLoader{
                 .windowsDirection("South")
                 .build();
         Apartment apartment6 = Apartment.builder()
-                .pricePerSquareMeter(1500)
                 .building(buildingRepository.getOne(2L))
                 .view("Park")
                 .area(50)
@@ -143,6 +142,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("There are three bedrooms, a lovely kitchen, one bathroom and a balcony.")
                 .floor(3)
                 .price(1000000)
+                .pricePerSquareMeter((int)1000000/50)
                 .roomsNumber(4)
                 .status("Reserved")
                 .storageRoom(false)
@@ -150,7 +150,6 @@ public class ApartmentDataLoader implements DataLoader{
                 .windowsDirection("West")
                 .build();
         Apartment apartment7 = Apartment.builder()
-                .pricePerSquareMeter(1400)
                 .building(buildingRepository.getOne(3L))
                 .view("Lake")
                 .area(500)
@@ -163,6 +162,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("We have even got a private parking.")
                 .floor(4)
                 .price(50000)
+                .pricePerSquareMeter((int)50000/500)
                 .roomsNumber(6)
                 .status("Free")
                 .storageRoom(true)
@@ -170,7 +170,6 @@ public class ApartmentDataLoader implements DataLoader{
                 .windowsDirection("North")
                 .build();
         Apartment apartment8 = Apartment.builder()
-                .pricePerSquareMeter(1700)
                 .building(buildingRepository.getOne(3L))
                 .view("City center")
                 .area(20)
@@ -183,6 +182,7 @@ public class ApartmentDataLoader implements DataLoader{
                 .comment("Big living room, dining room, kitchen, two bedrooms, one bathroom and a workroom.")
                 .floor(6)
                 .price(500000)
+                .pricePerSquareMeter((int)500000/20)
                 .roomsNumber(6)
                 .status("Check with developer")
                 .storageRoom(true)

@@ -30,7 +30,7 @@
     <a href="/search">Search</a>
     <a href="/logout">Log out!</a>
 </div>
-<div>
+<div  th:if="${!favouriteBuildings.isEmpty()}">
     <h2>Favourite buildings list...</h2>
     <table>
         <tr>
@@ -54,7 +54,7 @@
     </table>
 </div>
 
-<div>
+<div th:if="${!favouriteClients.isEmpty()}">
     <h2>Favourite clients list...</h2>
     <table>
         <tr>
@@ -75,7 +75,7 @@
     </table>
 </div>
 
-<div>
+<div th:if="${!favouriteApartments.isEmpty()}">
     <h2>Favourite clients apartments...</h2>
     <table>
         <tr>

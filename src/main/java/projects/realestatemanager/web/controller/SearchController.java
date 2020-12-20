@@ -49,7 +49,6 @@ public class SearchController {
             return "search/search";
         }
 
-
         try {
             String ids = searchService.search(searchApartmentCommand);
             log.debug("Search success!");

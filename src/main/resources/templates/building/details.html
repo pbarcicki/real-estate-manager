@@ -31,7 +31,10 @@
 
             <tr>
                 <th>Number of apartments:</th>
-                <td th:text="|${building.numberOfApartments} ***todo link to all coonected apartments***|"></td>
+                <td>
+                    <a th:text="|${building.numberOfApartments}|"
+                       th:href="|/apartments/list/b${building.id}|"></a>
+                </td>
             </tr>
 
             <tr>
