@@ -23,7 +23,7 @@ public class ResultListController {
 
     private final ApartmentService apartmentService;
 
-    @GetMapping("/{ids:^[0-9].*[0-9]$}")
+    @GetMapping("/{ids:^[0-9].*}")
     public String getSearchPage(@PathVariable(value = "ids") String ids, Model model) {
         log.debug("Received ids in show controller: {}", ids);
 

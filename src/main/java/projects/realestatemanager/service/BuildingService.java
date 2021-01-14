@@ -37,7 +37,7 @@ public class BuildingService {
     private final BuildingConverter buildingConverter;
     private final EntityManager entityManager;
 
-    public List<BuildingSummary> findAllBuildings(){
+    public List<BuildingSummary> findAllBuildings() {
         log.debug("Getting all buildings info");
 
         return buildingRepository.findAll().stream()
@@ -67,7 +67,6 @@ public class BuildingService {
         buildingRepository.save(buildingToAdd);
         log.debug("Added building: {}", buildingToAdd);
     }
-
 
 
     public BuildingSummary showBuildingById(Long id) {
@@ -141,7 +140,7 @@ public class BuildingService {
         }
 
         try {
-            List <Building> apartmentEntities = buildingRepository.findAllByDeveloperId(id);
+            List<Building> apartmentEntities = buildingRepository.findAllByDeveloperId(id);
             return apartmentEntities.stream()
                     .map(buildingConverter::from)
                     .collect(Collectors.toList());
